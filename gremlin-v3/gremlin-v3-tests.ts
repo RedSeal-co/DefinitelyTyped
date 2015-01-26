@@ -15,4 +15,12 @@ traversal.toArray()
     array.forEach((elem: any): void => { console.log(elem); });
   });
 
+// simplifyVertexProperties
+graph.V().toArray()
+  .then((vertices: Gremlin.VertexWrapper[]): void => {
+    var simplified: any[] = vertices.map((v: Gremlin.VertexWrapper): any => {
+      return Gremlin.VertexWrapper.simplifyVertexProperties(v);
+    })
+  });
+
 // TODO: more tests
