@@ -82,7 +82,7 @@ declare module 'gremlin-v3' {
     }
 
     // ## TraversalWrapper
-    interface TraversalWrapper {
+    class TraversalWrapper {
       gremlin: Gremlin;
 
       addInE(edgeLabel: string, stepLabel: string, opts?: any): TraversalWrapper;
@@ -118,7 +118,7 @@ declare module 'gremlin-v3' {
     }
 
     // ## GraphWrapper
-    interface GraphWrapper {
+    class GraphWrapper {
       loadGraphSONSync(graphsonPath: string): void;
 
       V(): TraversalWrapper;
@@ -130,7 +130,7 @@ declare module 'gremlin-v3' {
     }
 
     // ## EdgeWrapper
-    interface EdgeWrapper {
+    class EdgeWrapper {
       toStringSync(): string;
       toJSON(): string;
 
