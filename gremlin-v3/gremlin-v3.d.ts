@@ -140,7 +140,7 @@ declare module 'gremlin-v3' {
 
     // ## VertexWrapper
     class VertexWrapper {
-      static simplifyVertexProperties(v: VertexWrapper): void;
+      static simplifyVertexProperties(v: VertexWrapper): any;
 
       addEdge(edgeLabel: string, inVertex: VertexWrapper, properties?: PropertyMap): Q.Promise<EdgeWrapper>;
       values(propertyNames: string[]): Q.Promise<PropertyMap>;
