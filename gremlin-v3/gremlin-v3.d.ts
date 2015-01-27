@@ -99,6 +99,7 @@ declare module 'gremlin-v3' {
       outV(): TraversalWrapper;
       select(): TraversalWrapper;
       select(labels: string[]): TraversalWrapper;
+      subgraph(groovyEdgePredicate: string): Q.Promise<GraphWrapper>;
       unfold(): TraversalWrapper;
       values(propertyName: string): TraversalWrapper;
       values(propertyNames: string[]): TraversalWrapper;
@@ -119,6 +120,7 @@ declare module 'gremlin-v3' {
 
     // ## GraphWrapper
     class GraphWrapper {
+      saveGraphSONSync(graphsonPath: string): void;
       loadGraphSONSync(graphsonPath: string): void;
 
       V(): TraversalWrapper;
@@ -126,13 +128,13 @@ declare module 'gremlin-v3' {
 
       addVertex(properties?: PropertyMap): Q.Promise<VertexWrapper>;
 
-      toJSON(): string;
+      toJSON(): any;
     }
 
     // ## EdgeWrapper
     class EdgeWrapper {
       toStringSync(): string;
-      toJSON(): string;
+      toJSON(): any;
 
       // Expose the underlying Java object for debugging/hacking.
       unwrap(): any;
@@ -145,7 +147,7 @@ declare module 'gremlin-v3' {
       addEdge(edgeLabel: string, inVertex: VertexWrapper, properties?: PropertyMap): Q.Promise<EdgeWrapper>;
       values(propertyNames: string[]): Q.Promise<PropertyMap>;
 
-      toJSON(): string;
+      toJSON(): any;
 
       // Expose the underlying Java object for debugging/hacking.
       unwrap(): any;
