@@ -5,9 +5,13 @@ import Gremlin = require('gremlin-v3');
 var gremlin: Gremlin = new Gremlin();
 var java: Gremlin.Java = gremlin.java;
 
-var javaGraph: any = java.callStaticMethodSync('com.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph', 'open');
-var graph: Gremlin.GraphWrapper = gremlin.wrap(javaGraph);
+function newTinkerGraph(): Gremlin.GraphWrapper {
+  var javaGraph: any = java.callStaticMethodSync('com.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph', 'open');
+  var graph: Gremlin.GraphWrapper = gremlin.wrap(javaGraph);
+  return graph;
+}
 
+var graph = newTinkerGraph();
 var traversal: Gremlin.TraversalWrapper = graph.V().as('v').has('foo', 'bar');
 
 traversal.toArray()
@@ -22,5 +26,11 @@ graph.V().toArray()
       return Gremlin.VertexWrapper.simplifyVertexProperties(v.toJSON());
     })
   });
+
+// GraphSON API
+var graphsonPath: string = 'graph.json';
+graph.saveGraphSONSync(graphsonPath);
+var graph2 = newTinkerGraph();
+graph2.loadGraphSONSync(graphsonPath);
 
 // TODO: more tests
