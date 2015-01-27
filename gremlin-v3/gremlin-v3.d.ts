@@ -99,6 +99,7 @@ declare module 'gremlin-v3' {
       outV(): TraversalWrapper;
       select(): TraversalWrapper;
       select(labels: string[]): TraversalWrapper;
+      subgraph(groovyEdgePredicate: string): Q.Promise<GraphWrapper>;
       unfold(): TraversalWrapper;
       values(propertyName: string): TraversalWrapper;
       values(propertyNames: string[]): TraversalWrapper;
