@@ -19,7 +19,7 @@ traversal.toArray()
 graph.V().toArray()
   .then((vertices: Gremlin.VertexWrapper[]): void => {
     var simplified: any[] = vertices.map((v: Gremlin.VertexWrapper): any => {
-      return Gremlin.VertexWrapper.simplifyVertexProperties(v);
+      return Gremlin.VertexWrapper.simplifyVertexProperties(v.toJSON());
     })
   });
 

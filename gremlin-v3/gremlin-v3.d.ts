@@ -126,13 +126,13 @@ declare module 'gremlin-v3' {
 
       addVertex(properties?: PropertyMap): Q.Promise<VertexWrapper>;
 
-      toJSON(): string;
+      toJSON(): any;
     }
 
     // ## EdgeWrapper
     class EdgeWrapper {
       toStringSync(): string;
-      toJSON(): string;
+      toJSON(): any;
 
       // Expose the underlying Java object for debugging/hacking.
       unwrap(): any;
@@ -145,7 +145,7 @@ declare module 'gremlin-v3' {
       addEdge(edgeLabel: string, inVertex: VertexWrapper, properties?: PropertyMap): Q.Promise<EdgeWrapper>;
       values(propertyNames: string[]): Q.Promise<PropertyMap>;
 
-      toJSON(): string;
+      toJSON(): any;
 
       // Expose the underlying Java object for debugging/hacking.
       unwrap(): any;
