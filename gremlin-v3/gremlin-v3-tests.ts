@@ -33,4 +33,10 @@ graph.saveGraphSONSync(graphsonPath);
 var graph2 = newTinkerGraph();
 graph2.loadGraphSONSync(graphsonPath);
 
+// subgraph
+graph.E().subgraph('{ it -> it.property("foo").isPresent() }')
+  .then((sg: Gremlin.GraphWrapper): void => {
+    sg.saveGraphSONSync('subgraph.json');
+  });
+
 // TODO: more tests
