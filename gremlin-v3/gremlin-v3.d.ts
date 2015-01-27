@@ -119,6 +119,7 @@ declare module 'gremlin-v3' {
 
     // ## GraphWrapper
     class GraphWrapper {
+      saveGraphSONSync(graphsonPath: string): void;
       loadGraphSONSync(graphsonPath: string): void;
 
       V(): TraversalWrapper;
