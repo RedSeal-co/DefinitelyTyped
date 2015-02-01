@@ -131,6 +131,7 @@ declare module 'gremlin-v3' {
       as(stepLabel: string): TraversalWrapper;
       back(stepLabel: string): TraversalWrapper;
       by(propertyName: string): TraversalWrapper;
+      filter(groovyPredicate: string): TraversalWrapper;
       filter(predicate: Predicate<any>): TraversalWrapper;
       has(property: string): TraversalWrapper;
       has(property: string, value: string): TraversalWrapper;

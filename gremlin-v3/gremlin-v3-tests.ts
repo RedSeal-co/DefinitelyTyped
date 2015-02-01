@@ -42,6 +42,10 @@ graph.saveGraphSONSync(graphsonPath);
 var graph2 = newTinkerGraph();
 graph2.loadGraphSONSync(graphsonPath);
 
+// filter
+graph.V().filter('{ it -> it.get().value("foo") == "bar" }');
+graph.V().filter(gremlin.newJavaScriptLambda('it.get().value("foo") == "bar"'));
+
 // select
 graph.V().select();
 graph.V().select('one');
