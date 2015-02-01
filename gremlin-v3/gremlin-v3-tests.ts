@@ -12,6 +12,15 @@ function newTinkerGraph(): Gremlin.GraphWrapper {
 }
 
 var graph = newTinkerGraph();
+
+// ## Graph
+// ### newGroovyLambda
+var groovyLambda: Gremlin.Lambda<number, string, boolean>
+  = gremlin.newGroovyLambda<number, string, boolean>('{ a, b, c -> a + b + c }');
+// ### newJavaScriptLambda
+var javaScriptLambda: Gremlin.Lambda<number, string, boolean>
+  = gremlin.newJavaScriptLambda<number, string, boolean>('a + b + c');
+
 var traversal: Gremlin.TraversalWrapper = graph.V().as('v').has('foo', 'bar');
 
 traversal.toArray()
