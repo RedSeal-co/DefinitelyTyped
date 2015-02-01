@@ -17,6 +17,9 @@ declare module 'gremlin-v3' {
 
     isType(object: any, javaType: string): boolean;
 
+    newGroovyLambda<T, U, V>(groovy: string): Gremlin.Lambda<T, U, V>;
+    newJavaScriptLambda<T, U, V>(javascript: string): Gremlin.Lambda<T, U, V>;
+
     wrap(javaObject: any): Gremlin.GraphWrapper;
     wrapTraversal(javaObject: any): Gremlin.TraversalWrapper;
     wrapVertex(javaObject: any): Gremlin.VertexWrapper;
@@ -66,6 +69,24 @@ declare module 'gremlin-v3' {
       putSync(symbol: string, value: any): void;
     }
 
+    // ## BiConsumer
+    // Represent any java.util.function.BiConsumer;
+    interface BiConsumer<T, U> {
+      acceptSync(t: T, u: U): void;
+    }
+
+    // ## Consumer
+    // Represent any java.util.function.Consumer;
+    interface Consumer<T> {
+      acceptSync(t: T): void;
+    }
+
+    // ## Function
+    // Represent any java.util.function.Function;
+    interface Function<T, U> {
+      applySync(t: T): U;
+    }
+
     // ## Predicate
     // Represent any java.util.function.Predicate
     interface Predicate<T> {
@@ -79,6 +100,27 @@ declare module 'gremlin-v3' {
     // Static interface to java.util.function.Predicate
     interface PredicateStatic<T> {
       isEqualSync(targetRef: T): Predicate<T>;
+    }
+
+    // ## Supplier
+    // Represent any java.util.function.Supplier
+    interface Supplier<T> {
+      getSync(): T;
+    }
+
+    // ## TriConsumer
+    // Represent any com.tinkerpop.gremlin.util.function.TriConsumer
+    interface TriConsumer<T, U, V> {
+      acceptSync(t: T, u: U, v: V): void;
+    }
+
+    // ## Lambda
+    // Represent GroovyLambda or ScriptEngineLambda, which implement multiple functional interfaces.
+    // We would like to extend Consumer, BiConsumer, and TriConsumer, but TypeScript 1.3 disallows this.
+    interface Lambda<T, U, V> extends Function<T, U>, Predicate<T>, Supplier<T> {
+      acceptSync(t: T): void;
+      acceptSync(t: T, u: U): void;
+      acceptSync(t: T, u: U, v: V): void;
     }
 
     // ## TraversalWrapper
