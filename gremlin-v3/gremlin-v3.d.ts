@@ -1,4 +1,4 @@
-// Type definitions for gremlin-v3 0.0.10
+// Type definitions for gremlin-v3 0.0.13
 // Project: https://github.com/jimlloyd/gremlin-v3
 // Definitions by: Matt Frantz <https://github.com/mhfrantz/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -98,7 +98,7 @@ declare module 'gremlin-v3' {
       out(edgeLabel: string): TraversalWrapper;
       outV(): TraversalWrapper;
       select(): TraversalWrapper;
-      select(labels: string[]): TraversalWrapper;
+      select(...labels: string[]): TraversalWrapper;
       subgraph(groovyEdgePredicate: string): Q.Promise<GraphWrapper>;
       unfold(): TraversalWrapper;
       values(propertyName: string): TraversalWrapper;
