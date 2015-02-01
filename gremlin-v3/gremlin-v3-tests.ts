@@ -33,6 +33,11 @@ graph.saveGraphSONSync(graphsonPath);
 var graph2 = newTinkerGraph();
 graph2.loadGraphSONSync(graphsonPath);
 
+// select
+graph.V().select();
+graph.V().select('one');
+graph.V().select('one', 'two');
+
 // subgraph
 graph.E().subgraph('{ it -> it.property("foo").isPresent() }')
   .then((sg: Gremlin.GraphWrapper): void => {
