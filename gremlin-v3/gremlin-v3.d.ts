@@ -1,4 +1,4 @@
-// Type definitions for gremlin-v3 0.0.10
+// Type definitions for gremlin-v3 0.0.13
 // Project: https://github.com/jimlloyd/gremlin-v3
 // Definitions by: Matt Frantz <https://github.com/mhfrantz/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -13,9 +13,16 @@ declare module 'gremlin-v3' {
 
     java: Gremlin.Java;
 
+    HashMap: Gremlin.MapStatic<any, any>;
+
     T: Gremlin.GremlinT;
 
+    __: Gremlin.TraversalWrapper;
+
     isType(object: any, javaType: string): boolean;
+
+    newGroovyLambda<T, U, V>(groovy: string): Gremlin.Lambda<T, U, V>;
+    newJavaScriptLambda<T, U, V>(javascript: string): Gremlin.Lambda<T, U, V>;
 
     wrap(javaObject: any): Gremlin.GraphWrapper;
     wrapTraversal(javaObject: any): Gremlin.TraversalWrapper;
@@ -57,6 +64,18 @@ declare module 'gremlin-v3' {
       sizeSync(): number;
     }
 
+    // ## Map
+    // java.util.Map
+    interface Map<K, V> {
+      putSync(key: K, value: V): void;
+    }
+
+    // ## MapStatic
+    // Static interface to any java.util.Map implementation
+    interface MapStatic<K, V> {
+      new(): Map<K, V>;
+    }
+
     // ## GremlinGroovyScriptEngine
     // com.tinkerpop.gremlin.groovy.jsr223.GremlinGroovyScriptEngine
     interface GremlinGroovyScriptEngine {
@@ -64,6 +83,24 @@ declare module 'gremlin-v3' {
       useSync(groupId: string, artifactId: string, version: string): void;
       evalSync(script: string): any;
       putSync(symbol: string, value: any): void;
+    }
+
+    // ## BiConsumer
+    // Represent any java.util.function.BiConsumer;
+    interface BiConsumer<T, U> {
+      acceptSync(t: T, u: U): void;
+    }
+
+    // ## Consumer
+    // Represent any java.util.function.Consumer;
+    interface Consumer<T> {
+      acceptSync(t: T): void;
+    }
+
+    // ## Function
+    // Represent any java.util.function.Function;
+    interface Function<T, U> {
+      applySync(t: T): U;
     }
 
     // ## Predicate
@@ -81,6 +118,33 @@ declare module 'gremlin-v3' {
       isEqualSync(targetRef: T): Predicate<T>;
     }
 
+    // ## Supplier
+    // Represent any java.util.function.Supplier
+    interface Supplier<T> {
+      getSync(): T;
+    }
+
+    // ## TriConsumer
+    // Represent any com.tinkerpop.gremlin.util.function.TriConsumer
+    interface TriConsumer<T, U, V> {
+      acceptSync(t: T, u: U, v: V): void;
+    }
+
+    // ## Lambda
+    // Represent GroovyLambda or ScriptEngineLambda, which implement multiple functional interfaces.
+    // We would like to extend Consumer, BiConsumer, and TriConsumer, but TypeScript 1.3 disallows this.
+    interface Lambda<T, U, V> extends Function<T, U>, Predicate<T>, Supplier<T> {
+      acceptSync(t: T): void;
+      acceptSync(t: T, u: U): void;
+      acceptSync(t: T, u: U, v: V): void;
+    }
+
+    // ## ChooseOptions
+    // Options passed to two-arg form of TraversalWrapper.choose.
+    interface ChooseOptions {
+      [key: string]: TraversalWrapper;
+    }
+
     // ## TraversalWrapper
     class TraversalWrapper {
       gremlin: Gremlin;
@@ -88,17 +152,26 @@ declare module 'gremlin-v3' {
       addInE(edgeLabel: string, stepLabel: string, opts?: any): TraversalWrapper;
       as(stepLabel: string): TraversalWrapper;
       back(stepLabel: string): TraversalWrapper;
+      both(edgeLabel?: string): TraversalWrapper;
       by(propertyName: string): TraversalWrapper;
+      choose(groovyPredicate: string, trueOption: TraversalWrapper, falseOption: TraversalWrapper): TraversalWrapper;
+      choose(chooser: Predicate<any>, trueOption: TraversalWrapper, falseOption: TraversalWrapper): TraversalWrapper;
+      choose(groovyFunction: string, options: ChooseOptions): TraversalWrapper;
+      choose(chooser: Function<any, string>, options: ChooseOptions): TraversalWrapper;
+      choose(groovyFunction: string, options: Map<any, any>): TraversalWrapper;
+      choose(chooser: Function<any, any>, options: Map<any, any>): TraversalWrapper;
+      filter(groovyPredicate: string): TraversalWrapper;
       filter(predicate: Predicate<any>): TraversalWrapper;
       has(property: string): TraversalWrapper;
       has(property: string, value: string): TraversalWrapper;
+      in(edgeLabel?: string): TraversalWrapper;
       inject(...args: any[]): TraversalWrapper;
       inV(): TraversalWrapper;
       order(): TraversalWrapper;
-      out(edgeLabel: string): TraversalWrapper;
+      out(edgeLabel?: string): TraversalWrapper;
       outV(): TraversalWrapper;
       select(): TraversalWrapper;
-      select(labels: string[]): TraversalWrapper;
+      select(...labels: string[]): TraversalWrapper;
       subgraph(groovyEdgePredicate: string): Q.Promise<GraphWrapper>;
       unfold(): TraversalWrapper;
       values(propertyName: string): TraversalWrapper;
