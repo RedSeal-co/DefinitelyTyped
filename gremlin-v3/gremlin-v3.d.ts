@@ -103,6 +103,22 @@ declare module 'gremlin-v3' {
       applySync(t: T): U;
     }
 
+    // ## UnaryOperator
+    // Represent any java.util.function.UnaryOperator;
+    interface UnaryOperator<T> extends Function<T, T> {
+    }
+
+    // ## BiFunction
+    // Represent any java.util.function.BiFunction;
+    interface BiFunction<T, U, V> {
+      applySync(t: T, u: U): V;
+    }
+
+    // ## BinaryOperator
+    // Represent any java.util.function.BinaryOperator;
+    interface BinaryOperator<T> extends BiFunction<T, T, T> {
+    }
+
     // ## Predicate
     // Represent any java.util.function.Predicate
     interface Predicate<T> {
@@ -131,8 +147,9 @@ declare module 'gremlin-v3' {
     }
 
     // ## Lambda
-    // Represent GroovyLambda or ScriptEngineLambda, which implement multiple functional interfaces.
-    // We would like to extend Consumer, BiConsumer, and TriConsumer, but TypeScript 1.3 disallows this.
+    // Represent GroovyLambda or ScriptEngineLambda, which implement multiple functional interfaces.  We would also
+    // like to extend UnaryOperator, BinaryOperator, Consumer, BiConsumer, and TriConsumer, but TypeScript 1.3
+    // disallows this.
     interface Lambda<T, U, V> extends Function<T, U>, Predicate<T>, Supplier<T> {
       acceptSync(t: T): void;
       acceptSync(t: T, u: U): void;
@@ -170,12 +187,19 @@ declare module 'gremlin-v3' {
       order(): TraversalWrapper;
       out(edgeLabel?: string): TraversalWrapper;
       outV(): TraversalWrapper;
+      sack(): TraversalWrapper;
+      sack(groovy: string): TraversalWrapper;
+      sack(sackFunction: BiFunction<any, any, any>): TraversalWrapper;
+      sack(groovy: string, elementPropertyKey: string): TraversalWrapper;
+      sack(sackOperator: BinaryOperator<any>, elementPropertyKey: string): TraversalWrapper;
       select(): TraversalWrapper;
       select(...labels: string[]): TraversalWrapper;
       subgraph(groovyEdgePredicate: string): Q.Promise<GraphWrapper>;
       unfold(): TraversalWrapper;
       values(propertyName: string): TraversalWrapper;
       values(propertyNames: string[]): TraversalWrapper;
+      withSack(groovyInitialValue: string, groovySplitOperator?: string): TraversalWrapper;
+      withSack<T>(initialValue: Supplier<T>, splitOperator?: UnaryOperator<T>): TraversalWrapper;
 
       asJSONSync(): any[];
       forEach<T>(process: (t: T) => void): Q.Promise<void>;

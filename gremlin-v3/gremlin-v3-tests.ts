@@ -64,6 +64,11 @@ graph.V().choose(gremlin.newJavaScriptLambda<any, number, any>('it.get().value("
 graph.V().filter('{ it -> it.get().value("foo") == "bar" }');
 graph.V().filter(gremlin.newJavaScriptLambda('it.get().value("foo") == "bar"'));
 
+// sack, withSack
+graph.V().withSack('{ -> 1.0f }').sack();
+graph.V().withSack('{ -> [:] }', '{ m -> m.clone() }').out().out()
+  .sack('{ m, v -> m[v.value("name")] = v.value("lang"); m }').sack();
+
 // select
 graph.V().select();
 graph.V().select('one');
