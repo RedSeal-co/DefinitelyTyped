@@ -1,4 +1,4 @@
-// Type definitions for gremlin-v3 0.0.13
+// Type definitions for gremlin-v3 0.0.14
 // Project: https://github.com/jimlloyd/gremlin-v3
 // Definitions by: Matt Frantz <https://github.com/mhfrantz/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
