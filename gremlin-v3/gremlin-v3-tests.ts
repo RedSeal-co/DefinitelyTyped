@@ -28,6 +28,17 @@ traversal.toArray()
     array.forEach((elem: any): void => { console.log(elem); });
   });
 
+function iterate(traversal: Gremlin.TraversalWrapper, process: (elem: any) => void): void {
+  traversal.hasNext()
+    .then((hasNext: boolean): void => {
+      if (hasNext) {
+        traversal.next()
+          .then(process)
+          .then((): void => { iterate(traversal, processor); });
+      }
+    });
+}
+
 // simplifyVertexProperties
 graph.V().toArray()
   .then((vertices: Gremlin.VertexWrapper[]): void => {
