@@ -25,11 +25,16 @@ var javaScriptLambda: Gremlin.Lambda<number, string, boolean>
 
 var traversal: Gremlin.TraversalWrapper = graph.V().as('v').has('foo', 'bar');
 
+// clone
+var clone: Gremlin.TraversalWrapper = traversal.clone();
+
+// toArray
 traversal.toArray()
   .then((array: any[]): void => {
     array.forEach((elem: any): void => { console.log(elem); });
   });
 
+// hasNext/next
 function iterate(traversal: Gremlin.TraversalWrapper, process: (elem: any) => void): void {
   traversal.hasNext()
     .then((hasNext: boolean): void => {
