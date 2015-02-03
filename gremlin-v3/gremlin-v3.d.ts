@@ -22,6 +22,7 @@ declare module 'gremlin-v3' {
     isType(object: any, javaType: string): boolean;
 
     newGroovyLambda<T, U, V>(groovy: string): Gremlin.Lambda<T, U, V>;
+    importGroovy(javaClassOrPkg: string): void;
     newJavaScriptLambda<T, U, V>(javascript: string): Gremlin.Lambda<T, U, V>;
 
     wrap(javaObject: any): Gremlin.GraphWrapper;

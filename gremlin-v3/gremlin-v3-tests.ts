@@ -17,6 +17,8 @@ var graph = newTinkerGraph();
 // ### newGroovyLambda
 var groovyLambda: Gremlin.Lambda<number, string, boolean>
   = gremlin.newGroovyLambda<number, string, boolean>('{ a, b, c -> a + b + c }');
+// ### importGroovy
+gremlin.importGroovy('some.path.to.a.package.MyClass');
 // ### newJavaScriptLambda
 var javaScriptLambda: Gremlin.Lambda<number, string, boolean>
   = gremlin.newJavaScriptLambda<number, string, boolean>('a + b + c');
