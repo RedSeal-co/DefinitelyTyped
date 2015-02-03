@@ -205,6 +205,8 @@ declare module 'gremlin-v3' {
       forEach<T>(process: (t: T) => void): Q.Promise<void>;
       iterate(): Q.Promise<GraphWrapper>;
       toArray(): Q.Promise<any[]>;
+      next(): Q.Promise<any>;
+      hasNext(): Q.Promise<boolean>;
 
       // Expose the underlying Java object for debugging/hacking.
       unwrap(): any;
