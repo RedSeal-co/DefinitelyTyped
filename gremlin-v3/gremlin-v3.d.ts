@@ -1,4 +1,4 @@
-// Type definitions for gremlin-v3 0.0.15
+// Type definitions for gremlin-v3 0.0.16
 // Project: https://github.com/jimlloyd/gremlin-v3
 // Definitions by: Matt Frantz <https://github.com/mhfrantz/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -166,6 +166,8 @@ declare module 'gremlin-v3' {
     // ## TraversalWrapper
     class TraversalWrapper {
       gremlin: Gremlin;
+
+      clone(): TraversalWrapper;
 
       addInE(edgeLabel: string, stepLabel: string, opts?: any): TraversalWrapper;
       as(stepLabel: string): TraversalWrapper;
