@@ -28,6 +28,17 @@ traversal.toArray()
     array.forEach((elem: any): void => { console.log(elem); });
   });
 
+function iterate(traversal: Gremlin.TraversalWrapper, process: (elem: any) => void): void {
+  traversal.hasNext()
+    .then((hasNext: boolean): void => {
+      if (hasNext) {
+        traversal.next()
+          .then(process)
+          .then((): void => { iterate(traversal, process); });
+      }
+    });
+}
+
 // simplifyVertexProperties
 graph.V().toArray()
   .then((vertices: Gremlin.VertexWrapper[]): void => {
@@ -63,6 +74,11 @@ graph.V().choose(gremlin.newJavaScriptLambda<any, number, any>('it.get().value("
 // filter
 graph.V().filter('{ it -> it.get().value("foo") == "bar" }');
 graph.V().filter(gremlin.newJavaScriptLambda('it.get().value("foo") == "bar"'));
+
+// sack, withSack
+graph.V().withSack('{ -> 1.0f }').sack();
+graph.V().withSack('{ -> [:] }', '{ m -> m.clone() }').out().out()
+  .sack('{ m, v -> m[v.value("name")] = v.value("lang"); m }').sack();
 
 // select
 graph.V().select();
