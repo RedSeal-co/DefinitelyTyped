@@ -34,7 +34,7 @@ function iterate(traversal: Gremlin.TraversalWrapper, process: (elem: any) => vo
       if (hasNext) {
         traversal.next()
           .then(process)
-          .then((): void => { iterate(traversal, processor); });
+          .then((): void => { iterate(traversal, process); });
       }
     });
 }
