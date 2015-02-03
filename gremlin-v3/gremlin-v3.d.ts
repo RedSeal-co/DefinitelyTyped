@@ -167,6 +167,8 @@ declare module 'gremlin-v3' {
     class TraversalWrapper {
       gremlin: Gremlin;
 
+      clone(): TraversalWrapper;
+
       addInE(edgeLabel: string, stepLabel: string, opts?: any): TraversalWrapper;
       as(stepLabel: string): TraversalWrapper;
       back(stepLabel: string): TraversalWrapper;
