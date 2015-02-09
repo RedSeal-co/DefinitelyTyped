@@ -1,4 +1,4 @@
-// Type definitions for gremlin-v3 0.0.16
+// Type definitions for gremlin-v3 0.0.17
 // Project: https://github.com/jimlloyd/gremlin-v3
 // Definitions by: Matt Frantz <https://github.com/mhfrantz/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -222,8 +222,18 @@ declare module 'gremlin-v3' {
 
     // ## GraphWrapper
     class GraphWrapper {
-      saveGraphSONSync(graphsonPath: string): void;
-      loadGraphSONSync(graphsonPath: string): void;
+      // GraphSON (sync)
+      saveGraphSONSync(graphsonPath: string): GraphWrapper;
+      savePrettyGraphSONSync(graphsonPath: string): GraphWrapper;
+      loadGraphSONSync(graphsonPath: string): GraphWrapper;
+      // GraphSON (callback)
+      saveGraphSON(graphsonPath: string, callback: (err: Error, graph: GraphWrapper) => any): void;
+      savePrettyGraphSON(graphsonPath: string, callback: (err: Error, graph: GraphWrapper) => any): void;
+      loadGraphSON(graphsonPath: string, callback: (err: Error, graph: GraphWrapper) => any): void;
+      // GraphSON (promise)
+      saveGraphSON(graphsonPath: string): Q.Promise<GraphWrapper>;
+      savePrettyGraphSON(graphsonPath: string): Q.Promise<GraphWrapper>;
+      loadGraphSON(graphsonPath: string): Q.Promise<GraphWrapper>;
 
       V(): TraversalWrapper;
       E(): TraversalWrapper;
