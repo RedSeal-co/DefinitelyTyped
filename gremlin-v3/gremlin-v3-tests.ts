@@ -55,10 +55,38 @@ graph.V().toArray()
   });
 
 // GraphSON API
-var graphsonPath: string = 'graph.json';
-graph.saveGraphSONSync(graphsonPath);
-var graph2 = newTinkerGraph();
-graph2.loadGraphSONSync(graphsonPath);
+// ... sync
+{
+  var graphsonPath: string = 'graph.json';
+  graph.saveGraphSONSync(graphsonPath);
+  graph.savePrettyGraphSONSync(graphsonPath);
+  var graph2 = newTinkerGraph();
+  graph2.loadGraphSONSync(graphsonPath);
+}
+// ... callback
+graph.saveGraphSON(graphsonPath, (err: Error, graph: Gremlin.GraphWrapper) => {
+  var graph2 = newTinkerGraph();
+  graph2.loadGraphSON(graphsonPath, (err: Error, graph2: Gremlin.GraphWrapper) => {
+    console.log('done');
+  })
+});
+graph.savePrettyGraphSON(graphsonPath, (err: Error, graph: Gremlin.GraphWrapper) => {
+  var graph2 = newTinkerGraph();
+  graph2.loadGraphSON(graphsonPath, (err: Error, graph2: Gremlin.GraphWrapper) => {
+    console.log('done');
+  })
+});
+// ... promise
+graph.saveGraphSON(graphsonPath)
+  .then((graph: Gremlin.GraphWrapper): Q.Promise<Gremlin.GraphWrapper> => {
+    var graph2 = newTinkerGraph();
+    return graph2.loadGraphSON(graphsonPath);
+  });
+graph.savePrettyGraphSON(graphsonPath)
+  .then((graph: Gremlin.GraphWrapper): Q.Promise<Gremlin.GraphWrapper> => {
+    var graph2 = newTinkerGraph();
+    return graph2.loadGraphSON(graphsonPath);
+  });
 
 // choose
 var __ = gremlin.__;
