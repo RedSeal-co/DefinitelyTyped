@@ -243,26 +243,40 @@ declare module 'gremlin-v3' {
       toJSON(): any;
     }
 
-    // ## EdgeWrapper
-    class EdgeWrapper {
-      toStringSync(): string;
-      toJSON(): any;
-
+    // ## ElementWrapper
+    class ElementWrapper {
       // Expose the underlying Java object for debugging/hacking.
       unwrap(): any;
+
+      getId(): any;
+
+      value(key: string): Q.Promise<any>;
+      valueSync(key: string): any;
+      values(propertyNames: string[]): Q.Promise<PropertyMap>;
+      setProperty(key: string, value: any): Q.Promise<any>;
+      setProperties(properties: PropertyMap): Q.Promise<void>;
+      removeProperty(key: string): Q.Promise<void>;
+      removeProperties(keys: string[]): Q.Promise<void>;
+
+      remove(): Q.Promise<void>;
+
+      jsonStringifySync(): string;
+      toJSON(): any;
+
+      toString(): Q.Promise<string>;
+      toStringSync(): string;
+    }
+
+    // ## EdgeWrapper
+    class EdgeWrapper extends ElementWrapper {
+      getLabel(): string;
     }
 
     // ## VertexWrapper
-    class VertexWrapper {
+    class VertexWrapper extends ElementWrapper {
       static simplifyVertexProperties(v: VertexWrapper): any;
 
       addEdge(edgeLabel: string, inVertex: VertexWrapper, properties?: PropertyMap): Q.Promise<EdgeWrapper>;
-      values(propertyNames: string[]): Q.Promise<PropertyMap>;
-
-      toJSON(): any;
-
-      // Expose the underlying Java object for debugging/hacking.
-      unwrap(): any;
     }
   }  // module Gremlin
 

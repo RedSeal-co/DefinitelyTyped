@@ -127,3 +127,54 @@ graph.E().subgraph('{ it -> it.property("foo").isPresent() }')
   });
 
 // TODO: more tests
+
+// ## Element
+function testElement(e: Gremlin.ElementWrapper): void {
+  var javaE: any = e.unwrap();
+
+  var id: any = e.getId();
+
+  e.value('foo').then((foo: any) => console.log('foo=', foo));
+
+  var foo: any = e.valueSync('foo');
+
+  e.values(['foo', 'bar', 'baz'])
+    .then((values: Gremlin.PropertyMap): void => {
+      var foo = values['foo'];
+      var bar = values['bar'];
+      var baz = values['baz'];
+    });
+
+  e.setProperty('two', 1 + 1).then((two: any) => console.log('Property is set: ', two));
+
+  e.setProperties({one: 1, two: 2, three: 'trois'}).then(() => console.log('Properties are set'));
+
+  e.removeProperty('foo').then(() => console.log('Property removed'));
+
+  e.removeProperties(['one', 'two', 'three']).then(() => console.log('Properties removed'));
+
+  e.remove().then(() => console.log('Element removed from graph'));
+
+  console.log('Element = ', e.jsonStringifySync());
+
+  var json: any = e.toJSON();
+  console.log('foo = ', json.properties.foo);
+
+  e.toString().then((s: string) => console.log('e = ', s));
+
+  console.log('e = ', e.toStringSync());
+}
+
+// ## Edge
+function testEdge(e: Gremlin.EdgeWrapper): void {
+  var label: string = e.getLabel();
+}
+
+// ## Vertex
+function testVertex(v1: Gremlin.VertexWrapper, v2: Gremlin.VertexWrapper): void {
+  // simplifyVertexProperties tested above
+
+  v1.addEdge('likes', v2);
+  var edgeProperties: Gremlin.PropertyMap = {'one': 1, 'two': 2, 'three': 'trois'};
+  v2.addEdge('hates', v1, edgeProperties).then((e: Gremlin.EdgeWrapper) => console.log('Edge created'));
+}
