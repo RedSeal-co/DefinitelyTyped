@@ -1,4 +1,4 @@
-// Type definitions for gremlin-v3 0.0.17
+// Type definitions for gremlin-v3 0.0.21
 // Project: https://github.com/jimlloyd/gremlin-v3
 // Definitions by: Matt Frantz <https://github.com/mhfrantz/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -173,7 +173,9 @@ declare module 'gremlin-v3' {
       as(stepLabel: string): TraversalWrapper;
       back(stepLabel: string): TraversalWrapper;
       both(edgeLabel?: string): TraversalWrapper;
+      by(): TraversalWrapper;
       by(propertyName: string): TraversalWrapper;
+      by(functionProjection: Function<any, any>): TraversalWrapper;
       choose(groovyPredicate: string, trueOption: TraversalWrapper, falseOption: TraversalWrapper): TraversalWrapper;
       choose(chooser: Predicate<any>, trueOption: TraversalWrapper, falseOption: TraversalWrapper): TraversalWrapper;
       choose(groovyFunction: string, options: ChooseOptions): TraversalWrapper;
@@ -190,6 +192,8 @@ declare module 'gremlin-v3' {
       order(): TraversalWrapper;
       out(edgeLabel?: string): TraversalWrapper;
       outV(): TraversalWrapper;
+      path(): TraversalWrapper;
+      repeat(repeatTraversal: TraversalWrapper): TraversalWrapper;
       sack(): TraversalWrapper;
       sack(groovy: string): TraversalWrapper;
       sack(sackFunction: BiFunction<any, any, any>): TraversalWrapper;
@@ -198,7 +202,11 @@ declare module 'gremlin-v3' {
       select(): TraversalWrapper;
       select(...labels: string[]): TraversalWrapper;
       subgraph(groovyEdgePredicate: string): Q.Promise<GraphWrapper>;
+      times(maxLoops: number): TraversalWrapper;
       unfold(): TraversalWrapper;
+      until(groovyPredicate: string): TraversalWrapper;
+      until(predicate: Predicate<any>): TraversalWrapper;
+      until(traversal: TraversalWrapper): TraversalWrapper;
       values(propertyName: string): TraversalWrapper;
       values(propertyNames: string[]): TraversalWrapper;
       withSack(groovyInitialValue: string, groovySplitOperator?: string): TraversalWrapper;
@@ -235,8 +243,8 @@ declare module 'gremlin-v3' {
       savePrettyGraphSON(graphsonPath: string): Q.Promise<GraphWrapper>;
       loadGraphSON(graphsonPath: string): Q.Promise<GraphWrapper>;
 
-      V(): TraversalWrapper;
-      E(): TraversalWrapper;
+      V(...vertexIds: any[]): TraversalWrapper;
+      E(...edgeIds: any[]): TraversalWrapper;
 
       addVertex(properties?: PropertyMap): Q.Promise<VertexWrapper>;
 
