@@ -110,6 +110,18 @@ graph.V().choose(gremlin.newJavaScriptLambda<any, number, any>('it.get().value("
 graph.V().filter('{ it -> it.get().value("foo") == "bar" }');
 graph.V().filter(gremlin.newJavaScriptLambda('it.get().value("foo") == "bar"'));
 
+// path/by
+graph.V().out().out().values('name').path();
+graph.V().out().out().path().by('name').by('age');
+
+// repeat/until/times
+graph.V(1).repeat(__.out()).times(2).path();
+graph.V().until(__.has('name', 'ripple')).repeat(__.out()).path();
+graph.V().until('{ it -> it.get().value("name") == "ripple" }')
+  .repeat(__.out()).path();
+graph.V().until(gremlin.newJavaScriptLambda<any, boolean, any>('it.get().value("name") == "ripple"'))
+  .repeat(__.out()).path();
+
 // sack, withSack
 graph.V().withSack('{ -> 1.0f }').sack();
 graph.V().withSack('{ -> [:] }', '{ m -> m.clone() }').out().out()
