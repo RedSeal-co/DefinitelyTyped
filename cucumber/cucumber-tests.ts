@@ -11,6 +11,7 @@ function wrapper() {
 
   this.Before(function (scenario: cucumber.Scenario, callback: cucumber.StepCallback) {
     var scenarioName: string = scenario.getName();
+    var scenarioUri: string = scenario.getUri();
     callback();
   });
 
