@@ -14,6 +14,7 @@ declare module cucumber {
 
   export interface Scenario {
     getName(): string;
+    getUri(): string;
   }
 
   export interface DataTable<Row> {
