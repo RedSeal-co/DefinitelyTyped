@@ -208,6 +208,8 @@ declare module 'gremlin-v3' {
       sack(sackOperator: BinaryOperator<any>, elementPropertyKey: string): TraversalWrapper;
       select(): TraversalWrapper;
       select(...labels: string[]): TraversalWrapper;
+      sideEffect(groovyConsumer: string): TraversalWrapper;
+      sideEffect(consumer: Consumer<any>): TraversalWrapper;
       store(sideEffectKey?: string): TraversalWrapper;
       subgraph(sideEffectKey?: string): TraversalWrapper;
       times(maxLoops: number): TraversalWrapper;

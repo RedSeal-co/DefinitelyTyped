@@ -140,6 +140,9 @@ graph.V().select();
 graph.V().select('one');
 graph.V().select('one', 'two');
 
+// sideEffect
+graph.V().out('knows').sideEffect('{ it -> System.out.println(it) }');
+
 // store/cap
 graph.V().store('a').out().store('b').cap('a', 'b');
 
