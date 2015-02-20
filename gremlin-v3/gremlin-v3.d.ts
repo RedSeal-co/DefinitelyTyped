@@ -208,7 +208,7 @@ declare module 'gremlin-v3' {
       select(): TraversalWrapper;
       select(...labels: string[]): TraversalWrapper;
       store(sideEffectKey?: string): TraversalWrapper;
-      subgraph(groovyEdgePredicate: string): Q.Promise<GraphWrapper>;
+      subgraph(sideEffectKey?: string): TraversalWrapper;
       times(maxLoops: number): TraversalWrapper;
       unfold(): TraversalWrapper;
       until(groovyPredicate: string): TraversalWrapper;

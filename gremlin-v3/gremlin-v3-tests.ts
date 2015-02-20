@@ -140,10 +140,11 @@ graph.V().select('one', 'two');
 graph.V().store('a').out().store('b').cap('a', 'b');
 
 // subgraph
-graph.E().subgraph('{ it -> it.property("foo").isPresent() }')
+graph.E().has(gremlin.T.label, 'knows').subgraph().next()
   .then((sg: Gremlin.GraphWrapper): void => {
     sg.saveGraphSONSync('subgraph.json');
   });
+graph.V(3).repeat(__.inE().subgraph('sg').outV()).times(3).cap('sg');
 
 // ## Vertex steps
 // out, in, both, outE, inE, bothE, outV, inV, bothV, otherV
