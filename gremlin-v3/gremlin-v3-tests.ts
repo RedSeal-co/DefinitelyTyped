@@ -93,18 +93,22 @@ var __ = gremlin.__;
 graph.V().choose('{ it -> it.get().value("foo").length() < 5 }', __.out(), __.in());
 graph.V().choose(gremlin.newJavaScriptLambda<any, boolean, any>('it.get().value("foo").length() < 5'),
                  __.out(), __.in());
-var chooseOptions: Gremlin.ChooseOptions = {};
-chooseOptions['foo'] = __.in();
-chooseOptions['bar'] = __.out();
-chooseOptions['baz'] = __.both();
-graph.V().choose('{ it -> it.get().value("name") }', chooseOptions);
-graph.V().choose(gremlin.newJavaScriptLambda<any, string, any>('it.get().value("name")'), chooseOptions);
-var optionMap = new gremlin.HashMap();
-optionMap.putSync(3, __.in());
-optionMap.putSync(4, __.out());
-optionMap.putSync(5, __.both());
-graph.V().choose('{ it -> it.get().value("foo").length() }', optionMap);
-graph.V().choose(gremlin.newJavaScriptLambda<any, number, any>('it.get().value("foo").length()'), optionMap);
+graph.V().choose('{ it -> it.get().value("name") }')
+  .option('foo', __.in())
+  .option('bar', __.out())
+  .option(__.both());  // default option
+graph.V().choose(gremlin.newJavaScriptLambda<any, string, any>('it.get().value("name")'))
+  .option('foo', __.in())
+  .option('bar', __.out())
+  .option(__.both());  // default option
+graph.V().choose('{ it -> it.get().value("foo").length() }')
+  .option(3, __.in())
+  .option(4, __.out())
+  .option(5, __.both());
+graph.V().choose(gremlin.newJavaScriptLambda<any, number, any>('it.get().value("foo").length()'))
+  .option(3, __.in())
+  .option(4, __.out())
+  .option(5, __.both());
 
 // filter
 graph.V().filter('{ it -> it.get().value("foo") == "bar" }');

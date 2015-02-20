@@ -178,10 +178,8 @@ declare module 'gremlin-v3' {
       by(functionProjection: Function<any, any>): TraversalWrapper;
       choose(groovyPredicate: string, trueOption: TraversalWrapper, falseOption: TraversalWrapper): TraversalWrapper;
       choose(chooser: Predicate<any>, trueOption: TraversalWrapper, falseOption: TraversalWrapper): TraversalWrapper;
-      choose(groovyFunction: string, options: ChooseOptions): TraversalWrapper;
-      choose(chooser: Function<any, string>, options: ChooseOptions): TraversalWrapper;
-      choose(groovyFunction: string, options: Map<any, any>): TraversalWrapper;
-      choose(chooser: Function<any, any>, options: Map<any, any>): TraversalWrapper;
+      choose(groovyFunction: string): TraversalWrapper;
+      choose(chooser: Function<any, any>): TraversalWrapper;
       filter(groovyPredicate: string): TraversalWrapper;
       filter(predicate: Predicate<any>): TraversalWrapper;
       has(property: string): TraversalWrapper;
@@ -189,6 +187,8 @@ declare module 'gremlin-v3' {
       in(edgeLabel?: string): TraversalWrapper;
       inject(...args: any[]): TraversalWrapper;
       inV(): TraversalWrapper;
+      option(pickToken: any, traversalOption: TraversalWrapper): TraversalWrapper;
+      option(traversalOption: TraversalWrapper): TraversalWrapper;
       order(): TraversalWrapper;
       out(edgeLabel?: string): TraversalWrapper;
       outV(): TraversalWrapper;
