@@ -1,4 +1,4 @@
-// Type definitions for gremlin-v3 0.0.21
+// Type definitions for gremlin-v3 0.0.22
 // Project: https://github.com/jimlloyd/gremlin-v3
 // Definitions by: Matt Frantz <https://github.com/mhfrantz/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -172,25 +172,32 @@ declare module 'gremlin-v3' {
       addInE(edgeLabel: string, stepLabel: string, opts?: any): TraversalWrapper;
       as(stepLabel: string): TraversalWrapper;
       back(stepLabel: string): TraversalWrapper;
-      both(edgeLabel?: string): TraversalWrapper;
+      both(...edgeLabels: string[]): TraversalWrapper;
+      bothE(...edgeLabels: string[]): TraversalWrapper;
+      bothV(): TraversalWrapper;
       by(): TraversalWrapper;
       by(propertyName: string): TraversalWrapper;
       by(functionProjection: Function<any, any>): TraversalWrapper;
+      cap(...sideEffectKeys: string[]): TraversalWrapper;
       choose(groovyPredicate: string, trueOption: TraversalWrapper, falseOption: TraversalWrapper): TraversalWrapper;
       choose(chooser: Predicate<any>, trueOption: TraversalWrapper, falseOption: TraversalWrapper): TraversalWrapper;
-      choose(groovyFunction: string, options: ChooseOptions): TraversalWrapper;
-      choose(chooser: Function<any, string>, options: ChooseOptions): TraversalWrapper;
-      choose(groovyFunction: string, options: Map<any, any>): TraversalWrapper;
-      choose(chooser: Function<any, any>, options: Map<any, any>): TraversalWrapper;
+      choose(groovyFunction: string): TraversalWrapper;
+      choose(chooser: Function<any, any>): TraversalWrapper;
+      dedup(): TraversalWrapper;
       filter(groovyPredicate: string): TraversalWrapper;
       filter(predicate: Predicate<any>): TraversalWrapper;
       has(property: string): TraversalWrapper;
       has(property: string, value: string): TraversalWrapper;
-      in(edgeLabel?: string): TraversalWrapper;
+      in(...edgeLabels: string[]): TraversalWrapper;
+      inE(...edgeLabels: string[]): TraversalWrapper;
       inject(...args: any[]): TraversalWrapper;
       inV(): TraversalWrapper;
+      option(pickToken: any, traversalOption: TraversalWrapper): TraversalWrapper;
+      option(traversalOption: TraversalWrapper): TraversalWrapper;
       order(): TraversalWrapper;
-      out(edgeLabel?: string): TraversalWrapper;
+      otherV(): TraversalWrapper;
+      out(...edgeLabels: string[]): TraversalWrapper;
+      outE(...edgeLabels: string[]): TraversalWrapper;
       outV(): TraversalWrapper;
       path(): TraversalWrapper;
       repeat(repeatTraversal: TraversalWrapper): TraversalWrapper;
@@ -201,7 +208,10 @@ declare module 'gremlin-v3' {
       sack(sackOperator: BinaryOperator<any>, elementPropertyKey: string): TraversalWrapper;
       select(): TraversalWrapper;
       select(...labels: string[]): TraversalWrapper;
-      subgraph(groovyEdgePredicate: string): Q.Promise<GraphWrapper>;
+      sideEffect(groovyConsumer: string): TraversalWrapper;
+      sideEffect(consumer: Consumer<any>): TraversalWrapper;
+      store(sideEffectKey?: string): TraversalWrapper;
+      subgraph(sideEffectKey?: string): TraversalWrapper;
       times(maxLoops: number): TraversalWrapper;
       unfold(): TraversalWrapper;
       until(groovyPredicate: string): TraversalWrapper;

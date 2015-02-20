@@ -93,18 +93,26 @@ var __ = gremlin.__;
 graph.V().choose('{ it -> it.get().value("foo").length() < 5 }', __.out(), __.in());
 graph.V().choose(gremlin.newJavaScriptLambda<any, boolean, any>('it.get().value("foo").length() < 5'),
                  __.out(), __.in());
-var chooseOptions: Gremlin.ChooseOptions = {};
-chooseOptions['foo'] = __.in();
-chooseOptions['bar'] = __.out();
-chooseOptions['baz'] = __.both();
-graph.V().choose('{ it -> it.get().value("name") }', chooseOptions);
-graph.V().choose(gremlin.newJavaScriptLambda<any, string, any>('it.get().value("name")'), chooseOptions);
-var optionMap = new gremlin.HashMap();
-optionMap.putSync(3, __.in());
-optionMap.putSync(4, __.out());
-optionMap.putSync(5, __.both());
-graph.V().choose('{ it -> it.get().value("foo").length() }', optionMap);
-graph.V().choose(gremlin.newJavaScriptLambda<any, number, any>('it.get().value("foo").length()'), optionMap);
+graph.V().choose('{ it -> it.get().value("name") }')
+  .option('foo', __.in())
+  .option('bar', __.out())
+  .option(__.both());  // default option
+graph.V().choose(gremlin.newJavaScriptLambda<any, string, any>('it.get().value("name")'))
+  .option('foo', __.in())
+  .option('bar', __.out())
+  .option(__.both());  // default option
+graph.V().choose('{ it -> it.get().value("foo").length() }')
+  .option(3, __.in())
+  .option(4, __.out())
+  .option(5, __.both());
+graph.V().choose(gremlin.newJavaScriptLambda<any, number, any>('it.get().value("foo").length()'))
+  .option(3, __.in())
+  .option(4, __.out())
+  .option(5, __.both());
+
+// dedup
+graph.V().values('lang').dedup();
+graph.V().values('name').dedup().by('{ it -> it.length() }');
 
 // filter
 graph.V().filter('{ it -> it.get().value("foo") == "bar" }');
@@ -132,11 +140,31 @@ graph.V().select();
 graph.V().select('one');
 graph.V().select('one', 'two');
 
+// sideEffect
+graph.V().out('knows').sideEffect('{ it -> System.out.println(it) }');
+
+// store/cap
+graph.V().store('a').out().store('b').cap('a', 'b');
+
 // subgraph
-graph.E().subgraph('{ it -> it.property("foo").isPresent() }')
+graph.E().has(gremlin.T.label, 'knows').subgraph().next()
   .then((sg: Gremlin.GraphWrapper): void => {
     sg.saveGraphSONSync('subgraph.json');
   });
+graph.V(3).repeat(__.inE().subgraph('sg').outV()).times(3).cap('sg');
+
+// ## Vertex steps
+// out, in, both, outE, inE, bothE, outV, inV, bothV, otherV
+graph.V(4).outE();
+graph.V(4).inE('knows');
+graph.V(4).inE('created');
+graph.V(4).bothE('knows', 'created', 'blah');
+graph.V(4).bothE('knows', 'created', 'blah').otherV();
+graph.V(4).both('knows', 'created', 'blah');
+graph.V(4).outE().inV();
+graph.V(4).out();
+graph.V(4).inE().outV();
+graph.V(4).inE().bothV();
 
 // TODO: more tests
 
