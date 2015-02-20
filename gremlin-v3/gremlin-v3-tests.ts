@@ -145,6 +145,19 @@ graph.E().subgraph('{ it -> it.property("foo").isPresent() }')
     sg.saveGraphSONSync('subgraph.json');
   });
 
+// ## Vertex steps
+// out, in, both, outE, inE, bothE, outV, inV, bothV, otherV
+graph.V(4).outE();
+graph.V(4).inE('knows');
+graph.V(4).inE('created');
+graph.V(4).bothE('knows', 'created', 'blah');
+graph.V(4).bothE('knows', 'created', 'blah').otherV();
+graph.V(4).both('knows', 'created', 'blah');
+graph.V(4).outE().inV();
+graph.V(4).out();
+graph.V(4).inE().outV();
+graph.V(4).inE().bothV();
+
 // TODO: more tests
 
 // ## Element
