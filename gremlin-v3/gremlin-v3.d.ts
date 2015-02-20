@@ -176,6 +176,7 @@ declare module 'gremlin-v3' {
       by(): TraversalWrapper;
       by(propertyName: string): TraversalWrapper;
       by(functionProjection: Function<any, any>): TraversalWrapper;
+      cap(...sideEffectKeys: string[]): TraversalWrapper;
       choose(groovyPredicate: string, trueOption: TraversalWrapper, falseOption: TraversalWrapper): TraversalWrapper;
       choose(chooser: Predicate<any>, trueOption: TraversalWrapper, falseOption: TraversalWrapper): TraversalWrapper;
       choose(groovyFunction: string): TraversalWrapper;
@@ -201,6 +202,7 @@ declare module 'gremlin-v3' {
       sack(sackOperator: BinaryOperator<any>, elementPropertyKey: string): TraversalWrapper;
       select(): TraversalWrapper;
       select(...labels: string[]): TraversalWrapper;
+      store(sideEffectKey?: string): TraversalWrapper;
       subgraph(groovyEdgePredicate: string): Q.Promise<GraphWrapper>;
       times(maxLoops: number): TraversalWrapper;
       unfold(): TraversalWrapper;

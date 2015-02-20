@@ -136,6 +136,9 @@ graph.V().select();
 graph.V().select('one');
 graph.V().select('one', 'two');
 
+// store/cap
+graph.V().store('a').out().store('b').cap('a', 'b');
+
 // subgraph
 graph.E().subgraph('{ it -> it.property("foo").isPresent() }')
   .then((sg: Gremlin.GraphWrapper): void => {
