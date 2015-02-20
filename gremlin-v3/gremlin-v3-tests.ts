@@ -110,6 +110,10 @@ graph.V().choose(gremlin.newJavaScriptLambda<any, number, any>('it.get().value("
   .option(4, __.out())
   .option(5, __.both());
 
+// dedup
+graph.V().values('lang').dedup();
+graph.V().values('name').dedup().by('{ it -> it.length() }');
+
 // filter
 graph.V().filter('{ it -> it.get().value("foo") == "bar" }');
 graph.V().filter(gremlin.newJavaScriptLambda('it.get().value("foo") == "bar"'));
