@@ -183,6 +183,7 @@ declare module 'gremlin-v3' {
       choose(chooser: Predicate<any>, trueOption: TraversalWrapper, falseOption: TraversalWrapper): TraversalWrapper;
       choose(groovyFunction: string): TraversalWrapper;
       choose(chooser: Function<any, any>): TraversalWrapper;
+      coalesce(...traversals: TraversalWrapper[]): TraversalWrapper;
       dedup(): TraversalWrapper;
       filter(groovyPredicate: string): TraversalWrapper;
       filter(predicate: Predicate<any>): TraversalWrapper;

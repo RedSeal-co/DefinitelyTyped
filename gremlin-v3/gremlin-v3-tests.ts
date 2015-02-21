@@ -110,6 +110,10 @@ graph.V().choose(gremlin.newJavaScriptLambda<any, number, any>('it.get().value("
   .option(4, __.out())
   .option(5, __.both());
 
+// coalesce
+var __ = gremlin.__;
+graph.V().has(gremlin.T.label, 'person').coalesce(__.values('nickname'), __.values('name'));
+
 // dedup
 graph.V().values('lang').dedup();
 graph.V().values('name').dedup().by('{ it -> it.length() }');
