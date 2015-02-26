@@ -80,3 +80,7 @@ Handlebars.registerHelper('fullName', (person: typeof context.author) => {
 });
 
 var escapedExpression = Handlebars.Utils.escapeExpression('<script>alert(\'xss\');</script>');
+
+var handlebars: HandlebarsStatic = handlebars.create();
+var template: HandlebarsTemplateDelegate = handlebars.compile('{{foo}} {{bar}}');
+var populated: string = template({foo: 1, bar: 'two'});
