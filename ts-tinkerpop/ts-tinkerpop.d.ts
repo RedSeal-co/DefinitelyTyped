@@ -15,17 +15,19 @@ declare module 'ts-tinkerpop' {
     module Tinkerpop {
         var autoImport: typeof _autoImport;
         var java: Java.NodeAPI;
-        var __: Java.com.tinkerpop.gremlin.process.graph.traversal.__.Static;
-        var Compare: Java.com.tinkerpop.gremlin.structure.Compare.Static;
-        var GraphSONWriter: Java.com.tinkerpop.gremlin.structure.io.graphson.GraphSONWriter.Static;
-        var GremlinGroovyScriptEngine: Java.com.tinkerpop.gremlin.groovy.jsr223.GremlinGroovyScriptEngine.Static;
-        var ScriptEngineLambda: Java.com.tinkerpop.gremlin.process.computer.util.ScriptEngineLambda.Static;
-        var T: Java.com.tinkerpop.gremlin.process.T.Static;
-        var TinkerFactory: Java.com.tinkerpop.gremlin.tinkergraph.structure.TinkerFactory.Static;
-        var TinkerGraph: Java.com.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph.Static;
-        var ByteArrayOutputStream: Java.java.io.ByteArrayOutputStream.Static;
-        var GroovyLambda: Java.co.redseal.gremlinnode.function_.GroovyLambda.Static;
-        var NULL: Java.org.codehaus.groovy.runtime.NullObject;
+        var __: Java.__.Static;
+        var Compare: Java.Compare.Static;
+        var GraphSONReader: Java.GraphSONReader.Static;
+        var GraphSONWriter: Java.GraphSONWriter.Static;
+        var GraphSONMapper: Java.GraphSONMapper.Static;
+        var GremlinGroovyScriptEngine: Java.GremlinGroovyScriptEngine.Static;
+        var ScriptEngineLambda: Java.ScriptEngineLambda.Static;
+        var T: Java.T.Static;
+        var TinkerFactory: Java.TinkerFactory.Static;
+        var TinkerGraph: Java.TinkerGraph.Static;
+        var ByteArrayOutputStream: Java.ByteArrayOutputStream.Static;
+        var GroovyLambda: Java.GroovyLambda.Static;
+        var NULL: Java.NullObject;
         var UTF8: string;
         function initialize(): void;
         function id(n: number): Java.Object;
@@ -33,6 +35,8 @@ declare module 'ts-tinkerpop' {
         function newJavaScriptLambda(javascript: string): Java.ScriptEngineLambda;
         function newGroovyLambda(groovyFragment: string): Java.ScriptEngineLambda;
         function newGroovyClosure(groovyClosureString: string): Java.GroovyLambda;
+        function getGroovyEngine(): Java.GremlinGroovyScriptEngine;
+        function importGroovy(javaClassOrPkg: string): void;
         function vertexStringify(vertex: Java.Vertex): string;
         function vertexToJson(vertex: Java.Vertex): any;
         function edgeStringify(edge: Java.Edge): string;
@@ -49,6 +53,15 @@ declare module 'ts-tinkerpop' {
         function forEach(javaIterator: Java.Iterator, consumer: ConsumeObject): BluePromise<void>;
         function asJSON(traversal: Java.Traversal): any;
         function simplifyVertexProperties(obj: any): any;
+        interface GraphCallback {
+            (err: Error, graph: Java.Graph): any;
+        }
+        function loadGraphSON(graph: Java.Graph, filename: string, callback?: GraphCallback): BluePromise<Java.Graph>;
+        function loadGraphSONSync(graph: Java.Graph, filename: string): Java.Graph;
+        function saveGraphSON(graph: Java.Graph, filename: string, callback?: GraphCallback): BluePromise<Java.Graph>;
+        function saveGraphSONSync(graph: Java.Graph, filename: string): Java.Graph;
+        function savePrettyGraphSON(graph: Java.Graph, filename: string, callback?: GraphCallback): BluePromise<Java.Graph>;
+        function savePrettyGraphSONSync(graph: Java.Graph, filename: string): Java.Graph;
     }
     export = Tinkerpop;
 }
@@ -104,12 +117,14 @@ declare module '__ts-tinkerpop/autoImport' {
     function autoImport(shortName: "DelegatingMetaClass"): Java.groovy.lang.DelegatingMetaClass.Static;
     function autoImport(shortName: "Compare"): Java.com.tinkerpop.gremlin.structure.Compare.Static;
     function autoImport(shortName: "Edge"): Java.com.tinkerpop.gremlin.structure.Edge.Static;
+    function autoImport(shortName: "GraphSONMapper$Builder"): Java.com.tinkerpop.gremlin.structure.io.graphson.GraphSONMapper$Builder.Static;
     function autoImport(shortName: "ScriptEngineFactory"): Java.javax.script.ScriptEngineFactory.Static;
     function autoImport(shortName: "FileInputStream"): Java.java.io.FileInputStream.Static;
     function autoImport(shortName: "MetaClass"): Java.groovy.lang.MetaClass.Static;
     function autoImport(shortName: "Object"): Java.java.lang.Object.Static;
     function autoImport(shortName: "BiConsumer"): Java.java.util.function_.BiConsumer.Static;
     function autoImport(shortName: "Boolean"): Java.java.lang.Boolean.Static;
+    function autoImport(shortName: "GraphSONReader$Builder"): Java.com.tinkerpop.gremlin.structure.io.graphson.GraphSONReader$Builder.Static;
     function autoImport(shortName: "IdentityGlobFunction"): Java.co.redseal.gremlinnode.function_.IdentityGlobFunction.Static;
     function autoImport(shortName: "Groovysh"): Java.org.codehaus.groovy.tools.shell.Groovysh.Static;
     function autoImport(shortName: "HashSet"): Java.java.util.HashSet.Static;
@@ -134,6 +149,7 @@ declare module '__ts-tinkerpop/autoImport' {
     function autoImport(shortName: "TinkerFactory"): Java.com.tinkerpop.gremlin.tinkergraph.structure.TinkerFactory.Static;
     function autoImport(shortName: "ScriptEngine"): Java.javax.script.ScriptEngine.Static;
     function autoImport(shortName: "Bindings"): Java.javax.script.Bindings.Static;
+    function autoImport(shortName: "FileOutputStream"): Java.java.io.FileOutputStream.Static;
     function autoImport(shortName: "ScriptContext"): Java.javax.script.ScriptContext.Static;
     function autoImport(shortName: "AbstractMap"): Java.java.util.AbstractMap.Static;
     function autoImport(shortName: "GraphStrategy"): Java.com.tinkerpop.gremlin.structure.strategy.GraphStrategy.Static;
@@ -164,4 +180,3 @@ declare module '__ts-tinkerpop/autoImport' {
     function autoImport(shortName: "TriConsumer"): Java.com.tinkerpop.gremlin.util.function_.TriConsumer.Static;
     function autoImport(shortName: string): any;
 }
-
