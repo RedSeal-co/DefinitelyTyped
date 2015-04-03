@@ -1,4 +1,4 @@
-// Type definitions for ts-tinkerpop 1.0.0
+// Type definitions for ts-tinkerpop 1.0.1
 // Project: https://github.com/RedSeal-co/ts-tinkerpop
 // Definitions by: Matt Frantz <https://github.com/mhfrantz/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -13,6 +13,7 @@ declare module 'ts-tinkerpop' {
     import _autoImport = require('__ts-tinkerpop/autoImport');
     import BluePromise = require('bluebird');
     module Tinkerpop {
+        type Static = typeof Tinkerpop;
         var autoImport: typeof _autoImport;
         var java: Java.NodeAPI;
         var __: Java.__.Static;
@@ -30,6 +31,7 @@ declare module 'ts-tinkerpop' {
         var NULL: Java.NullObject;
         var UTF8: string;
         function initialize(): void;
+        function getTinkerpop(): BluePromise<Static>;
         function id(n: number): Java.Object;
         function ids(a: number[]): Java.array_t<Java.Object>;
         function newJavaScriptLambda(javascript: string): Java.ScriptEngineLambda;
@@ -62,6 +64,8 @@ declare module 'ts-tinkerpop' {
         function saveGraphSONSync(graph: Java.Graph, filename: string): Java.Graph;
         function savePrettyGraphSON(graph: Java.Graph, filename: string, callback?: GraphCallback): BluePromise<Java.Graph>;
         function savePrettyGraphSONSync(graph: Java.Graph, filename: string): Java.Graph;
+        function isType(o: any, typeName: string): boolean;
+        function jsify(arg: any): any;
     }
     export = Tinkerpop;
 }
