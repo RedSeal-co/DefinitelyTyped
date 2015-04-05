@@ -1,4 +1,4 @@
-// Type definitions for ts-tinkerpop 1.0.3
+// Type definitions for ts-tinkerpop 1.0.4
 // Project: https://github.com/RedSeal-co/ts-tinkerpop
 // Definitions by: Matt Frantz <https://github.com/mhfrantz/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
