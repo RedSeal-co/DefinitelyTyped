@@ -29,3 +29,16 @@ gremlinGraphviz(gremlinGraph).
       throw new Error('fdp failed: ' + stderr);
     });
   });
+
+// Option to provide an alternate graph name.
+gremlinGraphviz(gremlinGraph, { graphName: 'AlternateGraphName' });
+
+// Option to provide an alternate vertex ID function.
+var alternateVertexId: gremlinGraphviz.VertexIdFunction = gremlinGraphviz.util.vertexAttributeGetter('name');
+gremlinGraphviz(gremlinGraph, { vertexId: alternateVertexId });
+
+// The default vertex ID function can be specified explicitly.
+gremlinGraphviz(gremlinGraph, { vertexId: gremlinGraphviz.util.getVertexId });
+
+// Option to provide the ts-tinkerpop module.
+gremlinGraphviz(gremlinGraph, { TP: TP });
