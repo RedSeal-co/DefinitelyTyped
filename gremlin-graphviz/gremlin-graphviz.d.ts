@@ -13,13 +13,39 @@ declare module 'gremlin-graphviz' {
   import graphviz = require('graphviz');
   import TP = require('ts-tinkerpop');
 
-  function makeGraph(gremlinGraph: makeGraph.GremlinGraph, opts?: any): BluePromise<makeGraph.GraphvizGraph>;
+  function makeGraph(gremlinGraph: makeGraph.GremlinGraph, opts?: makeGraph.Options): BluePromise<makeGraph.GraphvizGraph>;
 
   module makeGraph {
 
     type GremlinGraph = Java.Graph;
     type GraphvizGraph = graphviz.Graph;
 
+    interface VertexIdFunction {
+      (vertex: Java.Vertex): string;
+    }
+
+    interface Options {
+      graphName?: string;
+      vertexId?: VertexIdFunction;
+      TP?: TP.Static;
+    }
+
+    module util {
+
+      // *assertVertexId*: Check whether we have a valid vertex ID.
+      function assertVertexId(id: any): void;
+
+      // *getVertexId*: Extract the vertex ID from a Gremlin vertex.
+      var getVertexId: VertexIdFunction;
+
+      // *vertexAttributeGetter*: Returns a vertex ID function that extracts a specific
+      // attribute.
+      function vertexAttributeGetter(attributeName: string): VertexIdFunction;
+
+      // *getEdgeLabel*: Extract the label from a Gremlin edge.
+      function getEdgeLabel(edge: Java.Edge): string;
+
+    }
   }
 
   export = makeGraph;
