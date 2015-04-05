@@ -1,4 +1,4 @@
-// Type definitions for ts-tinkerpop 1.0.3
+// Type definitions for ts-tinkerpop 1.0.4
 // Project: https://github.com/RedSeal-co/ts-tinkerpop
 // Definitions by: Matt Frantz <https://github.com/mhfrantz/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -53,7 +53,8 @@ declare module 'ts-tinkerpop' {
             (item: Java.Object): BluePromise<void>;
         }
         function forEach(javaIterator: Java.Iterator, consumer: ConsumeObject): BluePromise<void>;
-        function asJSON(traversal: Java.Traversal): any;
+        function asJSON(traversal: Java.Traversal): any[];
+        function simplifyVertexProperties(obj: any[]): any[];
         function simplifyVertexProperties(obj: any): any;
         interface GraphCallback {
             (err: Error, graph: Java.Graph): any;
