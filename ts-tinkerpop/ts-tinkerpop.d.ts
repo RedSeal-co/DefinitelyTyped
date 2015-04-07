@@ -1,4 +1,4 @@
-// Type definitions for ts-tinkerpop 1.0.4
+// Type definitions for ts-tinkerpop 1.0.5
 // Project: https://github.com/RedSeal-co/ts-tinkerpop
 // Definitions by: Matt Frantz <https://github.com/mhfrantz/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -43,6 +43,8 @@ declare module 'ts-tinkerpop' {
         function vertexToJson(vertex: Java.Vertex): any;
         function edgeStringify(edge: Java.Edge): string;
         function edgeToJson(edge: Java.Edge): any;
+        function L(n: number): Java.longValue_t;
+        function isLongValue(obj: any): boolean;
         function isJavaObject(e: any): boolean;
         function asJavaObject(obj: Java.object_t): Java.Object;
         function isVertex(v: any): boolean;
@@ -67,6 +69,14 @@ declare module 'ts-tinkerpop' {
         function savePrettyGraphSONSync(graph: Java.Graph, filename: string): Java.Graph;
         function isType(o: any, typeName: string): boolean;
         function jsify(arg: any): any;
+        interface MapEntry {
+            key: any;
+            value: any;
+        }
+        interface BulkSetElement {
+            key: string;
+            count: Java.longValue_t;
+        }
     }
     export = Tinkerpop;
 }
@@ -137,6 +147,7 @@ declare module '__ts-tinkerpop/autoImport' {
     function autoImport(shortName: "StrategyGraph"): Java.com.tinkerpop.gremlin.structure.strategy.StrategyGraph.Static;
     function autoImport(shortName: "Enum"): Java.java.lang.Enum.Static;
     function autoImport(shortName: "StrategyContext"): Java.com.tinkerpop.gremlin.structure.strategy.StrategyContext.Static;
+    function autoImport(shortName: "LinkedHashMap"): Java.java.util.LinkedHashMap.Static;
     function autoImport(shortName: "BiFunction"): Java.java.util.function_.BiFunction.Static;
     function autoImport(shortName: "ByteArrayOutputStream"): Java.java.io.ByteArrayOutputStream.Static;
     function autoImport(shortName: "GroovyCodeSource"): Java.groovy.lang.GroovyCodeSource.Static;
