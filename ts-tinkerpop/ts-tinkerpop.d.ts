@@ -1,4 +1,4 @@
-// Type definitions for ts-tinkerpop 1.1.0
+// Type definitions for ts-tinkerpop 1.1.1
 // Project: https://github.com/RedSeal-co/ts-tinkerpop
 // Definitions by: Matt Frantz <https://github.com/mhfrantz/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -76,6 +76,10 @@ declare module 'ts-tinkerpop' {
         interface BulkSetElement {
             key: string;
             count: Java.longValue_t;
+        }
+        interface PathElement {
+            object: any;
+            labels: string[];
         }
     }
     export = Tinkerpop;
@@ -161,11 +165,17 @@ declare module '__ts-tinkerpop/autoImport' {
     function autoImport(shortName: "VertexProgram"): Java.org.apache.tinkerpop.gremlin.process.computer.VertexProgram.Static;
     function autoImport(shortName: "__"): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.Static;
     function autoImport(shortName: "GraphTraversal"): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal.Static;
+    function autoImport(shortName: "GraphTraversal$Admin"): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal$Admin.Static;
     function autoImport(shortName: "GraphTraversalSource"): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource.Static;
+    function autoImport(shortName: "Path"): Java.org.apache.tinkerpop.gremlin.process.traversal.Path.Static;
     function autoImport(shortName: "Scope"): Java.org.apache.tinkerpop.gremlin.process.traversal.Scope.Static;
     function autoImport(shortName: "BulkSet"): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.BulkSet.Static;
+    function autoImport(shortName: "EmptyPath"): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.EmptyPath.Static;
+    function autoImport(shortName: "MutablePath"): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.MutablePath.Static;
+    function autoImport(shortName: "SparsePath"): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.SparsePath.Static;
     function autoImport(shortName: "T"): Java.org.apache.tinkerpop.gremlin.process.traversal.T.Static;
     function autoImport(shortName: "Traversal"): Java.org.apache.tinkerpop.gremlin.process.traversal.Traversal.Static;
+    function autoImport(shortName: "Traversal$Admin"): Java.org.apache.tinkerpop.gremlin.process.traversal.Traversal$Admin.Static;
     function autoImport(shortName: "TraversalEngine"): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalEngine.Static;
     function autoImport(shortName: "TraversalStrategies"): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategies.Static;
     function autoImport(shortName: "TraversalStrategy"): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy.Static;
