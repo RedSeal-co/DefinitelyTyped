@@ -1,4 +1,4 @@
-// Type definitions for ts-tinkerpop 1.1.4
+// Type definitions for ts-tinkerpop 1.1.5
 // Project: https://github.com/RedSeal-co/ts-tinkerpop
 // Definitions by: Jim Lloyd <https://github.com/jimlloyd>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -53,7 +53,7 @@ declare module 'ts-tinkerpop' {
         function isEdge(e: any): boolean;
         function asEdge(e: Java.object_t): Java.Edge;
         interface ConsumeObject {
-            (item: Java.Object): BluePromise<void>;
+            (item: Java.object_t): any | BluePromise<any>;
         }
         function forEach(javaIterator: Java.Iterator, consumer: ConsumeObject): BluePromise<void>;
         function asJSON(traversal: Java.Traversal): any[];
