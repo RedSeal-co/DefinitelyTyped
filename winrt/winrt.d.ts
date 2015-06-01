@@ -9268,7 +9268,8 @@ declare module Windows {
                 unconsumedBufferLength: number;
                 unicodeEncoding: Windows.Storage.Streams.UnicodeEncoding;
                 readByte(): number;
-                readBytes(): Uint8Array;
+                readBytes(value: number[]): void;
+                readBytes(value: Uint8Array): void;
                 readBuffer(length: number): Windows.Storage.Streams.IBuffer;
                 readBoolean(): boolean;
                 readGuid(): string;
@@ -9297,7 +9298,8 @@ declare module Windows {
                 unconsumedBufferLength: number;
                 unicodeEncoding: Windows.Storage.Streams.UnicodeEncoding;
                 readByte(): number;
-                readBytes(): Uint8Array;
+                readBytes(value: number[]): void;
+                readBytes(value: Uint8Array): void;
                 readBuffer(length: number): Windows.Storage.Streams.IBuffer;
                 readBoolean(): boolean;
                 readGuid(): string;
@@ -9345,6 +9347,7 @@ declare module Windows {
                 unicodeEncoding: Windows.Storage.Streams.UnicodeEncoding;
                 unstoredBufferLength: number;
                 writeByte(value: number): void;
+                writeBytes(value: number[]): void;
                 writeBytes(value: Uint8Array): void;
                 writeBuffer(buffer: Windows.Storage.Streams.IBuffer): void;
                 writeBuffer(buffer: Windows.Storage.Streams.IBuffer, start: number, count: number): void;
@@ -9377,6 +9380,7 @@ declare module Windows {
                 unicodeEncoding: Windows.Storage.Streams.UnicodeEncoding;
                 unstoredBufferLength: number;
                 writeByte(value: number): void;
+                writeBytes(value: number[]): void;
                 writeBytes(value: Uint8Array): void;
                 writeBuffer(buffer: Windows.Storage.Streams.IBuffer): void;
                 writeBuffer(buffer: Windows.Storage.Streams.IBuffer, start: number, count: number): void;
@@ -12203,8 +12207,8 @@ declare module Windows {
                 createWithId(tileId: string): Windows.UI.StartScreen.SecondaryTile;
             }
             export class SecondaryTile implements Windows.UI.StartScreen.ISecondaryTile {
-                constructor(tileId: string, shortName: string, displayName: string, arguments: string, tileOptions: Windows.UI.StartScreen.TileOptions, logoReference: Windows.Foundation.Uri);
-                constructor(tileId: string, shortName: string, displayName: string, arguments: string, tileOptions: Windows.UI.StartScreen.TileOptions, logoReference: Windows.Foundation.Uri, wideLogoReference: Windows.Foundation.Uri);
+                constructor(tileId: string, shortName: string, displayName: string, args: string, tileOptions: Windows.UI.StartScreen.TileOptions, logoReference: Windows.Foundation.Uri);
+                constructor(tileId: string, shortName: string, displayName: string, args: string, tileOptions: Windows.UI.StartScreen.TileOptions, logoReference: Windows.Foundation.Uri, wideLogoReference: Windows.Foundation.Uri);
                 constructor(tileId: string);
                 constructor();
                 arguments: string;

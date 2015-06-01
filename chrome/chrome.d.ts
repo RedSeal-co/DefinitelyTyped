@@ -6,6 +6,13 @@
 /// <reference path='../webrtc/MediaStream.d.ts'/>
 
 ////////////////////
+// Global object
+////////////////////
+interface Window {
+    chrome: typeof chrome;
+}
+
+////////////////////
 // Alarms
 ////////////////////
 declare module chrome.alarms {
@@ -34,6 +41,37 @@ declare module chrome.alarms {
     export function get(name: string, callback: (alarm: Alarm) => void): void;
 
     var onAlarm: AlarmEvent;
+}
+
+/**
+ * Use the chrome.browser API to interact with the Chrome browser associated with 
+ * the current application and Chrome profile. 
+ */
+declare module chrome.browser {
+    interface Options {
+        /**
+         * The URL to navigate to when the new tab is initially opened.
+         */
+        url:string;
+    }
+    
+    /**
+     * Opens a new tab in a browser window associated with the current application 
+     * and Chrome profile. If no browser window for the Chrome profile is opened, 
+     * a new one is opened prior to creating the new tab. 
+     * @param options Configures how the tab should be opened. 
+     * @param callback Called when the tab was successfully 
+     * created, or failed to be created. If failed, runtime.lastError will be set.
+     */
+    export function openTab (options: Options, callback: () => void): void;
+     
+     /**
+     * Opens a new tab in a browser window associated with the current application 
+     * and Chrome profile. If no browser window for the Chrome profile is opened, 
+     * a new one is opened prior to creating the new tab. Since Chrome 42 only. 
+     * @param options Configures how the tab should be opened. 
+     */
+    export function openTab (options: Options): void;
 }
 
 ////////////////////
@@ -1524,8 +1562,11 @@ declare module chrome.runtime {
     }
 
     interface MessageSender {
-        id: string;
+        id?: string;
         tab?: chrome.tabs.Tab;
+        frameId?: number;
+        url?: string;
+        tlsChannelId?: string;
     }
 
     interface PlatformInfo {
@@ -1535,10 +1576,11 @@ declare module chrome.runtime {
     }
 
     interface Port {
-        postMessage: Function;
+        postMessage: (message: Object) => void;
+        disconnect: () => void;
         sender?: MessageSender;
         onDisconnect: chrome.events.Event;
-        onMessage: chrome.events.Event;
+        onMessage: PortMessageEvent;
         name: string;
     }
 
@@ -1548,6 +1590,10 @@ declare module chrome.runtime {
 
     interface UpdateCheckDetails {
         version: string;
+    }
+
+    interface PortMessageEvent extends chrome.events.Event {
+        addListener(callback: (message: Object, port: Port) => void): void;
     }
 
     interface ExtensionMessageEvent extends chrome.events.Event {
@@ -2046,14 +2092,19 @@ declare module chrome.ttsEngine {
 // Types
 ////////////////////
 declare module chrome.types {
-    interface ChromeSettingSetDetails {
+    interface ChromeSettingClearDetails {
         scope?: string;
+    }
+
+    interface ChromeSettingSetDetails extends ChromeSettingClearDetails {
         value: any;
     }
 
     interface ChromeSettingGetDetails {
         incognito?: boolean;
     }
+
+    type DetailsCallback = (details: ChromeSettingGetResultDetails) => void;
 
     interface ChromeSettingGetResultDetails {
         levelOfControl: string;
@@ -2062,7 +2113,7 @@ declare module chrome.types {
     }
 
     interface ChromeSettingChangedEvent extends chrome.events.Event {
-        addListener(callback: (details: ChromeSettingGetResultDetails) => void): void;
+        addListener(callback: DetailsCallback): void;
     }
 
     interface ChromeSetting {
@@ -2071,7 +2122,8 @@ declare module chrome.types {
             callback?: Function;
         };
         set(details: ChromeSettingSetDetails, callback?: Function): void;
-        get(details: ChromeSettingGetDetails, callback?: ChromeSettingGetResultDetails): void;
+        get(details: ChromeSettingGetDetails, callback?: DetailsCallback): void;
+        clear(details: ChromeSettingClearDetails, callback?: Function): void;
         onChange: ChromeSettingChangedEvent;
     }
 }
@@ -2236,7 +2288,7 @@ declare module chrome.webRequest {
     }
 
     interface UploadData {
-        bytes?: any[];
+        bytes?: ArrayBuffer;
         file?: string;
     }
 
@@ -2253,20 +2305,20 @@ declare module chrome.webRequest {
 
     interface OnCompletedDetails extends CallbackDetails {
         ip?: string;
-        statusLine?: string;
+        statusLine: string;
         responseHeaders?: HttpHeader[];
         fromCache: boolean;
         statusCode: number;
     }
 
     interface OnHeadersReceivedDetails extends CallbackDetails {
-        statusLine?: string;
+        statusLine: string;
         responseHeaders?: HttpHeader[];
     }
 
     interface OnBeforeRedirectDetails extends CallbackDetails {
         ip?: string;
-        statusLine?: string;
+        statusLine: string;
         responseHeaders?: HttpHeader[];
         fromCache: boolean;
         redirectUrl: string;
@@ -2279,7 +2331,7 @@ declare module chrome.webRequest {
     }
 
     interface OnAuthRequiredDetails extends CallbackDetails {
-        statusLine?: string;
+        statusLine: string;
         challenger: Challenger;
         responseHeaders?: HttpHeader[];
         isProxy: boolean;
@@ -2299,7 +2351,7 @@ declare module chrome.webRequest {
 
     interface OnResponseStartedDetails extends CallbackDetails {
         ip?: string;
-        statusLine?: string;
+        statusLine: string;
         responseHeaders?: HttpHeader[];
         fromCache: boolean;
         statusCode: number;
@@ -2309,10 +2361,14 @@ declare module chrome.webRequest {
         requestHeaders?: HttpHeader[];
     }
 
+    interface FormData {
+        [key: string]: string[];
+    }
+
     interface RequestBody {
-        raw?: UploadData;
+        raw?: UploadData[];
         error?: string;
-        formData?: Object;
+        formData?: FormData;
     }
 
     interface OnBeforeRequestDetails extends CallbackDetails {

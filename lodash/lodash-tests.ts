@@ -39,6 +39,10 @@ interface IKey {
     code: number;
 }
 
+interface IDictionary<T> {
+    [index: string]: T;
+}
+
 var foodsOrganic: IFoodOrganic[] = [
     { name: 'banana', organic: true },
     { name: 'beet', organic: false },
@@ -61,7 +65,10 @@ var stoogesAges: IStoogesAge[] = [
     { 'name': 'moe', 'age': 40 },
     { 'name': 'larry', 'age': 50 }
 ];
-
+var stoogesAgesDict: IDictionary<IStoogesAge> = {
+    first: { 'name': 'moe', 'age': 40 },
+    second: { 'name': 'larry', 'age': 50 }
+};
 var stoogesCombined: IStoogesCombined[] = [
     { 'name': 'curly', 'age': 30, 'quotes': ['Oh, a wise guy, eh?', 'Poifect!'] },
     { 'name': 'moe', 'age': 40, 'quotes': ['Spread out!', 'You knucklehead!'] }
@@ -139,6 +146,15 @@ result = <_.Dictionary<string>>_(<{ [index: string]: string; }>{ 'key1': 'test1'
 // /*************
 //  * Arrays *
 //  *************/
+result = <any[][]>_.chunk([1, '2', '3', false]);
+result = <_.LoDashArrayWrapper<any>>_([1, '2', '3', false]).chunk();
+result = <any[][]>_.chunk([1, '2', '3', false], 2);
+result = <_.LoDashArrayWrapper<any>>_([1, '2', '3', false]).chunk(2);
+result = <number[][]>_.chunk([1, 2, 3, 4]);
+result = <_.LoDashArrayWrapper<number>>_([1, 2, 3, 4]).chunk();
+result = <number[][]>_.chunk([1, 2, 3, 4], 2);
+result = <_.LoDashArrayWrapper<number>>_([1, 2, 3, 4]).chunk(2);
+
 result = <any[]>_.compact([0, 1, false, 2, '', 3]);
 result = <_.LoDashArrayWrapper<any>>_([0, 1, false, 2, '', 3]).compact();
 
@@ -255,8 +271,14 @@ result = <IFoodType[]>_.last(foodsType, { 'type': 'vegetable' });
 result = <number>_.lastIndexOf([1, 2, 3, 1, 2, 3], 2);
 result = <number>_.lastIndexOf([1, 2, 3, 1, 2, 3], 2, 3);
 
-result = <{ [key: string]: any }>_.zipObject(['moe', 'larry'], [30, 40]);
-result = <{ [key: string]: any }>_.object(['moe', 'larry'], [30, 40]);
+result = <_.Dictionary<any>>_.zipObject(['moe', 'larry'], [30, 40]);
+result = <_.LoDashObjectWrapper<_.Dictionary<any>>>_(['moe', 'larry']).zipObject([30, 40]);
+result = <_.Dictionary<any>>_.object(['moe', 'larry'], [30, 40]);
+result = <_.LoDashObjectWrapper<_.Dictionary<any>>>_(['moe', 'larry']).object([30, 40]);
+result = <_.Dictionary<any>>_.zipObject([['moe', 30], ['larry', 40]]);
+result = <_.LoDashObjectWrapper<_.Dictionary<any>>>_([['moe', 30], ['larry', 40]]).zipObject();
+result = <_.Dictionary<any>>_.object([['moe', 30], ['larry', 40]]);
+result = <_.LoDashObjectWrapper<_.Dictionary<any>>>_([['moe', 30], ['larry', 40]]).object();
 
 result = <number[]>_.pull([1, 2, 3, 1, 2, 3], 2, 3);
 
@@ -492,6 +514,23 @@ result = <_.LoDashWrapper<number>>_([4, 2, 8, 6]).min();
 result = <_.LoDashWrapper<IStoogesAge>>_(stoogesAges).min(function (stooge) { return stooge.age; });
 result = <_.LoDashWrapper<IStoogesAge>>_(stoogesAges).min('age');
 
+result = <number>_.sum([4, 2, 8, 6]);
+result = <number>_.sum([4, 2, 8, 6], function(v) { return v; });
+result = <number>_.sum({a: 2, b: 4});
+result = <number>_.sum({a: 2, b: 4}, function(v) { return v; });
+result = <number>_.sum(stoogesAges, function (stooge) { return stooge.age; });
+result = <number>_.sum(stoogesAges, 'age');
+result = <number>_.sum(stoogesAgesDict, function(stooge) { return stooge.age; });
+result = <number>_.sum(stoogesAgesDict, 'age');
+result = <number>_([4, 2, 8, 6]).sum();
+result = <number>_([4, 2, 8, 6]).sum(function(v) { return v; });
+result = <number>_({a: 2, b: 4}).sum();
+result = <number>_({a: 2, b: 4}).sum(function(v) { return v; });
+result = <number>_(stoogesAges).sum(function (stooge) { return stooge.age; });
+result = <number>_(stoogesAges).sum('age');
+result = <number>_(stoogesAgesDict).sum(function (stooge) { return stooge.age; });
+result = <number>_(stoogesAgesDict).sum('age');
+
 result = <string[]>_.pluck(stoogesAges, 'name');
 result = <string[]>_(stoogesAges).pluck('name').value();
 
@@ -565,6 +604,8 @@ result = <number>_.sample([1, 2, 3, 4]);
 result = <number[]>_.sample([1, 2, 3, 4], 2);
 
 result = <number[]>_.shuffle([1, 2, 3, 4, 5, 6]);
+result = <_.LoDashArrayWrapper<number>>_([1, 2, 3]).shuffle();
+result = <_.LoDashArrayWrapper<_.Dictionary<string>>>_(<{ [index: string]: string; }>{ 'key1': 'test1', 'key2': 'test2' }).shuffle();
 
 result = <number>_.size([1, 2]);
 result = <number>_.size({ 'one': 1, 'two': 2, 'three': 3 });
@@ -600,6 +641,12 @@ result = <IStoogesCombined[]>_.where(stoogesCombined, { 'quotes': ['Poifect!'] }
 result = <IStoogesCombined[]>_(stoogesCombined).where({ 'age': 40 }).value();
 result = <IStoogesCombined[]>_(stoogesCombined).where({ 'quotes': ['Poifect!'] }).value();
 
+/********
+ * Date *
+ ********/
+
+result = <number>_.now();
+
 /*************
  * Functions *
  *************/
@@ -623,12 +670,16 @@ _.forEach(saves, function (type) {
     asyncSave({ 'type': type, 'complete': done });
 });
 
-var funcBind = function (greeting: string) { return greeting + ' ' + this.name };
-var funcBind2: () => any = _.bind(funcBind, { 'name': 'moe' }, 'hi');
-funcBind2();
+var funcBind = function(greeting: string, punctuation: string) { return greeting + ' ' + this.user + punctuation; };
+var funcBound1: (punctuation: string) => any = _.bind(funcBind, { 'name': 'moe' }, 'hi');
+funcBound1('!');
 
-var funcBind3: () => any = _(funcBind).bind({ 'name': 'moe' }, 'hi').value();
-funcBind3();
+var funcBound2: (punctuation: string) => any = _(funcBind).bind({ 'name': 'moe' }, 'hi').value();
+funcBound2('!');
+
+var addTwoNumbers = function (x: number, y: number) { return x + y };
+var plusTwo = _.bind(addTwoNumbers, null, 2);
+plusTwo(100);
 
 var view = {
     'label': 'docs',
@@ -871,6 +922,8 @@ result = <string[]>_.methods(_);
 result = <_.LoDashArrayWrapper<string>>_(_).functions();
 result = <_.LoDashArrayWrapper<string>>_(_).methods();
 
+result = <number>_.get({ 'a': 1, 'b': 2, 'c': 3 }, 'b');
+
 result = <boolean>_.has({ 'a': 1, 'b': 2, 'c': 3 }, 'b');
 
 interface FirstSecond {
@@ -1095,6 +1148,41 @@ result = <string>_.unescape('Moe, Larry &amp; Curly');
 
 result = <string>_.uniqueId('contact_');
 result = <string>_.uniqueId();
+
+/*********
+* String
+*********/
+
+result = <string>_.camelCase('Foo Bar');
+result = <string>_.capitalize('fred');
+result = <string>_.deburr('déjà vu');
+result = <boolean>_.endsWith('abc', 'c');
+result = <string>_.escape('fred, barney, & pebbles');
+result = <string>_.escapeRegExp('[lodash](https://lodash.com/)');
+result = <string>_.kebabCase('Foo Bar');
+result = <string>_.pad('abc', 8);
+result = <string>_.pad('abc', 8, '_-');
+result = <string>_.padLeft('abc', 6);
+result = <string>_.padLeft('abc', 6, '_-');
+result = <string>_.padRight('abc', 6);
+result = <string>_.padRight('abc', 6, '_-');
+result = <string>_.repeat('*', 3);
+result = <string>_.snakeCase('Foo Bar');
+result = <string>_.startCase('--foo-bar');
+result = <boolean>_.startsWith('abc', 'a');
+result = <string>_.trim('  abc  ');
+result = <string>_.trim('-_-abc-_-', '_-');
+result = <string>_.trimLeft('  abc  ');
+result = <string>_.trimLeft('-_-abc-_-', '_-');
+result = <string>_.trimRight('  abc  ');
+result = <string>_.trimRight('-_-abc-_-', '_-');
+result = <string>_.trunc('hi-diddly-ho there, neighborino');
+result = <string>_.trunc('hi-diddly-ho there, neighborino', 24);
+result = <string>_.trunc('hi-diddly-ho there, neighborino', { 'length': 24, 'separator': ' ' });
+result = <string>_.trunc('hi-diddly-ho there, neighborino', { 'length': 24, 'separator': /,? +/ });
+result = <string>_.trunc('hi-diddly-ho there, neighborino', { 'omission': ' […]' });
+result = <string[]>_.words('fred, barney, & pebbles');
+result = <string[]>_.words('fred, barney, & pebbles', /[^, ]+/g);
 
 /**********
 * Utilities *
