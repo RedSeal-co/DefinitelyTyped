@@ -9,7 +9,8 @@ declare module cucumber {
 
   export interface StepCallback {
     (error?: string | Error, result?: any): void;
-    pending(): void;
+    pending(reason?: any): void;
+    fail(failureReason?: Error): void;
   }
 
   export interface Scenario {
