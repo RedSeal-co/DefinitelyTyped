@@ -29,6 +29,10 @@ function wrapper() {
     callback.pending();
   });
 
+  this.When(/Something fails/, function (callback: cucumber.StepCallback) {
+    callback.fail(new Error('failed'));
+  });
+
   this.When(/^A big table of data:$/, function (table: cucumber.DataTable<MyInputData>,
                                                 callback: cucumber.StepCallback) {
     if (!table) {
