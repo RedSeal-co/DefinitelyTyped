@@ -16,7 +16,9 @@ function wrapper() {
   });
 
   this.Given(/^Some input like this:$/, function (input: string, callback: cucumber.StepCallback) {
-    if (input.length < 10)
+    if (typeof input !== 'string')
+      callback(new Error('input must be a string'));
+    else if (input.length < 10)
       callback('Input be at least 10 characters');
     else
       callback();
@@ -25,6 +27,10 @@ function wrapper() {
   this.When(/Something happens/, function (callback: cucumber.StepCallback) {
     // This step is not yet implemented.
     callback.pending();
+  });
+
+  this.When(/Something fails/, function (callback: cucumber.StepCallback) {
+    callback.fail(new Error('failed'));
   });
 
   this.When(/^A big table of data:$/, function (table: cucumber.DataTable<MyInputData>,

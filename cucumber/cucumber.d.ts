@@ -8,8 +8,9 @@ declare module cucumber {
   // TODO: Is there a way to put type safety on the interface of the "this" object in a step definitions file?
 
   export interface StepCallback {
-    (error?: string): void;
-    pending(): void;
+    (error?: string | Error, result?: any): void;
+    pending(reason?: any): void;
+    fail(failureReason?: Error): void;
   }
 
   export interface Scenario {
