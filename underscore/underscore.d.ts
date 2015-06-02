@@ -41,18 +41,6 @@ declare module _ {
 		escape?: RegExp;
 	}
 
-	interface ListIterator<T, TResult> {
-		(value: T, index: number, list: T[]): TResult;
-	}
-
-	interface ObjectIterator<T, TResult> {
-		(element: T, key: string, list: any): TResult;
-	}
-
-	interface MemoIterator<T, TResult> {
-		(prev: TResult, curr: T, index: number, list: T[]): TResult;
-	}
-
 	interface Collection<T> { }
 
 	// Common interface between Arrays and jQuery objects
@@ -63,6 +51,22 @@ declare module _ {
 
 	interface Dictionary<T> extends Collection<T> {
 		[index: string]: T;
+	}
+
+	interface ListIterator<T, TResult> {
+		(value: T, index: number, list: List<T>): TResult;
+	}
+
+	interface ObjectIterator<T, TResult> {
+		(element: T, key: string, list: Dictionary<T>): TResult;
+	}
+
+	interface MemoIterator<T, TResult> {
+		(prev: TResult, curr: T, index: number, list: List<T>): TResult;
+	}
+
+	interface MemoObjectIterator<T, TResult> {
+		(prev: TResult, curr: T, key: string, list: Dictionary<T>): TResult;
 	}
 }
 
@@ -181,7 +185,7 @@ interface UnderscoreStatic {
 
 	reduce<T, TResult>(
 		list: _.Dictionary<T>,
-		iterator: _.ObjectIterator<T, TResult>,
+		iterator: _.MemoObjectIterator<T, TResult>,
 		memo?: TResult,
 		context?: any): TResult;
 
@@ -264,7 +268,22 @@ interface UnderscoreStatic {
 	detect<T>(
 		object: _.Dictionary<T>,
 		iterator: _.ObjectIterator<T, boolean>,
-		context?: any): T;
+        context?: any): T;
+
+    /**
+	* Looks through each value in the list, returning the index of the first one that passes a truth
+	* test (iterator). The function returns as soon as it finds an acceptable element,
+	* and doesn't traverse the entire list.
+	* @param list Searches for a value in this list.
+	* @param iterator Search iterator function for each element in `list`.
+	* @param context `this` object in `iterator`, optional.
+	* @return The index of the first acceptable found element in `list`, if nothing is found -1 is returned.
+	**/
+    findIndex<T>(
+        list: _.List<T>,
+        iterator: _.ListIterator<T, boolean>,
+        context?: any): number;
+
 
 	/**
 	* Looks through each value in the list, returning an array of all the values that pass a truth

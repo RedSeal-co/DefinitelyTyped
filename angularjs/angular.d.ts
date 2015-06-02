@@ -1,4 +1,4 @@
-// Type definitions for Angular JS 1.3+
+// Type definitions for Angular JS 1.4+
 // Project: http://angularjs.org
 // Definitions by: Diego Vilar <http://github.com/diegovilar>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -6,13 +6,15 @@
 
 /// <reference path="../jquery/jquery.d.ts" />
 
-declare var angular: ng.IAngularStatic;
+declare var angular: angular.IAngularStatic;
 
 // Support for painless dependency injection
 interface Function {
     $inject?: string[];
 }
 
+// Collapse angular into ng
+import ng = angular;
 // Support AMD require
 declare module 'angular' {
     export = angular;
@@ -21,7 +23,7 @@ declare module 'angular' {
 ///////////////////////////////////////////////////////////////////////////////
 // ng module (angular.js)
 ///////////////////////////////////////////////////////////////////////////////
-declare module ng {
+declare module angular {
 
     // not directly implemented, but ensures that constructed class implements $get
     interface IServiceProviderClass {
@@ -382,6 +384,14 @@ declare module ng {
         value(name: string, value: any): IModule;
         value(object: Object): IModule;
 
+        /**
+         * Register a service decorator with the $injector. A service decorator intercepts the creation of a service, allowing it to override or modify the behaviour of the service. The object returned by the decorator may be the original service, or a new service object which replaces or wraps and delegates to the original service.
+         * @param name The name of the service to decorate
+         * @param decorator This function will be invoked when the service needs to be instantiated and should return the decorated service instance. The function is called using the injector.invoke method and is therefore fully injectable. Local injection arguments: $delegate - The original service instance, which can be monkey patched, configured, decorated or delegated to.
+         */
+        decorator(name:string, decoratorConstructor: Function): IModule;
+        decorator(name:string, inlineAnnotatedConstructor: any[]): IModule;
+
         // Properties
         name: string;
         requires: string[];
@@ -450,9 +460,9 @@ declare module ng {
         $invalid: boolean;
         $submitted: boolean;
         $error: any;
-        $addControl(control: ng.INgModelController): void;
-        $removeControl(control: ng.INgModelController): void;
-        $setValidity(validationErrorKey: string, isValid: boolean, control: ng.INgModelController): void;
+        $addControl(control: INgModelController): void;
+        $removeControl(control: INgModelController): void;
+        $setValidity(validationErrorKey: string, isValid: boolean, control: INgModelController): void;
         $setDirty(): void;
         $setPristine(): void;
         $commitViewValue(): void;
@@ -472,6 +482,7 @@ declare module ng {
         // types do work and it's common to use them.
         $setViewValue(value: any, trigger?: string): void;
         $setPristine(): void;
+        $setDirty(): void;
         $validate(): void;
         $setTouched(): void;
         $setUntouched(): void;
@@ -507,7 +518,7 @@ declare module ng {
     }
 
     interface IAsyncModelValidators {
-        [index: string]: (...args: any[]) => ng.IPromise<boolean>;
+        [index: string]: (...args: any[]) => IPromise<boolean>;
     }
 
     interface IModelParser {
@@ -537,9 +548,29 @@ declare module ng {
         $applyAsync(exp: string): any;
         $applyAsync(exp: (scope: IScope) => any): any;
 
+        /**
+         * Dispatches an event name downwards to all child scopes (and their children) notifying the registered $rootScope.Scope listeners.
+         * 
+         * The event life cycle starts at the scope on which $broadcast was called. All listeners listening for name event on this scope get notified. Afterwards, the event propagates to all direct and indirect scopes of the current scope and calls all registered listeners along the way. The event cannot be canceled.
+         * 
+         * Any exception emitted from the listeners will be passed onto the $exceptionHandler service.
+         * 
+         * @param name Event name to broadcast.
+         * @param args Optional one or more arguments which will be passed onto the event listeners.
+         */
         $broadcast(name: string, ...args: any[]): IAngularEvent;
         $destroy(): void;
         $digest(): void;
+        /**
+         * Dispatches an event name upwards through the scope hierarchy notifying the registered $rootScope.Scope listeners.
+         *
+         * The event life cycle starts at the scope on which $emit was called. All listeners listening for name event on this scope get notified. Afterwards, the event traverses upwards toward the root scope and calls all registered listeners along the way. The event will stop propagating if one of the listeners cancels it.
+         *
+         * Any exception emitted from the listeners will be passed onto the $exceptionHandler service.
+         * 
+         * @param name Event name to emit.
+         * @param args Optional one or more arguments which will be passed onto the event listeners.
+         */
         $emit(name: string, ...args: any[]): IAngularEvent;
 
         $eval(): any;
@@ -585,6 +616,44 @@ declare module ng {
 
     interface IScope extends IRootScopeService { }
 
+    /**
+     * $scope for ngRepeat directive.
+     * see https://docs.angularjs.org/api/ng/directive/ngRepeat
+     */
+    interface IRepeatScope extends IScope {
+
+        /**
+         * iterator offset of the repeated element (0..length-1).
+         */
+        $index: number;
+
+        /**
+         * true if the repeated element is first in the iterator.
+         */
+        $first: boolean;
+
+        /**
+         * true if the repeated element is between the first and last in the iterator.
+         */
+        $middle: boolean;
+
+        /**
+         * true if the repeated element is last in the iterator.
+         */
+        $last: boolean;
+
+        /**
+         * true if the iterator position $index is even (otherwise false).
+         */
+        $even: boolean;
+
+        /**
+         * true if the iterator position $index is odd (otherwise false).
+         */
+        $odd: boolean;
+
+	}
+
     interface IAngularEvent {
         /**
          * the scope on which the event was $emit-ed or $broadcast-ed.
@@ -625,6 +694,7 @@ declare module ng {
     // TODO undocumented, so we need to get it from the source code
     ///////////////////////////////////////////////////////////////////////////
     interface IBrowserService {
+        defer: angular.ITimeoutService;
         [key: string]: any;
     }
 
@@ -675,17 +745,37 @@ declare module ng {
         eventFn(element: Node, doneFn: () => void): Function;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // FilterService
-    // see http://docs.angularjs.org/api/ng.$filter
-    // see http://docs.angularjs.org/api/ng.$filterProvider
-    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * $filter - $filterProvider - service in module ng
+     * 
+     * Filters are used for formatting data displayed to the user.
+     * 
+     * see https://docs.angularjs.org/api/ng/service/$filter
+     */
     interface IFilterService {
+        /**
+         * Usage:
+         * $filter(name);
+         * 
+         * @param name Name of the filter function to retrieve
+         */
         (name: string): Function;
     }
 
+    /**
+     * $filterProvider - $filter - provider in module ng
+     * 
+     * Filters are just functions which transform input to an output. However filters need to be Dependency Injected. To achieve this a filter definition consists of a factory function which is annotated with dependencies and is responsible for creating a filter function.
+     * 
+     * see https://docs.angularjs.org/api/ng/provider/$filterProvider
+     */
     interface IFilterProvider extends IServiceProvider {
-        register(name: string, filterFactory: Function): IServiceProvider;
+        /**
+         * register(name);
+         * 
+         * @param name Name of the filter function, or an object map of filters where the keys are the filter names and the values are the filter factories. Note: Filter names must be valid angular Expressions identifiers, such as uppercase or orderBy. Names with special characters, such as hyphens and dots, are not allowed. If you wish to namespace your filters, then you can use capitalization (myappSubsectionFilterx) or underscores (myapp_subsection_filterx).
+         */
+        register(name: string | {}): IServiceProvider;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -851,6 +941,7 @@ declare module ng {
         // implementation tests it as boolean, which makes more sense
         // since this is a toggler
         html5Mode(active: boolean): ILocationProvider;
+        html5Mode(mode: { enabled?: boolean; requireBase?: boolean; rewriteLinks?: boolean; }): ILocationProvider;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -890,11 +981,19 @@ declare module ng {
         /**
          * Combines multiple promises into a single promise that is resolved when all of the input promises are resolved.
          *
-         * Returns a single promise that will be resolved with an array/hash of values, each value corresponding to the promise at the same index/key in the promises array/hash. If any of the promises is resolved with a rejection, this resulting promise will be rejected with the same rejection value.
+         * Returns a single promise that will be resolved with an array of values, each value corresponding to the promise at the same index in the promises array. If any of the promises is resolved with a rejection, this resulting promise will be rejected with the same rejection value.
          *
-         * @param promises An array or hash of promises.
+         * @param promises An array of promises.
          */
-        all(promises: IPromise<any>[]|{ [id: string]: IPromise<any>; }): IPromise<any[]>;
+        all(promises: IPromise<any>[]): IPromise<any[]>;
+        /**
+         * Combines multiple promises into a single promise that is resolved when all of the input promises are resolved.
+         *
+         * Returns a single promise that will be resolved with a hash of values, each value corresponding to the promise at the same key in the promises hash. If any of the promises is resolved with a rejection, this resulting promise will be rejected with the same rejection value.
+         *
+         * @param promises A hash of promises.
+         */
+        all(promises: { [id: string]: IPromise<any>; }): IPromise<{ [id: string]: any; }>;
         /**
          * Creates a Deferred object which represents a task which will finish in the future.
          */
@@ -962,37 +1061,98 @@ declare module ng {
         disableAutoScrolling(): void;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // CacheFactoryService
-    // see http://docs.angularjs.org/api/ng.$cacheFactory
-    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * $cacheFactory - service in module ng
+     * 
+     * Factory that constructs Cache objects and gives access to them.
+     * 
+     * see https://docs.angularjs.org/api/ng/service/$cacheFactory
+     */
     interface ICacheFactoryService {
-        // Lets not foce the optionsMap to have the capacity member. Even though
-        // it's the ONLY option considered by the implementation today, a consumer
-        // might find it useful to associate some other options to the cache object.
-        //(cacheId: string, optionsMap?: { capacity: number; }): CacheObject;
-        (cacheId: string, optionsMap?: { capacity: number; }): ICacheObject;
+        /**
+         * Factory that constructs Cache objects and gives access to them.
+         * 
+         * @param cacheId Name or id of the newly created cache.
+         * @param optionsMap Options object that specifies the cache behavior. Properties:
+         * 
+         * capacity — turns the cache into LRU cache.
+         */
+        (cacheId: string, optionsMap?: { capacity?: number; }): ICacheObject;
 
-        // Methods bellow are not documented
+        /**
+         * Get information about all the caches that have been created. 
+         * @returns key-value map of cacheId to the result of calling cache#info
+         */
         info(): any;
+
+        /**
+         * Get access to a cache object by the cacheId used when it was created.
+         * 
+         * @param cacheId Name or id of a cache to access.
+         */
         get(cacheId: string): ICacheObject;
     }
 
+    /**
+     * $cacheFactory.Cache - type in module ng
+     * 
+     * A cache object used to store and retrieve data, primarily used by $http and the script directive to cache templates and other data.
+     * 
+     * see https://docs.angularjs.org/api/ng/type/$cacheFactory.Cache
+     */
     interface ICacheObject {
+        /**
+         * Retrieve information regarding a particular Cache.
+         */
         info(): {
+            /**
+             * the id of the cache instance
+             */
             id: string;
+
+            /**
+             * the number of entries kept in the cache instance
+             */
             size: number;
 
-            // Not garanteed to have, since it's a non-mandatory option
-            //capacity: number;
+            //...: any additional properties from the options object when creating the cache.
         };
-        put(key: string, value?: any): void;
+
+        /**
+         * Inserts a named entry into the Cache object to be retrieved later, and incrementing the size of the cache if the key was not already present in the cache. If behaving like an LRU cache, it will also remove stale entries from the set.
+         * 
+         * It will not insert undefined values into the cache.
+         * 
+         * @param key the key under which the cached data is stored.
+         * @param value the value to store alongside the key. If it is undefined, the key will not be stored.
+         */
+        put<T>(key: string, value?: T): T;
+
+        /**
+         * Retrieves named data stored in the Cache object.
+         * 
+         * @param key the key of the data to be retrieved
+         */
         get(key: string): any;
+
+        /**
+         * Removes an entry from the Cache object.
+         * 
+         * @param key the key of the entry to be removed
+         */
         remove(key: string): void;
+
+        /**
+         * Clears the cache object of any entries.
+         */
         removeAll(): void;
+
+        /**
+         * Destroys the Cache object entirely, removing it from the $cacheFactory set.
+         */
         destroy(): void;
     }
-
+    
     ///////////////////////////////////////////////////////////////////////////
     // CompileService
     // see http://docs.angularjs.org/api/ng.$compile
@@ -1115,6 +1275,15 @@ declare module ng {
         put<T>(url: string, data: any, config?: IRequestShortcutConfig): IHttpPromise<T>;
 
         /**
+         * Shortcut method to perform PATCH request.
+         *
+         * @param url Relative or absolute URL specifying the destination of the request
+         * @param data Request content
+         * @param config Optional configuration object
+         */
+        patch<T>(url: string, data: any, config?: IRequestShortcutConfig): IHttpPromise<T>;
+
+        /**
          * Runtime equivalent of the $httpProvider.defaults property. Allows configuration of default headers, withCredentials as well as request and response transformations.
          */
         defaults: IRequestConfig;
@@ -1219,12 +1388,12 @@ declare module ng {
     interface IHttpPromiseCallbackArg<T> {
         data?: T;
         status?: number;
-        headers?: (headerName: string) => string;
+        headers?: IHttpHeadersGetter;
         config?: IRequestConfig;
         statusText?: string;
     }
 
-    interface IHttpPromise<T> extends IPromise<T> {
+    interface IHttpPromise<T> extends IPromise<IHttpPromiseCallbackArg<T>> {
         success(callback: IHttpPromiseCallback<T>): IHttpPromise<T>;
         error(callback: IHttpPromiseCallback<any>): IHttpPromise<T>;
         then<TResult>(successCallback: (response: IHttpPromiseCallbackArg<T>) => IPromise<TResult>|TResult, errorCallback?: (response: IHttpPromiseCallbackArg<any>) => any): IPromise<TResult>;
@@ -1409,8 +1578,8 @@ declare module ng {
         compile?: IDirectiveCompileFn;
         controller?: any;
         controllerAs?: string;
-        bindToController?: boolean;
-        link?: IDirectiveLinkFn;
+        bindToController?: boolean|Object;
+        link?: IDirectiveLinkFn | IDirectivePrePost;
         name?: string;
         priority?: number;
         replace?: boolean;
@@ -1463,7 +1632,7 @@ declare module ng {
     // see http://docs.angularjs.org/api/ng.$animate
     ///////////////////////////////////////////////////////////////////////
     interface IAnimateService {
-        addClass(element: JQuery, className: string, done?: Function): void;
+        addClass(element: JQuery, className: string, done?: Function): IPromise<any>;
         enter(element: JQuery, parent: JQuery, after: JQuery, done?: Function): void;
         leave(element: JQuery, done?: Function): void;
         move(element: JQuery, parent: JQuery, after: JQuery, done?: Function): void;
@@ -1523,12 +1692,12 @@ declare module ng {
              * $delegate - The original service instance, which can be monkey patched, configured, decorated or delegated to.
              */
             decorator(name: string, inlineAnnotatedFunction: any[]): void;
-            factory(name: string, serviceFactoryFunction: Function): ng.IServiceProvider;
-            factory(name: string, inlineAnnotatedFunction: any[]): ng.IServiceProvider;
-            provider(name: string, provider: ng.IServiceProvider): ng.IServiceProvider;
-            provider(name: string, serviceProviderConstructor: Function): ng.IServiceProvider;
-            service(name: string, constructor: Function): ng.IServiceProvider;
-            value(name: string, value: any): ng.IServiceProvider;
+            factory(name: string, serviceFactoryFunction: Function): IServiceProvider;
+            factory(name: string, inlineAnnotatedFunction: any[]): IServiceProvider;
+            provider(name: string, provider: IServiceProvider): IServiceProvider;
+            provider(name: string, serviceProviderConstructor: Function): IServiceProvider;
+            service(name: string, constructor: Function): IServiceProvider;
+            value(name: string, value: any): IServiceProvider;
         }
 
     }
