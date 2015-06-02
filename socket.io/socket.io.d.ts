@@ -37,38 +37,55 @@ declare module SocketIO {
         emit(name: string, ...args: any[]): Socket;
         use(fn: Function): Namespace;
 
-        on(event: 'connection', listener: (socket: Socket) => void): any;
-        on(event: 'connect', listener: (socket: Socket) => void): any;
-        on(event: string, listener: Function): any;
+        on(event: 'connection', listener: (socket: Socket) => void): Namespace;
+        on(event: 'connect', listener: (socket: Socket) => void): Namespace;
+        on(event: string, listener: Function): Namespace;
     }
 
     interface Namespace extends NodeJS.EventEmitter {
         name: string;
-        connected: { [id: number]: Socket };
-        use(fn: Function): Namespace
+        connected: { [id: string]: Socket };
+        use(fn: Function): Namespace;
+        in(room: string): Namespace;
 
-        on(event: 'connection', listener: (socket: Socket) => void): any;
-        on(event: 'connect', listener: (socket: Socket) => void): any;
-        on(event: string, listener: Function): any;
+        on(event: 'connection', listener: (socket: Socket) => void): Namespace;
+        on(event: 'connect', listener: (socket: Socket) => void): Namespace;
+        on(event: string, listener: Function): Namespace;
     }
 
     interface Socket {
         rooms: string[];
         client: Client;
-        conn: Socket;
+        conn: any;
         request: any;
         id: string;
+        handshake: {
+            headers: any;
+            time: string;
+            address: any;
+            xdomain: boolean;
+            secure: boolean;
+            issued: number;
+            url: string;
+            query: any;
+        };
+
         emit(name: string, ...args: any[]): Socket;
         join(name: string, fn?: Function): Socket;
         leave(name: string, fn?: Function): Socket;
         to(room: string): Socket;
         in(room: string): Socket;
+        send(...args: any[]): Socket;
+        write(...args: any[]): Socket;
 
-        on(event: string, listener: Function): any;
+        on(event: string, listener: Function): Socket;
+        once(event: string, listener: Function): Socket;
+        removeListener(event: string, listener: Function): Socket;
+        removeAllListeners(event: string): Socket;
         broadcast: Socket;
         volatile: Socket;
         connected: boolean;
-        disconnect(close: boolean): Socket;
+        disconnect(close?: boolean): Socket;
     }
 
     interface Client {
