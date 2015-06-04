@@ -11,6 +11,10 @@ declare module cucumber {
     (error?: string | Error, result?: any): void;
     pending(reason?: any): void;
     fail(failureReason?: Error): void;
+
+    // This signature should not be necessary, it is equivalent to the first signature above in the degenerate case.
+    // We include it because otherwise bluebird Promise.done(callback) will not accept a StepCallback.
+    (value: void): void;
   }
 
   export interface Scenario {
