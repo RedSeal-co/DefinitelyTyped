@@ -11,11 +11,14 @@ java.asyncOptions = {
   promisify: BluePromise.promisify
 };
 
+java.registerClientP((): Promise<void> => {
+  return BluePromise.resolve();
+});
+
 java.ensureJvm()
   .then(() => {
-    var Boolean: Java.Boolean.Static = java.import('java.lang.Boolean');
-    var String: Java.String.Static = java.import('java.lang.String');
 
-    var b: Java.boolean_t = new Boolean(false);
-    var s: Java.string_t = new String('hello');
+    // java.d.ts does not declare any Java types.
+    // We can import a  java class, but we don't know the shape of the class here, so must use any
+    var Boolean: any = java.import('java.lang.Boolean');
   });
