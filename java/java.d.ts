@@ -4,16 +4,17 @@
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
 /// <reference path="../bluebird/bluebird.d.ts" />
+/// <reference path="../node/node.d.ts" />
 
 // This is the core API exposed by https://github.com/joeferner/java.
 // To get the full power of Typescript with Java, see https://github.com/RedSeal-co/ts-java.
 
 declare module 'java' {
-  var Java: Java.NodeAPI;
-  export = Java;
+  var NodeJavaCore: NodeJavaCore.NodeAPI;
+  export = NodeJavaCore;
 }
 
-declare module Java {
+declare module NodeJavaCore {
   export interface Callback<T> {
     (err?: Error, result?: T): void;
   }
@@ -42,10 +43,16 @@ declare module Java {
     ensureJvm(done: Callback<void>): void;
     ensureJvm(): Promise<void>;
 
+    newShort(val: number): any;
+    newLong(val: number): any;
+    newFloat(val: number): any;
+    newDouble(val: number): any;
+
     import(className: string): any;
     newInstance(className: string, ...args: any[]): void;
     newInstanceSync(className: string, ...args: any[]): any;
-    newInstancePromise(className: string, ...args: any[]): Promise<any>;
+    newInstanceP(className: string, ...args: any[]): Promise<any>;
     newArray<T>(className: string, arg: any[]): any;
+    getClassLoader(): any;
   }
 }
