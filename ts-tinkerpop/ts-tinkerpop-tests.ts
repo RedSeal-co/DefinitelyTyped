@@ -1,6 +1,7 @@
 ///<reference path="ts-tinkerpop.d.ts"/>
 
 import TP = require('ts-tinkerpop');
+import Java = TP.Java;
 
 TP.initialize();
 

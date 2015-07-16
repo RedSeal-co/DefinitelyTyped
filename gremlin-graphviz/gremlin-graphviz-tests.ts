@@ -7,6 +7,7 @@ import fs = require('fs');
 import graphviz = require('graphviz');
 import gremlinGraphviz = require('gremlin-graphviz');
 import TP = require('ts-tinkerpop');
+import Java = TP.Java;
 
 var gremlinGraph: Java.Graph = TP.TinkerFactory.createClassic();
 
