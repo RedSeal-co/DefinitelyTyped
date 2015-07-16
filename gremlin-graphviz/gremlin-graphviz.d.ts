@@ -12,6 +12,7 @@ declare module 'gremlin-graphviz' {
   import BluePromise = require('bluebird');
   import graphviz = require('graphviz');
   import TP = require('ts-tinkerpop');
+  import Java = TP.Java;
 
   function makeGraph(gremlinGraph: makeGraph.GremlinGraph, opts?: makeGraph.Options): BluePromise<makeGraph.GraphvizGraph>;
 
