@@ -1,4 +1,4 @@
-// Type definitions for ts-tinkerpop 1.3.0
+// Type definitions for ts-tinkerpop 1.3.1
 // Project: https://github.com/RedSeal-co/ts-tinkerpop
 // Definitions by: Jim Lloyd <https://github.com/jimlloyd>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -16,11 +16,16 @@ declare module 'ts-tinkerpop' {
         type Static = typeof Tinkerpop;
         var autoImport: typeof Java.importClass;
         var __: Java.__.Static;
+        var Cardinality: Java.VertexProperty$Cardinality.Static;
         var Compare: Java.Compare.Static;
+        var Direction: Java.Direction.Static;
         var GraphSONReader: Java.GraphSONReader.Static;
         var GraphSONWriter: Java.GraphSONWriter.Static;
         var GraphSONMapper: Java.GraphSONMapper.Static;
         var GremlinGroovyScriptEngine: Java.GremlinGroovyScriptEngine.Static;
+        var P: Java.P.Static;
+        var Pop: Java.Pop.Static;
+        var Scope: Java.Scope.Static;
         var ScriptEngineLambda: Java.ScriptEngineLambda.Static;
         var T: Java.T.Static;
         var TinkerFactory: Java.TinkerFactory.Static;
@@ -50,11 +55,12 @@ declare module 'ts-tinkerpop' {
         function asVertex(v: Java.object_t): Java.Vertex;
         function isEdge(e: any): boolean;
         function asEdge(e: Java.object_t): Java.Edge;
+        function isTraversal(e: any): boolean;
+        function asTraversal(e: Java.object_t): Java.Traversal;
         interface ConsumeObject {
             (item: Java.object_t): any | BluePromise<any>;
         }
         function forEach(javaIterator: Java.Iterator, consumer: ConsumeObject): BluePromise<void>;
-        function asJSON(traversal: Java.Traversal): any[];
         function simplifyVertexProperties(obj: any[]): any[];
         function simplifyVertexProperties(obj: any): any;
         interface GraphCallback {
@@ -82,6 +88,8 @@ declare module 'ts-tinkerpop' {
             object: any;
             labels: string[];
         }
+        function traversalToJson(traversal: Java.Traversal): any[];
+        function asJSON(rawElem: any): any;
     }
     export = Tinkerpop;
 }
@@ -92,6 +100,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
         function getJava(): NodeJavaAPI;
         function ensureJvm(): Promise<void>;
         function getClassLoader(): Java.java.lang.ClassLoader;
+        function fullyQualifiedName(className: string): string;
         function importClass(className: 'GlobFunction'): Java.co.redseal.gremlinnode.function_.GlobFunction.Static;
         function importClass(className: 'GroovyLambda'): Java.co.redseal.gremlinnode.function_.GroovyLambda.Static;
         function importClass(className: 'TestClass'): Java.co.redseal.gremlinnode.testing.TestClass.Static;
