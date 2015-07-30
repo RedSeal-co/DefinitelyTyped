@@ -873,7 +873,7 @@ function populationPyramid() {
         // Allow the arrow keys to change the displayed year.
         window.focus();
         d3.select(window).on("keydown", function () {
-            switch ((<any> d3.event).keyCode) {
+            switch (d3.event.keyCode) {
                 case 37: year = Math.max(year0, year - 10); break;
                 case 39: year = Math.min(year1, year + 10); break;
             }
@@ -1291,12 +1291,12 @@ function forceDirectedVoronoi() {
     d3.select(window)
         .on("keydown", function() {
             // shift
-            if((<any> d3.event).keyCode == 16) {
+            if(d3.event.keyCode == 16) {
                 zoomToAdd = false
             }
      
             // s
-            if((<any> d3.event).keyCode == 83) {
+            if(d3.event.keyCode == 83) {
                 simulate = !simulate
                 if(simulate) {
                     force.start()
@@ -2664,4 +2664,30 @@ function multiTest() {
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
+}
+
+function testD3Events () {
+    d3.select('svg')
+        .on('click', () => {
+            var coords = [d3.event.pageX, d3.event.pageY];
+            console.log("clicked", d3.event.target, "at " + coords);
+        })
+        .on('keypress', () => {
+            if (d3.event.shiftKey) {
+                console.log('shift + ' + d3.event.which);
+            }
+        });
+}
+
+function testD3MutlieTimeFormat() {
+    var format = d3.time.format.multi([
+        [".%L", function(d) { return d.getMilliseconds(); }],
+        [":%S", function(d) { return d.getSeconds(); }],
+        ["%I:%M", function(d) { return d.getMinutes(); }],
+        ["%I %p", function(d) { return d.getHours(); }],
+        ["%a %d", function(d) { return d.getDay() && d.getDate() != 1; }],
+        ["%b %d", function(d) { return d.getDate() != 1; }],
+        ["%B", function(d) { return d.getMonth(); }],
+        ["%Y", function() { return true; }]
+    ]);
 }

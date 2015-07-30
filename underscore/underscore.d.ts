@@ -1170,6 +1170,31 @@ interface UnderscoreStatic {
 	* @return List of all the values on `object`.
 	**/
 	values(object: any): any[];
+    
+    /**
+     * Like map, but for objects. Transform the value of each property in turn.
+     * @param object The object to transform
+     * @param iteratee The function that transforms property values
+     * @param context The optional context (value of `this`) to bind to
+     * @return a new _.Dictionary of property values
+     */
+    mapObject<T, U>(object: _.Dictionary<T>, iteratee: (val: T, key: string, object: _.Dictionary<T>) => U, context?: any): _.Dictionary<U>;
+    
+    /**
+     * Like map, but for objects. Transform the value of each property in turn.
+     * @param object The object to transform
+     * @param iteratee The function that tranforms property values
+     * @param context The optional context (value of `this`) to bind to
+     */
+    mapObject<T>(object: any, iteratee: (val: any, key: string, object: any) => T, context?: any): _.Dictionary<T>;
+    
+    /**
+     * Like map, but for objects. Retrieves a property from each entry in the object, as if by _.property
+     * @param object The object to transform
+     * @param iteratee The property name to retrieve
+     * @param context The optional context (value of `this`) to bind to
+     */
+    mapObject(object: any, iteratee: string, context?: any): _.Dictionary<any>;
 
 	/**
 	* Convert an object into a list of [key, value] pairs.
@@ -2187,8 +2212,8 @@ interface Underscore<T> {
 	* Wrapped type `object`.
 	* @see _.pick
 	**/
-	pick(...keys: string[]): any;
-	pick(keys: string[]): any;
+	pick(...keys: any[]): any;
+	pick(keys: any[]): any;
 	pick(fn: (value: any, key: any, object: any) => any): any;
 
 	/**
@@ -3044,7 +3069,8 @@ interface _Chain<T> {
 	* Wrapped type `object`.
 	* @see _.pick
 	**/
-	pick(...keys: string[]): _Chain<T>;
+	pick(...keys: any[]): _Chain<T>;
+	pick(keys: any[]): _Chain<T>;
 	pick(fn: (value: any, key: any, object: any) => any): _Chain<T>;
 
 	/**

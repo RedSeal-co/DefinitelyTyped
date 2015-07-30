@@ -158,6 +158,7 @@ declare module chrome.bookmarks {
     var onImportEnded: BookmarkImportEndedEvent;
     var onImportBegan: BookmarkImportBeganEvent;
     var onChanged: BookmarkChangedEvent;
+    var onMoved: BookmarkMovedEvent;
     var onCreated: BookmarkCreatedEvent;
     var onChildrenReordered: BookmarkChildrenReordered;
 }
@@ -1082,6 +1083,7 @@ declare module chrome.history {
 ////////////////////
 declare module chrome.identity {
     var getAuthToken: (options: any, cb: (token: {}) => void) => void;
+    var launchWebAuthFlow: (options: any, cb: (redirect_url: string) => void) => void;
 }
 
 
