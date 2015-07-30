@@ -14,6 +14,8 @@ declare module Handlebars {
     export function parse(input: string): hbs.AST.Program;
     export function compile(input: any, options?: any): HandlebarsTemplateDelegate;
 
+    export function create(): HandlebarsStatic;
+
     export var SafeString: typeof hbs.SafeString;
     export var Utils: typeof hbs.Utils;
     export var logger: Logger;
@@ -21,6 +23,27 @@ declare module Handlebars {
 
     export module AST {
         export var helpers: hbs.AST.helpers;
+    }
+
+    interface HandlebarsCommon {
+        registerHelper(name: string, fn: Function, inverse?: boolean): void;
+        registerPartial(name: string, str: any): void;
+        K(): void;
+        createFrame(object: any): any;
+
+        Exception(message: string): void;
+        SafeString: typeof hbs.SafeString;
+        Utils: typeof hbs.Utils;
+
+        logger: Logger;
+        log(level: number, obj: any): void;
+
+        create(): HandlebarsStatic;
+    }
+
+    interface HandlebarsStatic extends HandlebarsCommon {
+        parse(input: string): hbs.AST.Program;
+        compile(input: any, options?: any): HandlebarsTemplateDelegate;
     }
 
     interface ICompiler {
