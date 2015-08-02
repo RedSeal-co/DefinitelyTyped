@@ -1,4 +1,4 @@
-// Type definitions for ts-tinkerpop 1.3.1
+// Type definitions for ts-tinkerpop 1.5.1
 // Project: https://github.com/RedSeal-co/ts-tinkerpop
 // Definitions by: Jim Lloyd <https://github.com/jimlloyd>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -47,9 +47,9 @@ declare module 'ts-tinkerpop' {
         function vertexToJson(vertex: Java.Vertex): any;
         function edgeStringify(edge: Java.Edge): string;
         function edgeToJson(edge: Java.Edge): any;
-        function L(n: number): Java.longValue_t;
-        function isLongValue(obj: any): boolean;
-        function isJavaObject(e: any): boolean;
+        export import L = Java.L;
+        export import isLongValue = Java.isLongValue;
+        export import isJavaObject = Java.isJavaObject;
         function asJavaObject(obj: Java.object_t): Java.Object;
         function isVertex(v: any): boolean;
         function asVertex(v: Java.object_t): Java.Vertex;
@@ -57,10 +57,8 @@ declare module 'ts-tinkerpop' {
         function asEdge(e: Java.object_t): Java.Edge;
         function isTraversal(e: any): boolean;
         function asTraversal(e: Java.object_t): Java.Traversal;
-        interface ConsumeObject {
-            (item: Java.object_t): any | BluePromise<any>;
-        }
-        function forEach(javaIterator: Java.Iterator, consumer: ConsumeObject): BluePromise<void>;
+        export import ConsumeObject = Java.ConsumeObject;
+        export import forEach = Java.forEach;
         function simplifyVertexProperties(obj: any[]): any[];
         function simplifyVertexProperties(obj: any): any;
         interface GraphCallback {
@@ -95,6 +93,7 @@ declare module 'ts-tinkerpop' {
 }
 declare module '__ts-tinkerpop/tsJavaModule' {
     import _java = require('java');
+    import BluePromise = require('bluebird');
     export module Java {
         type NodeJavaAPI = typeof _java;
         function getJava(): NodeJavaAPI;
@@ -929,6 +928,834 @@ declare module '__ts-tinkerpop/tsJavaModule' {
         function importClass(className: 'org.codehaus.groovy.util.ManagedReference'): Java.org.codehaus.groovy.util.ManagedReference.Static;
         function importClass(className: 'org.codehaus.groovy.util.ReferenceBundle'): Java.org.codehaus.groovy.util.ReferenceBundle.Static;
         function importClass(className: string): any;
+        function asInstanceOf(obj: any, className: 'GlobFunction'): Java.co.redseal.gremlinnode.function_.GlobFunction;
+        function asInstanceOf(obj: any, className: 'GroovyLambda'): Java.co.redseal.gremlinnode.function_.GroovyLambda;
+        function asInstanceOf(obj: any, className: 'TestClass'): Java.co.redseal.gremlinnode.testing.TestClass;
+        function asInstanceOf(obj: any, className: 'StringInputStream'): Java.co.redseal.util.StringInputStream;
+        function asInstanceOf(obj: any, className: 'Binding'): Java.groovy.lang.Binding;
+        function asInstanceOf(obj: any, className: 'Closure'): Java.groovy.lang.Closure;
+        function asInstanceOf(obj: any, className: 'DelegatingMetaClass'): Java.groovy.lang.DelegatingMetaClass;
+        function asInstanceOf(obj: any, className: 'GroovyClassLoader'): Java.groovy.lang.GroovyClassLoader;
+        function asInstanceOf(obj: any, className: 'GroovyCodeSource'): Java.groovy.lang.GroovyCodeSource;
+        function asInstanceOf(obj: any, className: 'GroovyObjectSupport'): Java.groovy.lang.GroovyObjectSupport;
+        function asInstanceOf(obj: any, className: 'GroovyResourceLoader'): Java.groovy.lang.GroovyResourceLoader;
+        function asInstanceOf(obj: any, className: 'IntRange'): Java.groovy.lang.IntRange;
+        function asInstanceOf(obj: any, className: 'MetaBeanProperty'): Java.groovy.lang.MetaBeanProperty;
+        function asInstanceOf(obj: any, className: 'MetaClass'): Java.groovy.lang.MetaClass;
+        function asInstanceOf(obj: any, className: 'MetaMethod'): Java.groovy.lang.MetaMethod;
+        function asInstanceOf(obj: any, className: 'MetaProperty'): Java.groovy.lang.MetaProperty;
+        function asInstanceOf(obj: any, className: 'Range'): Java.groovy.lang.Range;
+        function asInstanceOf(obj: any, className: 'Reference'): Java.groovy.lang.Reference;
+        function asInstanceOf(obj: any, className: 'ByteArrayOutputStream'): Java.java.io.ByteArrayOutputStream;
+        function asInstanceOf(obj: any, className: 'FileInputStream'): Java.java.io.FileInputStream;
+        function asInstanceOf(obj: any, className: 'FileOutputStream'): Java.java.io.FileOutputStream;
+        function asInstanceOf(obj: any, className: 'InputStream'): Java.java.io.InputStream;
+        function asInstanceOf(obj: any, className: 'OutputStream'): Java.java.io.OutputStream;
+        function asInstanceOf(obj: any, className: 'Boolean'): Java.java.lang.Boolean;
+        function asInstanceOf(obj: any, className: 'Class'): Java.java.lang.Class;
+        function asInstanceOf(obj: any, className: 'ClassLoader'): Java.java.lang.ClassLoader;
+        function asInstanceOf(obj: any, className: 'Double'): Java.java.lang.Double;
+        function asInstanceOf(obj: any, className: 'Enum'): Java.java.lang.Enum;
+        function asInstanceOf(obj: any, className: 'Float'): Java.java.lang.Float;
+        function asInstanceOf(obj: any, className: 'Integer'): Java.java.lang.Integer;
+        function asInstanceOf(obj: any, className: 'Iterable'): Java.java.lang.Iterable;
+        function asInstanceOf(obj: any, className: 'Long'): Java.java.lang.Long;
+        function asInstanceOf(obj: any, className: 'Object'): Java.java.lang.Object;
+        function asInstanceOf(obj: any, className: 'Array'): Java.java.lang.reflect.Array;
+        function asInstanceOf(obj: any, className: 'Short'): Java.java.lang.Short;
+        function asInstanceOf(obj: any, className: 'String'): Java.java.lang.String;
+        function asInstanceOf(obj: any, className: 'Charset'): Java.java.nio.charset.Charset;
+        function asInstanceOf(obj: any, className: 'StandardCharsets'): Java.java.nio.charset.StandardCharsets;
+        function asInstanceOf(obj: any, className: 'AbstractCollection'): Java.java.util.AbstractCollection;
+        function asInstanceOf(obj: any, className: 'AbstractList'): Java.java.util.AbstractList;
+        function asInstanceOf(obj: any, className: 'AbstractMap'): Java.java.util.AbstractMap;
+        function asInstanceOf(obj: any, className: 'AbstractSet'): Java.java.util.AbstractSet;
+        function asInstanceOf(obj: any, className: 'ArrayList'): Java.java.util.ArrayList;
+        function asInstanceOf(obj: any, className: 'Collection'): Java.java.util.Collection;
+        function asInstanceOf(obj: any, className: 'Comparator'): Java.java.util.Comparator;
+        function asInstanceOf(obj: any, className: 'BiConsumer'): Java.java.util.function_.BiConsumer;
+        function asInstanceOf(obj: any, className: 'BiFunction'): Java.java.util.function_.BiFunction;
+        function asInstanceOf(obj: any, className: 'BinaryOperator'): Java.java.util.function_.BinaryOperator;
+        function asInstanceOf(obj: any, className: 'BiPredicate'): Java.java.util.function_.BiPredicate;
+        function asInstanceOf(obj: any, className: 'Consumer'): Java.java.util.function_.Consumer;
+        function asInstanceOf(obj: any, className: 'Function'): Java.java.util.function_.Function;
+        function asInstanceOf(obj: any, className: 'Predicate'): Java.java.util.function_.Predicate;
+        function asInstanceOf(obj: any, className: 'Supplier'): Java.java.util.function_.Supplier;
+        function asInstanceOf(obj: any, className: 'UnaryOperator'): Java.java.util.function_.UnaryOperator;
+        function asInstanceOf(obj: any, className: 'HashMap'): Java.java.util.HashMap;
+        function asInstanceOf(obj: any, className: 'HashSet'): Java.java.util.HashSet;
+        function asInstanceOf(obj: any, className: 'Iterator'): Java.java.util.Iterator;
+        function asInstanceOf(obj: any, className: 'LinkedHashMap'): Java.java.util.LinkedHashMap;
+        function asInstanceOf(obj: any, className: 'List'): Java.java.util.List;
+        function asInstanceOf(obj: any, className: 'ListIterator'): Java.java.util.ListIterator;
+        function asInstanceOf(obj: any, className: 'Map'): Java.java.util.Map;
+        function asInstanceOf(obj: any, className: 'Map$Entry'): Java.java.util.Map$Entry;
+        function asInstanceOf(obj: any, className: 'NoSuchElementException'): Java.java.util.NoSuchElementException;
+        function asInstanceOf(obj: any, className: 'Optional'): Java.java.util.Optional;
+        function asInstanceOf(obj: any, className: 'Set'): Java.java.util.Set;
+        function asInstanceOf(obj: any, className: 'AbstractScriptEngine'): Java.javax.script.AbstractScriptEngine;
+        function asInstanceOf(obj: any, className: 'Bindings'): Java.javax.script.Bindings;
+        function asInstanceOf(obj: any, className: 'CompiledScript'): Java.javax.script.CompiledScript;
+        function asInstanceOf(obj: any, className: 'ScriptContext'): Java.javax.script.ScriptContext;
+        function asInstanceOf(obj: any, className: 'ScriptEngine'): Java.javax.script.ScriptEngine;
+        function asInstanceOf(obj: any, className: 'ScriptEngineFactory'): Java.javax.script.ScriptEngineFactory;
+        function asInstanceOf(obj: any, className: 'GComparator'): Java.org.apache.tinkerpop.gremlin.groovy.function_.GComparator;
+        function asInstanceOf(obj: any, className: 'GFunction'): Java.org.apache.tinkerpop.gremlin.groovy.function_.GFunction;
+        function asInstanceOf(obj: any, className: 'GSupplier'): Java.org.apache.tinkerpop.gremlin.groovy.function_.GSupplier;
+        function asInstanceOf(obj: any, className: 'GUnaryOperator'): Java.org.apache.tinkerpop.gremlin.groovy.function_.GUnaryOperator;
+        function asInstanceOf(obj: any, className: 'GremlinGroovyScriptEngine'): Java.org.apache.tinkerpop.gremlin.groovy.jsr223.GremlinGroovyScriptEngine;
+        function asInstanceOf(obj: any, className: 'ClusterCountMapReduce'): Java.org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterCountMapReduce;
+        function asInstanceOf(obj: any, className: 'ClusterCountMapReduce$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterCountMapReduce$Builder;
+        function asInstanceOf(obj: any, className: 'ClusterPopulationMapReduce'): Java.org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterPopulationMapReduce;
+        function asInstanceOf(obj: any, className: 'ClusterPopulationMapReduce$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterPopulationMapReduce$Builder;
+        function asInstanceOf(obj: any, className: 'PeerPressureVertexProgram'): Java.org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.PeerPressureVertexProgram;
+        function asInstanceOf(obj: any, className: 'PeerPressureVertexProgram$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.PeerPressureVertexProgram$Builder;
+        function asInstanceOf(obj: any, className: 'ComputerResult'): Java.org.apache.tinkerpop.gremlin.process.computer.ComputerResult;
+        function asInstanceOf(obj: any, className: 'GraphComputer'): Java.org.apache.tinkerpop.gremlin.process.computer.GraphComputer;
+        function asInstanceOf(obj: any, className: 'GraphComputer$Exceptions'): Java.org.apache.tinkerpop.gremlin.process.computer.GraphComputer$Exceptions;
+        function asInstanceOf(obj: any, className: 'GraphComputer$Features'): Java.org.apache.tinkerpop.gremlin.process.computer.GraphComputer$Features;
+        function asInstanceOf(obj: any, className: 'GraphComputer$Persist'): Java.org.apache.tinkerpop.gremlin.process.computer.GraphComputer$Persist;
+        function asInstanceOf(obj: any, className: 'GraphComputer$ResultGraph'): Java.org.apache.tinkerpop.gremlin.process.computer.GraphComputer$ResultGraph;
+        function asInstanceOf(obj: any, className: 'KeyValue'): Java.org.apache.tinkerpop.gremlin.process.computer.KeyValue;
+        function asInstanceOf(obj: any, className: 'MapReduce'): Java.org.apache.tinkerpop.gremlin.process.computer.MapReduce;
+        function asInstanceOf(obj: any, className: 'MapReduce$MapEmitter'): Java.org.apache.tinkerpop.gremlin.process.computer.MapReduce$MapEmitter;
+        function asInstanceOf(obj: any, className: 'MapReduce$NullObject'): Java.org.apache.tinkerpop.gremlin.process.computer.MapReduce$NullObject;
+        function asInstanceOf(obj: any, className: 'MapReduce$ReduceEmitter'): Java.org.apache.tinkerpop.gremlin.process.computer.MapReduce$ReduceEmitter;
+        function asInstanceOf(obj: any, className: 'MapReduce$Stage'): Java.org.apache.tinkerpop.gremlin.process.computer.MapReduce$Stage;
+        function asInstanceOf(obj: any, className: 'Memory'): Java.org.apache.tinkerpop.gremlin.process.computer.Memory;
+        function asInstanceOf(obj: any, className: 'Memory$Admin'): Java.org.apache.tinkerpop.gremlin.process.computer.Memory$Admin;
+        function asInstanceOf(obj: any, className: 'Memory$Exceptions'): Java.org.apache.tinkerpop.gremlin.process.computer.Memory$Exceptions;
+        function asInstanceOf(obj: any, className: 'MessageCombiner'): Java.org.apache.tinkerpop.gremlin.process.computer.MessageCombiner;
+        function asInstanceOf(obj: any, className: 'MessageScope'): Java.org.apache.tinkerpop.gremlin.process.computer.MessageScope;
+        function asInstanceOf(obj: any, className: 'MessageScope$Global'): Java.org.apache.tinkerpop.gremlin.process.computer.MessageScope$Global;
+        function asInstanceOf(obj: any, className: 'MessageScope$Local'): Java.org.apache.tinkerpop.gremlin.process.computer.MessageScope$Local;
+        function asInstanceOf(obj: any, className: 'MessageScope$Local$ReverseTraversalSupplier'): Java.org.apache.tinkerpop.gremlin.process.computer.MessageScope$Local$ReverseTraversalSupplier;
+        function asInstanceOf(obj: any, className: 'Messenger'): Java.org.apache.tinkerpop.gremlin.process.computer.Messenger;
+        function asInstanceOf(obj: any, className: 'PageRankMapReduce'): Java.org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankMapReduce;
+        function asInstanceOf(obj: any, className: 'PageRankMapReduce$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankMapReduce$Builder;
+        function asInstanceOf(obj: any, className: 'PageRankMessageCombiner'): Java.org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankMessageCombiner;
+        function asInstanceOf(obj: any, className: 'PageRankVertexProgram'): Java.org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankVertexProgram;
+        function asInstanceOf(obj: any, className: 'PageRankVertexProgram$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankVertexProgram$Builder;
+        function asInstanceOf(obj: any, className: 'SingleMessenger'): Java.org.apache.tinkerpop.gremlin.process.computer.traversal.SingleMessenger;
+        function asInstanceOf(obj: any, className: 'TraversalVertexProgram'): Java.org.apache.tinkerpop.gremlin.process.computer.traversal.TraversalVertexProgram;
+        function asInstanceOf(obj: any, className: 'TraversalVertexProgram$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.traversal.TraversalVertexProgram$Builder;
+        function asInstanceOf(obj: any, className: 'TraversalVertexProgramMessageCombiner'): Java.org.apache.tinkerpop.gremlin.process.computer.traversal.TraversalVertexProgramMessageCombiner;
+        function asInstanceOf(obj: any, className: 'TraverserExecutor'): Java.org.apache.tinkerpop.gremlin.process.computer.traversal.TraverserExecutor;
+        function asInstanceOf(obj: any, className: 'VertexTraversalSideEffects'): Java.org.apache.tinkerpop.gremlin.process.computer.traversal.VertexTraversalSideEffects;
+        function asInstanceOf(obj: any, className: 'VertexProgram'): Java.org.apache.tinkerpop.gremlin.process.computer.VertexProgram;
+        function asInstanceOf(obj: any, className: 'VertexProgram$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.VertexProgram$Builder;
+        function asInstanceOf(obj: any, className: 'VertexProgram$Features'): Java.org.apache.tinkerpop.gremlin.process.computer.VertexProgram$Features;
+        function asInstanceOf(obj: any, className: 'Compare'): Java.org.apache.tinkerpop.gremlin.process.traversal.Compare;
+        function asInstanceOf(obj: any, className: 'Contains'): Java.org.apache.tinkerpop.gremlin.process.traversal.Contains;
+        function asInstanceOf(obj: any, className: '__'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__;
+        function asInstanceOf(obj: any, className: 'DefaultGraphTraversal'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.DefaultGraphTraversal;
+        function asInstanceOf(obj: any, className: 'EmptyGraphTraversal'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.EmptyGraphTraversal;
+        function asInstanceOf(obj: any, className: 'GraphTraversal'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
+        function asInstanceOf(obj: any, className: 'GraphTraversal$Admin'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal$Admin;
+        function asInstanceOf(obj: any, className: 'GraphTraversalSource'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
+        function asInstanceOf(obj: any, className: 'GraphTraversalSource$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource$Builder;
+        function asInstanceOf(obj: any, className: 'GraphTraversalSource$GraphTraversalSourceStub'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource$GraphTraversalSourceStub;
+        function asInstanceOf(obj: any, className: 'ComputerTraversalEngine'): Java.org.apache.tinkerpop.gremlin.process.traversal.engine.ComputerTraversalEngine;
+        function asInstanceOf(obj: any, className: 'ComputerTraversalEngine$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.engine.ComputerTraversalEngine$Builder;
+        function asInstanceOf(obj: any, className: 'ComputerTraversalEngine$ComputerResultStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.engine.ComputerTraversalEngine$ComputerResultStrategy;
+        function asInstanceOf(obj: any, className: 'StandardTraversalEngine'): Java.org.apache.tinkerpop.gremlin.process.traversal.engine.StandardTraversalEngine;
+        function asInstanceOf(obj: any, className: 'StandardTraversalEngine$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.engine.StandardTraversalEngine$Builder;
+        function asInstanceOf(obj: any, className: 'Operator'): Java.org.apache.tinkerpop.gremlin.process.traversal.Operator;
+        function asInstanceOf(obj: any, className: 'Order'): Java.org.apache.tinkerpop.gremlin.process.traversal.Order;
+        function asInstanceOf(obj: any, className: 'P'): Java.org.apache.tinkerpop.gremlin.process.traversal.P;
+        function asInstanceOf(obj: any, className: 'Path'): Java.org.apache.tinkerpop.gremlin.process.traversal.Path;
+        function asInstanceOf(obj: any, className: 'Path$Exceptions'): Java.org.apache.tinkerpop.gremlin.process.traversal.Path$Exceptions;
+        function asInstanceOf(obj: any, className: 'Pop'): Java.org.apache.tinkerpop.gremlin.process.traversal.Pop;
+        function asInstanceOf(obj: any, className: 'Scope'): Java.org.apache.tinkerpop.gremlin.process.traversal.Scope;
+        function asInstanceOf(obj: any, className: 'Step'): Java.org.apache.tinkerpop.gremlin.process.traversal.Step;
+        function asInstanceOf(obj: any, className: 'AbstractStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.AbstractStep;
+        function asInstanceOf(obj: any, className: 'BulkSet'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.BulkSet;
+        function asInstanceOf(obj: any, className: 'CollectingBarrierStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.CollectingBarrierStep;
+        function asInstanceOf(obj: any, className: 'ComputerAwareStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ComputerAwareStep;
+        function asInstanceOf(obj: any, className: 'ComputerAwareStep$EndStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ComputerAwareStep$EndStep;
+        function asInstanceOf(obj: any, className: 'ElementFunctionComparator'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ElementFunctionComparator;
+        function asInstanceOf(obj: any, className: 'ElementValueComparator'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ElementValueComparator;
+        function asInstanceOf(obj: any, className: 'EmptyPath'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.EmptyPath;
+        function asInstanceOf(obj: any, className: 'EmptyStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.EmptyStep;
+        function asInstanceOf(obj: any, className: 'CallbackRegistry'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.CallbackRegistry;
+        function asInstanceOf(obj: any, className: 'ConsoleMutationListener'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.ConsoleMutationListener;
+        function asInstanceOf(obj: any, className: 'Event'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event;
+        function asInstanceOf(obj: any, className: 'Event$EdgeAddedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgeAddedEvent;
+        function asInstanceOf(obj: any, className: 'Event$EdgePropertyChangedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgePropertyChangedEvent;
+        function asInstanceOf(obj: any, className: 'Event$EdgePropertyRemovedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgePropertyRemovedEvent;
+        function asInstanceOf(obj: any, className: 'Event$EdgeRemovedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgeRemovedEvent;
+        function asInstanceOf(obj: any, className: 'Event$ElementPropertyChangedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$ElementPropertyChangedEvent;
+        function asInstanceOf(obj: any, className: 'Event$ElementPropertyEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$ElementPropertyEvent;
+        function asInstanceOf(obj: any, className: 'Event$VertexAddedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexAddedEvent;
+        function asInstanceOf(obj: any, className: 'Event$VertexPropertyChangedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyChangedEvent;
+        function asInstanceOf(obj: any, className: 'Event$VertexPropertyPropertyChangedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyPropertyChangedEvent;
+        function asInstanceOf(obj: any, className: 'Event$VertexPropertyPropertyRemovedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyPropertyRemovedEvent;
+        function asInstanceOf(obj: any, className: 'Event$VertexPropertyRemovedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyRemovedEvent;
+        function asInstanceOf(obj: any, className: 'Event$VertexRemovedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexRemovedEvent;
+        function asInstanceOf(obj: any, className: 'EventCallback'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.EventCallback;
+        function asInstanceOf(obj: any, className: 'ListCallbackRegistry'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.ListCallbackRegistry;
+        function asInstanceOf(obj: any, className: 'MutationListener'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.MutationListener;
+        function asInstanceOf(obj: any, className: 'ExpandableStepIterator'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ExpandableStepIterator;
+        function asInstanceOf(obj: any, className: 'HasContainer'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.HasContainer;
+        function asInstanceOf(obj: any, className: 'ImmutablePath'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ImmutablePath;
+        function asInstanceOf(obj: any, className: 'MapHelper'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.MapHelper;
+        function asInstanceOf(obj: any, className: 'MutablePath'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.MutablePath;
+        function asInstanceOf(obj: any, className: 'NoOpBarrierStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.NoOpBarrierStep;
+        function asInstanceOf(obj: any, className: 'PathIdentityStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.PathIdentityStep;
+        function asInstanceOf(obj: any, className: 'ReducingBarrierStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep;
+        function asInstanceOf(obj: any, className: 'ReducingBarrierStep$DefaultMapReduce'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep$DefaultMapReduce;
+        function asInstanceOf(obj: any, className: 'ReducingBarrierStep$FinalGet'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep$FinalGet;
+        function asInstanceOf(obj: any, className: 'SupplyingBarrierStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.SupplyingBarrierStep;
+        function asInstanceOf(obj: any, className: 'TraversalComparator'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.TraversalComparator;
+        function asInstanceOf(obj: any, className: 'Tree'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.Tree;
+        function asInstanceOf(obj: any, className: 'ConjunctionStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.ConjunctionStrategy;
+        function asInstanceOf(obj: any, className: 'ElementIdStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.ElementIdStrategy;
+        function asInstanceOf(obj: any, className: 'ElementIdStrategy$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.ElementIdStrategy$Builder;
+        function asInstanceOf(obj: any, className: 'EventStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy;
+        function asInstanceOf(obj: any, className: 'EventStrategy$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$Builder;
+        function asInstanceOf(obj: any, className: 'EventStrategy$DefaultEventQueue'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$DefaultEventQueue;
+        function asInstanceOf(obj: any, className: 'EventStrategy$EventQueue'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$EventQueue;
+        function asInstanceOf(obj: any, className: 'EventStrategy$EventStrategyCallback'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$EventStrategyCallback;
+        function asInstanceOf(obj: any, className: 'EventStrategy$TransactionalEventQueue'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$TransactionalEventQueue;
+        function asInstanceOf(obj: any, className: 'PartitionStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.PartitionStrategy;
+        function asInstanceOf(obj: any, className: 'PartitionStrategy$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.PartitionStrategy$Builder;
+        function asInstanceOf(obj: any, className: 'SubgraphStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.SubgraphStrategy;
+        function asInstanceOf(obj: any, className: 'SubgraphStrategy$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.SubgraphStrategy$Builder;
+        function asInstanceOf(obj: any, className: 'EngineDependentStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.EngineDependentStrategy;
+        function asInstanceOf(obj: any, className: 'LazyBarrierStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.LazyBarrierStrategy;
+        function asInstanceOf(obj: any, className: 'MatchAlgorithmStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.MatchAlgorithmStrategy;
+        function asInstanceOf(obj: any, className: 'MatchAlgorithmStrategy$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.MatchAlgorithmStrategy$Builder;
+        function asInstanceOf(obj: any, className: 'ProfileStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.ProfileStrategy;
+        function asInstanceOf(obj: any, className: 'AdjacentToIncidentStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.AdjacentToIncidentStrategy;
+        function asInstanceOf(obj: any, className: 'DedupBijectionStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.DedupBijectionStrategy;
+        function asInstanceOf(obj: any, className: 'IdentityRemovalStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.IdentityRemovalStrategy;
+        function asInstanceOf(obj: any, className: 'IncidentToAdjacentStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.IncidentToAdjacentStrategy;
+        function asInstanceOf(obj: any, className: 'MatchPredicateStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.MatchPredicateStrategy;
+        function asInstanceOf(obj: any, className: 'RangeByIsCountStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.RangeByIsCountStrategy;
+        function asInstanceOf(obj: any, className: 'ComputerVerificationException'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.ComputerVerificationException;
+        function asInstanceOf(obj: any, className: 'ComputerVerificationStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.ComputerVerificationStrategy;
+        function asInstanceOf(obj: any, className: 'LambdaRestrictionStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.LambdaRestrictionStrategy;
+        function asInstanceOf(obj: any, className: 'ReadOnlyStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.ReadOnlyStrategy;
+        function asInstanceOf(obj: any, className: 'Traversal'): Java.org.apache.tinkerpop.gremlin.process.traversal.Traversal;
+        function asInstanceOf(obj: any, className: 'Traversal$Admin'): Java.org.apache.tinkerpop.gremlin.process.traversal.Traversal$Admin;
+        function asInstanceOf(obj: any, className: 'Traversal$Exceptions'): Java.org.apache.tinkerpop.gremlin.process.traversal.Traversal$Exceptions;
+        function asInstanceOf(obj: any, className: 'TraversalEngine'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalEngine;
+        function asInstanceOf(obj: any, className: 'TraversalEngine$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalEngine$Builder;
+        function asInstanceOf(obj: any, className: 'TraversalEngine$Type'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalEngine$Type;
+        function asInstanceOf(obj: any, className: 'TraversalSideEffects'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalSideEffects;
+        function asInstanceOf(obj: any, className: 'TraversalSideEffects$Exceptions'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalSideEffects$Exceptions;
+        function asInstanceOf(obj: any, className: 'TraversalSource'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalSource;
+        function asInstanceOf(obj: any, className: 'TraversalSource$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalSource$Builder;
+        function asInstanceOf(obj: any, className: 'TraversalStrategies'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategies;
+        function asInstanceOf(obj: any, className: 'TraversalStrategies$GlobalCache'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategies$GlobalCache;
+        function asInstanceOf(obj: any, className: 'TraversalStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy;
+        function asInstanceOf(obj: any, className: 'TraversalStrategy$DecorationStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$DecorationStrategy;
+        function asInstanceOf(obj: any, className: 'TraversalStrategy$FinalizationStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$FinalizationStrategy;
+        function asInstanceOf(obj: any, className: 'TraversalStrategy$OptimizationStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$OptimizationStrategy;
+        function asInstanceOf(obj: any, className: 'TraversalStrategy$VendorOptimizationStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$VendorOptimizationStrategy;
+        function asInstanceOf(obj: any, className: 'TraversalStrategy$VerificationStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$VerificationStrategy;
+        function asInstanceOf(obj: any, className: 'Traverser'): Java.org.apache.tinkerpop.gremlin.process.traversal.Traverser;
+        function asInstanceOf(obj: any, className: 'Traverser$Admin'): Java.org.apache.tinkerpop.gremlin.process.traversal.Traverser$Admin;
+        function asInstanceOf(obj: any, className: 'TraverserGenerator'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraverserGenerator;
+        function asInstanceOf(obj: any, className: 'AndP'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.AndP;
+        function asInstanceOf(obj: any, className: 'ConjunctionP'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.ConjunctionP;
+        function asInstanceOf(obj: any, className: 'DefaultTraversal'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversal;
+        function asInstanceOf(obj: any, className: 'DefaultTraversalSideEffects'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversalSideEffects;
+        function asInstanceOf(obj: any, className: 'DefaultTraversalStrategies'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversalStrategies;
+        function asInstanceOf(obj: any, className: 'DependantMutableMetrics'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.DependantMutableMetrics;
+        function asInstanceOf(obj: any, className: 'EmptyTraversal'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.EmptyTraversal;
+        function asInstanceOf(obj: any, className: 'EmptyTraversalSideEffects'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.EmptyTraversalSideEffects;
+        function asInstanceOf(obj: any, className: 'EmptyTraversalStrategies'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.EmptyTraversalStrategies;
+        function asInstanceOf(obj: any, className: 'FastNoSuchElementException'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.FastNoSuchElementException;
+        function asInstanceOf(obj: any, className: 'ImmutableMetrics'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.ImmutableMetrics;
+        function asInstanceOf(obj: any, className: 'Metrics'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.Metrics;
+        function asInstanceOf(obj: any, className: 'MutableMetrics'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.MutableMetrics;
+        function asInstanceOf(obj: any, className: 'OrP'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.OrP;
+        function asInstanceOf(obj: any, className: 'SideEffectHelper'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.SideEffectHelper;
+        function asInstanceOf(obj: any, className: 'StandardTraversalMetrics'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.StandardTraversalMetrics;
+        function asInstanceOf(obj: any, className: 'StepPosition'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.StepPosition;
+        function asInstanceOf(obj: any, className: 'TraversalClassFunction'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalClassFunction;
+        function asInstanceOf(obj: any, className: 'TraversalHelper'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalHelper;
+        function asInstanceOf(obj: any, className: 'TraversalMatrix'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalMatrix;
+        function asInstanceOf(obj: any, className: 'TraversalMetrics'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalMetrics;
+        function asInstanceOf(obj: any, className: 'TraversalObjectFunction'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalObjectFunction;
+        function asInstanceOf(obj: any, className: 'TraversalRing'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalRing;
+        function asInstanceOf(obj: any, className: 'TraversalScriptFunction'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalScriptFunction;
+        function asInstanceOf(obj: any, className: 'TraversalScriptHelper'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalScriptHelper;
+        function asInstanceOf(obj: any, className: 'TraversalUtil'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalUtil;
+        function asInstanceOf(obj: any, className: 'Direction'): Java.org.apache.tinkerpop.gremlin.structure.Direction;
+        function asInstanceOf(obj: any, className: 'Edge'): Java.org.apache.tinkerpop.gremlin.structure.Edge;
+        function asInstanceOf(obj: any, className: 'Edge$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Edge$Exceptions;
+        function asInstanceOf(obj: any, className: 'Element'): Java.org.apache.tinkerpop.gremlin.structure.Element;
+        function asInstanceOf(obj: any, className: 'Element$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Element$Exceptions;
+        function asInstanceOf(obj: any, className: 'Graph'): Java.org.apache.tinkerpop.gremlin.structure.Graph;
+        function asInstanceOf(obj: any, className: 'Graph$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Exceptions;
+        function asInstanceOf(obj: any, className: 'Graph$Features'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features;
+        function asInstanceOf(obj: any, className: 'Graph$Features$DataTypeFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$DataTypeFeatures;
+        function asInstanceOf(obj: any, className: 'Graph$Features$EdgeFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$EdgeFeatures;
+        function asInstanceOf(obj: any, className: 'Graph$Features$EdgePropertyFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$EdgePropertyFeatures;
+        function asInstanceOf(obj: any, className: 'Graph$Features$ElementFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$ElementFeatures;
+        function asInstanceOf(obj: any, className: 'Graph$Features$FeatureSet'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$FeatureSet;
+        function asInstanceOf(obj: any, className: 'Graph$Features$GraphFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$GraphFeatures;
+        function asInstanceOf(obj: any, className: 'Graph$Features$PropertyFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$PropertyFeatures;
+        function asInstanceOf(obj: any, className: 'Graph$Features$VariableFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$VariableFeatures;
+        function asInstanceOf(obj: any, className: 'Graph$Features$VertexFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$VertexFeatures;
+        function asInstanceOf(obj: any, className: 'Graph$Features$VertexPropertyFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$VertexPropertyFeatures;
+        function asInstanceOf(obj: any, className: 'Graph$Hidden'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Hidden;
+        function asInstanceOf(obj: any, className: 'Graph$OptIn'): Java.org.apache.tinkerpop.gremlin.structure.Graph$OptIn;
+        function asInstanceOf(obj: any, className: 'Graph$OptIns'): Java.org.apache.tinkerpop.gremlin.structure.Graph$OptIns;
+        function asInstanceOf(obj: any, className: 'Graph$OptOut'): Java.org.apache.tinkerpop.gremlin.structure.Graph$OptOut;
+        function asInstanceOf(obj: any, className: 'Graph$OptOuts'): Java.org.apache.tinkerpop.gremlin.structure.Graph$OptOuts;
+        function asInstanceOf(obj: any, className: 'Graph$Variables'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Variables;
+        function asInstanceOf(obj: any, className: 'Graph$Variables$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Variables$Exceptions;
+        function asInstanceOf(obj: any, className: 'AbstractIoRegistry'): Java.org.apache.tinkerpop.gremlin.structure.io.AbstractIoRegistry;
+        function asInstanceOf(obj: any, className: 'GraphMigrator'): Java.org.apache.tinkerpop.gremlin.structure.io.GraphMigrator;
+        function asInstanceOf(obj: any, className: 'GraphMLIo'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLIo;
+        function asInstanceOf(obj: any, className: 'GraphMLIo$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLIo$Builder;
+        function asInstanceOf(obj: any, className: 'GraphMLMapper'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLMapper;
+        function asInstanceOf(obj: any, className: 'GraphMLMapper$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLMapper$Builder;
+        function asInstanceOf(obj: any, className: 'GraphMLReader'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLReader;
+        function asInstanceOf(obj: any, className: 'GraphMLReader$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLReader$Builder;
+        function asInstanceOf(obj: any, className: 'GraphMLWriter'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLWriter;
+        function asInstanceOf(obj: any, className: 'GraphMLWriter$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLWriter$Builder;
+        function asInstanceOf(obj: any, className: 'GraphMLWriterHelper$IndentingXMLStreamWriter'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLWriterHelper$IndentingXMLStreamWriter;
+        function asInstanceOf(obj: any, className: 'GraphReader'): Java.org.apache.tinkerpop.gremlin.structure.io.GraphReader;
+        function asInstanceOf(obj: any, className: 'GraphReader$ReaderBuilder'): Java.org.apache.tinkerpop.gremlin.structure.io.GraphReader$ReaderBuilder;
+        function asInstanceOf(obj: any, className: 'GraphSONIo'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONIo;
+        function asInstanceOf(obj: any, className: 'GraphSONIo$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONIo$Builder;
+        function asInstanceOf(obj: any, className: 'GraphSONMapper'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONMapper;
+        function asInstanceOf(obj: any, className: 'GraphSONMapper$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONMapper$Builder;
+        function asInstanceOf(obj: any, className: 'GraphSONReader'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONReader;
+        function asInstanceOf(obj: any, className: 'GraphSONReader$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONReader$Builder;
+        function asInstanceOf(obj: any, className: 'GraphSONTokens'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONTokens;
+        function asInstanceOf(obj: any, className: 'GraphSONUtil'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONUtil;
+        function asInstanceOf(obj: any, className: 'GraphSONVersion'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONVersion;
+        function asInstanceOf(obj: any, className: 'GraphSONWriter'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONWriter;
+        function asInstanceOf(obj: any, className: 'GraphSONWriter$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONWriter$Builder;
+        function asInstanceOf(obj: any, className: 'LegacyGraphSONReader'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.LegacyGraphSONReader;
+        function asInstanceOf(obj: any, className: 'LegacyGraphSONReader$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.LegacyGraphSONReader$Builder;
+        function asInstanceOf(obj: any, className: 'LegacyGraphSONReader$GraphSONTokensTP2'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.LegacyGraphSONReader$GraphSONTokensTP2;
+        function asInstanceOf(obj: any, className: 'GraphWriter'): Java.org.apache.tinkerpop.gremlin.structure.io.GraphWriter;
+        function asInstanceOf(obj: any, className: 'GraphWriter$WriterBuilder'): Java.org.apache.tinkerpop.gremlin.structure.io.GraphWriter$WriterBuilder;
+        function asInstanceOf(obj: any, className: 'GryoIo'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoIo;
+        function asInstanceOf(obj: any, className: 'GryoIo$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoIo$Builder;
+        function asInstanceOf(obj: any, className: 'GryoMapper'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoMapper;
+        function asInstanceOf(obj: any, className: 'GryoMapper$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoMapper$Builder;
+        function asInstanceOf(obj: any, className: 'GryoPool'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoPool;
+        function asInstanceOf(obj: any, className: 'GryoPool$Type'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoPool$Type;
+        function asInstanceOf(obj: any, className: 'GryoReader'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoReader;
+        function asInstanceOf(obj: any, className: 'GryoReader$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoReader$Builder;
+        function asInstanceOf(obj: any, className: 'GryoWriter'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoWriter;
+        function asInstanceOf(obj: any, className: 'GryoWriter$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoWriter$Builder;
+        function asInstanceOf(obj: any, className: 'VertexByteArrayInputStream'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.VertexByteArrayInputStream;
+        function asInstanceOf(obj: any, className: 'VertexTerminator'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.VertexTerminator;
+        function asInstanceOf(obj: any, className: 'Io'): Java.org.apache.tinkerpop.gremlin.structure.io.Io;
+        function asInstanceOf(obj: any, className: 'Io$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.Io$Builder;
+        function asInstanceOf(obj: any, className: 'Io$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.io.Io$Exceptions;
+        function asInstanceOf(obj: any, className: 'IoCore'): Java.org.apache.tinkerpop.gremlin.structure.io.IoCore;
+        function asInstanceOf(obj: any, className: 'IoRegistry'): Java.org.apache.tinkerpop.gremlin.structure.io.IoRegistry;
+        function asInstanceOf(obj: any, className: 'Mapper'): Java.org.apache.tinkerpop.gremlin.structure.io.Mapper;
+        function asInstanceOf(obj: any, className: 'Mapper$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.Mapper$Builder;
+        function asInstanceOf(obj: any, className: 'Property'): Java.org.apache.tinkerpop.gremlin.structure.Property;
+        function asInstanceOf(obj: any, className: 'Property$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Property$Exceptions;
+        function asInstanceOf(obj: any, className: 'PropertyType'): Java.org.apache.tinkerpop.gremlin.structure.PropertyType;
+        function asInstanceOf(obj: any, className: 'T'): Java.org.apache.tinkerpop.gremlin.structure.T;
+        function asInstanceOf(obj: any, className: 'Transaction'): Java.org.apache.tinkerpop.gremlin.structure.Transaction;
+        function asInstanceOf(obj: any, className: 'Transaction$CLOSE_BEHAVIOR'): Java.org.apache.tinkerpop.gremlin.structure.Transaction$CLOSE_BEHAVIOR;
+        function asInstanceOf(obj: any, className: 'Transaction$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Transaction$Exceptions;
+        function asInstanceOf(obj: any, className: 'Transaction$READ_WRITE_BEHAVIOR'): Java.org.apache.tinkerpop.gremlin.structure.Transaction$READ_WRITE_BEHAVIOR;
+        function asInstanceOf(obj: any, className: 'Transaction$Status'): Java.org.apache.tinkerpop.gremlin.structure.Transaction$Status;
+        function asInstanceOf(obj: any, className: 'Transaction$Workload'): Java.org.apache.tinkerpop.gremlin.structure.Transaction$Workload;
+        function asInstanceOf(obj: any, className: 'AbstractTransaction'): Java.org.apache.tinkerpop.gremlin.structure.util.AbstractTransaction;
+        function asInstanceOf(obj: any, className: 'AbstractTransaction$TransactionException'): Java.org.apache.tinkerpop.gremlin.structure.util.AbstractTransaction$TransactionException;
+        function asInstanceOf(obj: any, className: 'Attachable'): Java.org.apache.tinkerpop.gremlin.structure.util.Attachable;
+        function asInstanceOf(obj: any, className: 'Attachable$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.util.Attachable$Exceptions;
+        function asInstanceOf(obj: any, className: 'Attachable$Method'): Java.org.apache.tinkerpop.gremlin.structure.util.Attachable$Method;
+        function asInstanceOf(obj: any, className: 'Comparators'): Java.org.apache.tinkerpop.gremlin.structure.util.Comparators;
+        function asInstanceOf(obj: any, className: 'DetachedEdge'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedEdge;
+        function asInstanceOf(obj: any, className: 'DetachedElement'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedElement;
+        function asInstanceOf(obj: any, className: 'DetachedFactory'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedFactory;
+        function asInstanceOf(obj: any, className: 'DetachedPath'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedPath;
+        function asInstanceOf(obj: any, className: 'DetachedProperty'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedProperty;
+        function asInstanceOf(obj: any, className: 'DetachedVertex'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedVertex;
+        function asInstanceOf(obj: any, className: 'DetachedVertexProperty'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedVertexProperty;
+        function asInstanceOf(obj: any, className: 'ElementHelper'): Java.org.apache.tinkerpop.gremlin.structure.util.ElementHelper;
+        function asInstanceOf(obj: any, className: 'FeatureDescriptor'): Java.org.apache.tinkerpop.gremlin.structure.util.FeatureDescriptor;
+        function asInstanceOf(obj: any, className: 'GraphFactory'): Java.org.apache.tinkerpop.gremlin.structure.util.GraphFactory;
+        function asInstanceOf(obj: any, className: 'GraphVariableHelper'): Java.org.apache.tinkerpop.gremlin.structure.util.GraphVariableHelper;
+        function asInstanceOf(obj: any, className: 'Host'): Java.org.apache.tinkerpop.gremlin.structure.util.Host;
+        function asInstanceOf(obj: any, className: 'StringFactory'): Java.org.apache.tinkerpop.gremlin.structure.util.StringFactory;
+        function asInstanceOf(obj: any, className: 'Vertex'): Java.org.apache.tinkerpop.gremlin.structure.Vertex;
+        function asInstanceOf(obj: any, className: 'Vertex$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Vertex$Exceptions;
+        function asInstanceOf(obj: any, className: 'VertexProperty'): Java.org.apache.tinkerpop.gremlin.structure.VertexProperty;
+        function asInstanceOf(obj: any, className: 'VertexProperty$Cardinality'): Java.org.apache.tinkerpop.gremlin.structure.VertexProperty$Cardinality;
+        function asInstanceOf(obj: any, className: 'VertexProperty$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.VertexProperty$Exceptions;
+        function asInstanceOf(obj: any, className: 'TinkerGraphComputer'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerGraphComputer;
+        function asInstanceOf(obj: any, className: 'TinkerGraphComputerView'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerGraphComputerView;
+        function asInstanceOf(obj: any, className: 'TinkerMapEmitter'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMapEmitter;
+        function asInstanceOf(obj: any, className: 'TinkerMemory'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMemory;
+        function asInstanceOf(obj: any, className: 'TinkerMessenger'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMessenger;
+        function asInstanceOf(obj: any, className: 'TinkerReduceEmitter'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerReduceEmitter;
+        function asInstanceOf(obj: any, className: 'TinkerWorkerPool'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerWorkerPool;
+        function asInstanceOf(obj: any, className: 'TinkerEdge'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerEdge;
+        function asInstanceOf(obj: any, className: 'TinkerElement'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerElement;
+        function asInstanceOf(obj: any, className: 'TinkerFactory'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerFactory;
+        function asInstanceOf(obj: any, className: 'TinkerGraph'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
+        function asInstanceOf(obj: any, className: 'TinkerGraph$DefaultIdManager'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$DefaultIdManager;
+        function asInstanceOf(obj: any, className: 'TinkerGraph$IdManager'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$IdManager;
+        function asInstanceOf(obj: any, className: 'TinkerGraph$TinkerGraphEdgeFeatures'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphEdgeFeatures;
+        function asInstanceOf(obj: any, className: 'TinkerGraph$TinkerGraphFeatures'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphFeatures;
+        function asInstanceOf(obj: any, className: 'TinkerGraph$TinkerGraphGraphFeatures'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphGraphFeatures;
+        function asInstanceOf(obj: any, className: 'TinkerGraph$TinkerGraphVertexFeatures'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphVertexFeatures;
+        function asInstanceOf(obj: any, className: 'TinkerGraph$TinkerGraphVertexPropertyFeatures'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphVertexPropertyFeatures;
+        function asInstanceOf(obj: any, className: 'TinkerGraphVariables'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraphVariables;
+        function asInstanceOf(obj: any, className: 'TinkerHelper'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerHelper;
+        function asInstanceOf(obj: any, className: 'TinkerProperty'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerProperty;
+        function asInstanceOf(obj: any, className: 'TinkerVertex'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerVertex;
+        function asInstanceOf(obj: any, className: 'TinkerVertexProperty'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerVertexProperty;
+        function asInstanceOf(obj: any, className: 'ArrayListSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.ArrayListSupplier;
+        function asInstanceOf(obj: any, className: 'BulkSetSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.BulkSetSupplier;
+        function asInstanceOf(obj: any, className: 'ChainedComparator'): Java.org.apache.tinkerpop.gremlin.util.function_.ChainedComparator;
+        function asInstanceOf(obj: any, className: 'ConstantSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.ConstantSupplier;
+        function asInstanceOf(obj: any, className: 'FunctionUtils'): Java.org.apache.tinkerpop.gremlin.util.function_.FunctionUtils;
+        function asInstanceOf(obj: any, className: 'HashMapSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.HashMapSupplier;
+        function asInstanceOf(obj: any, className: 'HashSetSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.HashSetSupplier;
+        function asInstanceOf(obj: any, className: 'MeanNumberSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.MeanNumberSupplier;
+        function asInstanceOf(obj: any, className: 'ScriptEngineLambda'): Java.org.apache.tinkerpop.gremlin.util.function_.ScriptEngineLambda;
+        function asInstanceOf(obj: any, className: 'ThrowingBiConsumer'): Java.org.apache.tinkerpop.gremlin.util.function_.ThrowingBiConsumer;
+        function asInstanceOf(obj: any, className: 'ThrowingConsumer'): Java.org.apache.tinkerpop.gremlin.util.function_.ThrowingConsumer;
+        function asInstanceOf(obj: any, className: 'ThrowingFunction'): Java.org.apache.tinkerpop.gremlin.util.function_.ThrowingFunction;
+        function asInstanceOf(obj: any, className: 'ThrowingSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.ThrowingSupplier;
+        function asInstanceOf(obj: any, className: 'TraversableLambda'): Java.org.apache.tinkerpop.gremlin.util.function_.TraversableLambda;
+        function asInstanceOf(obj: any, className: 'TreeSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.TreeSupplier;
+        function asInstanceOf(obj: any, className: 'TriConsumer'): Java.org.apache.tinkerpop.gremlin.util.function_.TriConsumer;
+        function asInstanceOf(obj: any, className: 'TriFunction'): Java.org.apache.tinkerpop.gremlin.util.function_.TriFunction;
+        function asInstanceOf(obj: any, className: 'Gremlin'): Java.org.apache.tinkerpop.gremlin.util.Gremlin;
+        function asInstanceOf(obj: any, className: 'ScriptEngineCache'): Java.org.apache.tinkerpop.gremlin.util.ScriptEngineCache;
+        function asInstanceOf(obj: any, className: 'Serializer'): Java.org.apache.tinkerpop.gremlin.util.Serializer;
+        function asInstanceOf(obj: any, className: 'TimeUtil'): Java.org.apache.tinkerpop.gremlin.util.TimeUtil;
+        function asInstanceOf(obj: any, className: 'ClassNode'): Java.org.codehaus.groovy.ast.ClassNode;
+        function asInstanceOf(obj: any, className: 'CompilerConfiguration'): Java.org.codehaus.groovy.control.CompilerConfiguration;
+        function asInstanceOf(obj: any, className: 'CompilationCustomizer'): Java.org.codehaus.groovy.control.customizers.CompilationCustomizer;
+        function asInstanceOf(obj: any, className: 'NullObject'): Java.org.codehaus.groovy.runtime.NullObject;
+        function asInstanceOf(obj: any, className: 'Groovysh'): Java.org.codehaus.groovy.tools.shell.Groovysh;
+        function asInstanceOf(obj: any, className: 'ManagedReference'): Java.org.codehaus.groovy.util.ManagedReference;
+        function asInstanceOf(obj: any, className: 'ReferenceBundle'): Java.org.codehaus.groovy.util.ReferenceBundle;
+        function asInstanceOf(obj: any, className: 'co.redseal.gremlinnode.function.GlobFunction'): Java.co.redseal.gremlinnode.function_.GlobFunction;
+        function asInstanceOf(obj: any, className: 'co.redseal.gremlinnode.function.GroovyLambda'): Java.co.redseal.gremlinnode.function_.GroovyLambda;
+        function asInstanceOf(obj: any, className: 'co.redseal.gremlinnode.testing.TestClass'): Java.co.redseal.gremlinnode.testing.TestClass;
+        function asInstanceOf(obj: any, className: 'co.redseal.util.StringInputStream'): Java.co.redseal.util.StringInputStream;
+        function asInstanceOf(obj: any, className: 'groovy.lang.Binding'): Java.groovy.lang.Binding;
+        function asInstanceOf(obj: any, className: 'groovy.lang.Closure'): Java.groovy.lang.Closure;
+        function asInstanceOf(obj: any, className: 'groovy.lang.DelegatingMetaClass'): Java.groovy.lang.DelegatingMetaClass;
+        function asInstanceOf(obj: any, className: 'groovy.lang.GroovyClassLoader'): Java.groovy.lang.GroovyClassLoader;
+        function asInstanceOf(obj: any, className: 'groovy.lang.GroovyCodeSource'): Java.groovy.lang.GroovyCodeSource;
+        function asInstanceOf(obj: any, className: 'groovy.lang.GroovyObjectSupport'): Java.groovy.lang.GroovyObjectSupport;
+        function asInstanceOf(obj: any, className: 'groovy.lang.GroovyResourceLoader'): Java.groovy.lang.GroovyResourceLoader;
+        function asInstanceOf(obj: any, className: 'groovy.lang.IntRange'): Java.groovy.lang.IntRange;
+        function asInstanceOf(obj: any, className: 'groovy.lang.MetaBeanProperty'): Java.groovy.lang.MetaBeanProperty;
+        function asInstanceOf(obj: any, className: 'groovy.lang.MetaClass'): Java.groovy.lang.MetaClass;
+        function asInstanceOf(obj: any, className: 'groovy.lang.MetaMethod'): Java.groovy.lang.MetaMethod;
+        function asInstanceOf(obj: any, className: 'groovy.lang.MetaProperty'): Java.groovy.lang.MetaProperty;
+        function asInstanceOf(obj: any, className: 'groovy.lang.Range'): Java.groovy.lang.Range;
+        function asInstanceOf(obj: any, className: 'groovy.lang.Reference'): Java.groovy.lang.Reference;
+        function asInstanceOf(obj: any, className: 'java.io.ByteArrayOutputStream'): Java.java.io.ByteArrayOutputStream;
+        function asInstanceOf(obj: any, className: 'java.io.FileInputStream'): Java.java.io.FileInputStream;
+        function asInstanceOf(obj: any, className: 'java.io.FileOutputStream'): Java.java.io.FileOutputStream;
+        function asInstanceOf(obj: any, className: 'java.io.InputStream'): Java.java.io.InputStream;
+        function asInstanceOf(obj: any, className: 'java.io.OutputStream'): Java.java.io.OutputStream;
+        function asInstanceOf(obj: any, className: 'java.lang.Boolean'): Java.java.lang.Boolean;
+        function asInstanceOf(obj: any, className: 'java.lang.Class'): Java.java.lang.Class;
+        function asInstanceOf(obj: any, className: 'java.lang.ClassLoader'): Java.java.lang.ClassLoader;
+        function asInstanceOf(obj: any, className: 'java.lang.Double'): Java.java.lang.Double;
+        function asInstanceOf(obj: any, className: 'java.lang.Enum'): Java.java.lang.Enum;
+        function asInstanceOf(obj: any, className: 'java.lang.Float'): Java.java.lang.Float;
+        function asInstanceOf(obj: any, className: 'java.lang.Integer'): Java.java.lang.Integer;
+        function asInstanceOf(obj: any, className: 'java.lang.Iterable'): Java.java.lang.Iterable;
+        function asInstanceOf(obj: any, className: 'java.lang.Long'): Java.java.lang.Long;
+        function asInstanceOf(obj: any, className: 'java.lang.Number'): Java.java.lang.Number;
+        function asInstanceOf(obj: any, className: 'java.lang.Object'): Java.java.lang.Object;
+        function asInstanceOf(obj: any, className: 'java.lang.reflect.Array'): Java.java.lang.reflect.Array;
+        function asInstanceOf(obj: any, className: 'java.lang.Short'): Java.java.lang.Short;
+        function asInstanceOf(obj: any, className: 'java.lang.String'): Java.java.lang.String;
+        function asInstanceOf(obj: any, className: 'java.nio.charset.Charset'): Java.java.nio.charset.Charset;
+        function asInstanceOf(obj: any, className: 'java.nio.charset.StandardCharsets'): Java.java.nio.charset.StandardCharsets;
+        function asInstanceOf(obj: any, className: 'java.util.AbstractCollection'): Java.java.util.AbstractCollection;
+        function asInstanceOf(obj: any, className: 'java.util.AbstractList'): Java.java.util.AbstractList;
+        function asInstanceOf(obj: any, className: 'java.util.AbstractMap'): Java.java.util.AbstractMap;
+        function asInstanceOf(obj: any, className: 'java.util.AbstractSet'): Java.java.util.AbstractSet;
+        function asInstanceOf(obj: any, className: 'java.util.ArrayList'): Java.java.util.ArrayList;
+        function asInstanceOf(obj: any, className: 'java.util.Collection'): Java.java.util.Collection;
+        function asInstanceOf(obj: any, className: 'java.util.Comparator'): Java.java.util.Comparator;
+        function asInstanceOf(obj: any, className: 'java.util.function.BiConsumer'): Java.java.util.function_.BiConsumer;
+        function asInstanceOf(obj: any, className: 'java.util.function.BiFunction'): Java.java.util.function_.BiFunction;
+        function asInstanceOf(obj: any, className: 'java.util.function.BinaryOperator'): Java.java.util.function_.BinaryOperator;
+        function asInstanceOf(obj: any, className: 'java.util.function.BiPredicate'): Java.java.util.function_.BiPredicate;
+        function asInstanceOf(obj: any, className: 'java.util.function.Consumer'): Java.java.util.function_.Consumer;
+        function asInstanceOf(obj: any, className: 'java.util.function.Function'): Java.java.util.function_.Function;
+        function asInstanceOf(obj: any, className: 'java.util.function.Predicate'): Java.java.util.function_.Predicate;
+        function asInstanceOf(obj: any, className: 'java.util.function.Supplier'): Java.java.util.function_.Supplier;
+        function asInstanceOf(obj: any, className: 'java.util.function.UnaryOperator'): Java.java.util.function_.UnaryOperator;
+        function asInstanceOf(obj: any, className: 'java.util.HashMap'): Java.java.util.HashMap;
+        function asInstanceOf(obj: any, className: 'java.util.HashSet'): Java.java.util.HashSet;
+        function asInstanceOf(obj: any, className: 'java.util.Iterator'): Java.java.util.Iterator;
+        function asInstanceOf(obj: any, className: 'java.util.LinkedHashMap'): Java.java.util.LinkedHashMap;
+        function asInstanceOf(obj: any, className: 'java.util.List'): Java.java.util.List;
+        function asInstanceOf(obj: any, className: 'java.util.ListIterator'): Java.java.util.ListIterator;
+        function asInstanceOf(obj: any, className: 'java.util.Map'): Java.java.util.Map;
+        function asInstanceOf(obj: any, className: 'java.util.Map$Entry'): Java.java.util.Map$Entry;
+        function asInstanceOf(obj: any, className: 'java.util.NoSuchElementException'): Java.java.util.NoSuchElementException;
+        function asInstanceOf(obj: any, className: 'java.util.Optional'): Java.java.util.Optional;
+        function asInstanceOf(obj: any, className: 'java.util.Set'): Java.java.util.Set;
+        function asInstanceOf(obj: any, className: 'javax.script.AbstractScriptEngine'): Java.javax.script.AbstractScriptEngine;
+        function asInstanceOf(obj: any, className: 'javax.script.Bindings'): Java.javax.script.Bindings;
+        function asInstanceOf(obj: any, className: 'javax.script.CompiledScript'): Java.javax.script.CompiledScript;
+        function asInstanceOf(obj: any, className: 'javax.script.ScriptContext'): Java.javax.script.ScriptContext;
+        function asInstanceOf(obj: any, className: 'javax.script.ScriptEngine'): Java.javax.script.ScriptEngine;
+        function asInstanceOf(obj: any, className: 'javax.script.ScriptEngineFactory'): Java.javax.script.ScriptEngineFactory;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.groovy.function.GComparator'): Java.org.apache.tinkerpop.gremlin.groovy.function_.GComparator;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.groovy.function.GFunction'): Java.org.apache.tinkerpop.gremlin.groovy.function_.GFunction;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.groovy.function.GSupplier'): Java.org.apache.tinkerpop.gremlin.groovy.function_.GSupplier;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.groovy.function.GUnaryOperator'): Java.org.apache.tinkerpop.gremlin.groovy.function_.GUnaryOperator;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.groovy.jsr223.GremlinGroovyScriptEngine'): Java.org.apache.tinkerpop.gremlin.groovy.jsr223.GremlinGroovyScriptEngine;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterCountMapReduce'): Java.org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterCountMapReduce;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterCountMapReduce$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterCountMapReduce$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterPopulationMapReduce'): Java.org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterPopulationMapReduce;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterPopulationMapReduce$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterPopulationMapReduce$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.PeerPressureVertexProgram'): Java.org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.PeerPressureVertexProgram;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.PeerPressureVertexProgram$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.PeerPressureVertexProgram$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.ComputerResult'): Java.org.apache.tinkerpop.gremlin.process.computer.ComputerResult;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.GraphComputer'): Java.org.apache.tinkerpop.gremlin.process.computer.GraphComputer;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.GraphComputer$Exceptions'): Java.org.apache.tinkerpop.gremlin.process.computer.GraphComputer$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.GraphComputer$Features'): Java.org.apache.tinkerpop.gremlin.process.computer.GraphComputer$Features;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.GraphComputer$Persist'): Java.org.apache.tinkerpop.gremlin.process.computer.GraphComputer$Persist;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.GraphComputer$ResultGraph'): Java.org.apache.tinkerpop.gremlin.process.computer.GraphComputer$ResultGraph;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.KeyValue'): Java.org.apache.tinkerpop.gremlin.process.computer.KeyValue;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.MapReduce'): Java.org.apache.tinkerpop.gremlin.process.computer.MapReduce;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.MapReduce$MapEmitter'): Java.org.apache.tinkerpop.gremlin.process.computer.MapReduce$MapEmitter;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.MapReduce$NullObject'): Java.org.apache.tinkerpop.gremlin.process.computer.MapReduce$NullObject;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.MapReduce$ReduceEmitter'): Java.org.apache.tinkerpop.gremlin.process.computer.MapReduce$ReduceEmitter;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.MapReduce$Stage'): Java.org.apache.tinkerpop.gremlin.process.computer.MapReduce$Stage;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.Memory'): Java.org.apache.tinkerpop.gremlin.process.computer.Memory;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.Memory$Admin'): Java.org.apache.tinkerpop.gremlin.process.computer.Memory$Admin;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.Memory$Exceptions'): Java.org.apache.tinkerpop.gremlin.process.computer.Memory$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.MessageCombiner'): Java.org.apache.tinkerpop.gremlin.process.computer.MessageCombiner;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.MessageScope'): Java.org.apache.tinkerpop.gremlin.process.computer.MessageScope;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.MessageScope$Global'): Java.org.apache.tinkerpop.gremlin.process.computer.MessageScope$Global;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.MessageScope$Local'): Java.org.apache.tinkerpop.gremlin.process.computer.MessageScope$Local;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.MessageScope$Local$ReverseTraversalSupplier'): Java.org.apache.tinkerpop.gremlin.process.computer.MessageScope$Local$ReverseTraversalSupplier;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.Messenger'): Java.org.apache.tinkerpop.gremlin.process.computer.Messenger;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankMapReduce'): Java.org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankMapReduce;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankMapReduce$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankMapReduce$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankMessageCombiner'): Java.org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankMessageCombiner;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankVertexProgram'): Java.org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankVertexProgram;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankVertexProgram$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankVertexProgram$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.traversal.SingleMessenger'): Java.org.apache.tinkerpop.gremlin.process.computer.traversal.SingleMessenger;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.traversal.TraversalVertexProgram'): Java.org.apache.tinkerpop.gremlin.process.computer.traversal.TraversalVertexProgram;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.traversal.TraversalVertexProgram$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.traversal.TraversalVertexProgram$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.traversal.TraversalVertexProgramMessageCombiner'): Java.org.apache.tinkerpop.gremlin.process.computer.traversal.TraversalVertexProgramMessageCombiner;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.traversal.TraverserExecutor'): Java.org.apache.tinkerpop.gremlin.process.computer.traversal.TraverserExecutor;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.traversal.VertexTraversalSideEffects'): Java.org.apache.tinkerpop.gremlin.process.computer.traversal.VertexTraversalSideEffects;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.VertexProgram'): Java.org.apache.tinkerpop.gremlin.process.computer.VertexProgram;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.VertexProgram$Builder'): Java.org.apache.tinkerpop.gremlin.process.computer.VertexProgram$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.computer.VertexProgram$Features'): Java.org.apache.tinkerpop.gremlin.process.computer.VertexProgram$Features;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Compare'): Java.org.apache.tinkerpop.gremlin.process.traversal.Compare;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Contains'): Java.org.apache.tinkerpop.gremlin.process.traversal.Contains;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.DefaultGraphTraversal'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.DefaultGraphTraversal;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.EmptyGraphTraversal'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.EmptyGraphTraversal;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal$Admin'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal$Admin;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource$GraphTraversalSourceStub'): Java.org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource$GraphTraversalSourceStub;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.engine.ComputerTraversalEngine'): Java.org.apache.tinkerpop.gremlin.process.traversal.engine.ComputerTraversalEngine;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.engine.ComputerTraversalEngine$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.engine.ComputerTraversalEngine$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.engine.ComputerTraversalEngine$ComputerResultStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.engine.ComputerTraversalEngine$ComputerResultStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.engine.StandardTraversalEngine'): Java.org.apache.tinkerpop.gremlin.process.traversal.engine.StandardTraversalEngine;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.engine.StandardTraversalEngine$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.engine.StandardTraversalEngine$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Operator'): Java.org.apache.tinkerpop.gremlin.process.traversal.Operator;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Order'): Java.org.apache.tinkerpop.gremlin.process.traversal.Order;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.P'): Java.org.apache.tinkerpop.gremlin.process.traversal.P;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Path'): Java.org.apache.tinkerpop.gremlin.process.traversal.Path;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Path$Exceptions'): Java.org.apache.tinkerpop.gremlin.process.traversal.Path$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Pop'): Java.org.apache.tinkerpop.gremlin.process.traversal.Pop;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Scope'): Java.org.apache.tinkerpop.gremlin.process.traversal.Scope;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Step'): Java.org.apache.tinkerpop.gremlin.process.traversal.Step;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.AbstractStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.AbstractStep;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.BulkSet'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.BulkSet;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.CollectingBarrierStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.CollectingBarrierStep;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.ComputerAwareStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ComputerAwareStep;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.ComputerAwareStep$EndStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ComputerAwareStep$EndStep;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.ElementFunctionComparator'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ElementFunctionComparator;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.ElementValueComparator'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ElementValueComparator;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.EmptyPath'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.EmptyPath;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.EmptyStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.EmptyStep;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.CallbackRegistry'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.CallbackRegistry;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.ConsoleMutationListener'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.ConsoleMutationListener;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgeAddedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgeAddedEvent;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgePropertyChangedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgePropertyChangedEvent;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgePropertyRemovedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgePropertyRemovedEvent;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgeRemovedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgeRemovedEvent;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$ElementPropertyChangedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$ElementPropertyChangedEvent;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$ElementPropertyEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$ElementPropertyEvent;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexAddedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexAddedEvent;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyChangedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyChangedEvent;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyPropertyChangedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyPropertyChangedEvent;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyPropertyRemovedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyPropertyRemovedEvent;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyRemovedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyRemovedEvent;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexRemovedEvent'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexRemovedEvent;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.EventCallback'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.EventCallback;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.ListCallbackRegistry'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.ListCallbackRegistry;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.event.MutationListener'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.event.MutationListener;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.ExpandableStepIterator'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ExpandableStepIterator;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.HasContainer'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.HasContainer;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.ImmutablePath'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ImmutablePath;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.MapHelper'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.MapHelper;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.MutablePath'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.MutablePath;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.NoOpBarrierStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.NoOpBarrierStep;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.PathIdentityStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.PathIdentityStep;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep$DefaultMapReduce'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep$DefaultMapReduce;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep$FinalGet'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep$FinalGet;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.SupplyingBarrierStep'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.SupplyingBarrierStep;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.TraversalComparator'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.TraversalComparator;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.step.util.Tree'): Java.org.apache.tinkerpop.gremlin.process.traversal.step.util.Tree;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.ConjunctionStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.ConjunctionStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.ElementIdStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.ElementIdStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.ElementIdStrategy$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.ElementIdStrategy$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$DefaultEventQueue'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$DefaultEventQueue;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$EventQueue'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$EventQueue;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$EventStrategyCallback'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$EventStrategyCallback;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$TransactionalEventQueue'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$TransactionalEventQueue;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.PartitionStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.PartitionStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.PartitionStrategy$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.PartitionStrategy$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.SubgraphStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.SubgraphStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.SubgraphStrategy$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.SubgraphStrategy$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.EngineDependentStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.EngineDependentStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.LazyBarrierStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.LazyBarrierStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.MatchAlgorithmStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.MatchAlgorithmStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.MatchAlgorithmStrategy$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.MatchAlgorithmStrategy$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.ProfileStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.ProfileStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.AdjacentToIncidentStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.AdjacentToIncidentStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.DedupBijectionStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.DedupBijectionStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.IdentityRemovalStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.IdentityRemovalStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.IncidentToAdjacentStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.IncidentToAdjacentStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.MatchPredicateStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.MatchPredicateStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.RangeByIsCountStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.RangeByIsCountStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.ComputerVerificationException'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.ComputerVerificationException;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.ComputerVerificationStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.ComputerVerificationStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.LambdaRestrictionStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.LambdaRestrictionStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.ReadOnlyStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.ReadOnlyStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Traversal'): Java.org.apache.tinkerpop.gremlin.process.traversal.Traversal;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Traversal$Admin'): Java.org.apache.tinkerpop.gremlin.process.traversal.Traversal$Admin;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Traversal$Exceptions'): Java.org.apache.tinkerpop.gremlin.process.traversal.Traversal$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalEngine'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalEngine;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalEngine$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalEngine$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalEngine$Type'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalEngine$Type;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalSideEffects'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalSideEffects;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalSideEffects$Exceptions'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalSideEffects$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalSource'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalSource;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalSource$Builder'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalSource$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategies'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategies;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategies$GlobalCache'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategies$GlobalCache;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$DecorationStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$DecorationStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$FinalizationStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$FinalizationStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$OptimizationStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$OptimizationStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$VendorOptimizationStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$VendorOptimizationStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$VerificationStrategy'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$VerificationStrategy;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Traverser'): Java.org.apache.tinkerpop.gremlin.process.traversal.Traverser;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.Traverser$Admin'): Java.org.apache.tinkerpop.gremlin.process.traversal.Traverser$Admin;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.TraverserGenerator'): Java.org.apache.tinkerpop.gremlin.process.traversal.TraverserGenerator;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.AndP'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.AndP;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.ConjunctionP'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.ConjunctionP;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversal'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversal;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversalSideEffects'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversalSideEffects;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversalStrategies'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversalStrategies;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.DependantMutableMetrics'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.DependantMutableMetrics;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.EmptyTraversal'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.EmptyTraversal;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.EmptyTraversalSideEffects'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.EmptyTraversalSideEffects;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.EmptyTraversalStrategies'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.EmptyTraversalStrategies;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.FastNoSuchElementException'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.FastNoSuchElementException;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.ImmutableMetrics'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.ImmutableMetrics;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.Metrics'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.Metrics;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.MutableMetrics'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.MutableMetrics;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.OrP'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.OrP;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.SideEffectHelper'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.SideEffectHelper;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.StandardTraversalMetrics'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.StandardTraversalMetrics;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.StepPosition'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.StepPosition;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.TraversalClassFunction'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalClassFunction;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.TraversalHelper'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalHelper;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.TraversalMatrix'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalMatrix;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.TraversalMetrics'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalMetrics;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.TraversalObjectFunction'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalObjectFunction;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.TraversalRing'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalRing;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.TraversalScriptFunction'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalScriptFunction;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.TraversalScriptHelper'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalScriptHelper;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.process.traversal.util.TraversalUtil'): Java.org.apache.tinkerpop.gremlin.process.traversal.util.TraversalUtil;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Direction'): Java.org.apache.tinkerpop.gremlin.structure.Direction;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Edge'): Java.org.apache.tinkerpop.gremlin.structure.Edge;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Edge$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Edge$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Element'): Java.org.apache.tinkerpop.gremlin.structure.Element;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Element$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Element$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph'): Java.org.apache.tinkerpop.gremlin.structure.Graph;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Features'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Features$DataTypeFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$DataTypeFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Features$EdgeFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$EdgeFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Features$EdgePropertyFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$EdgePropertyFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Features$ElementFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$ElementFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Features$FeatureSet'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$FeatureSet;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Features$GraphFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$GraphFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Features$PropertyFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$PropertyFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Features$VariableFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$VariableFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Features$VertexFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$VertexFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Features$VertexPropertyFeatures'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Features$VertexPropertyFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Hidden'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Hidden;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$OptIn'): Java.org.apache.tinkerpop.gremlin.structure.Graph$OptIn;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$OptIns'): Java.org.apache.tinkerpop.gremlin.structure.Graph$OptIns;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$OptOut'): Java.org.apache.tinkerpop.gremlin.structure.Graph$OptOut;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$OptOuts'): Java.org.apache.tinkerpop.gremlin.structure.Graph$OptOuts;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Variables'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Variables;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Graph$Variables$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Graph$Variables$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.AbstractIoRegistry'): Java.org.apache.tinkerpop.gremlin.structure.io.AbstractIoRegistry;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.GraphMigrator'): Java.org.apache.tinkerpop.gremlin.structure.io.GraphMigrator;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLIo'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLIo;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLIo$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLIo$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLMapper'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLMapper;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLMapper$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLMapper$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLReader'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLReader;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLReader$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLReader$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLWriter'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLWriter;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLWriter$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLWriter$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLWriterHelper$IndentingXMLStreamWriter'): Java.org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLWriterHelper$IndentingXMLStreamWriter;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.GraphReader'): Java.org.apache.tinkerpop.gremlin.structure.io.GraphReader;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.GraphReader$ReaderBuilder'): Java.org.apache.tinkerpop.gremlin.structure.io.GraphReader$ReaderBuilder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONIo'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONIo;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONIo$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONIo$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONMapper'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONMapper;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONMapper$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONMapper$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONReader'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONReader;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONReader$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONReader$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONTokens'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONTokens;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONUtil'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONUtil;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONVersion'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONVersion;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONWriter'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONWriter;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONWriter$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONWriter$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.LegacyGraphSONReader'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.LegacyGraphSONReader;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.LegacyGraphSONReader$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.LegacyGraphSONReader$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.graphson.LegacyGraphSONReader$GraphSONTokensTP2'): Java.org.apache.tinkerpop.gremlin.structure.io.graphson.LegacyGraphSONReader$GraphSONTokensTP2;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.GraphWriter'): Java.org.apache.tinkerpop.gremlin.structure.io.GraphWriter;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.GraphWriter$WriterBuilder'): Java.org.apache.tinkerpop.gremlin.structure.io.GraphWriter$WriterBuilder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.gryo.GryoIo'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoIo;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.gryo.GryoIo$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoIo$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.gryo.GryoMapper'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoMapper;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.gryo.GryoMapper$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoMapper$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.gryo.GryoPool'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoPool;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.gryo.GryoPool$Type'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoPool$Type;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.gryo.GryoReader'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoReader;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.gryo.GryoReader$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoReader$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.gryo.GryoWriter'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoWriter;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.gryo.GryoWriter$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.GryoWriter$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.gryo.VertexByteArrayInputStream'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.VertexByteArrayInputStream;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.gryo.VertexTerminator'): Java.org.apache.tinkerpop.gremlin.structure.io.gryo.VertexTerminator;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.Io'): Java.org.apache.tinkerpop.gremlin.structure.io.Io;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.Io$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.Io$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.Io$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.io.Io$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.IoCore'): Java.org.apache.tinkerpop.gremlin.structure.io.IoCore;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.IoRegistry'): Java.org.apache.tinkerpop.gremlin.structure.io.IoRegistry;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.Mapper'): Java.org.apache.tinkerpop.gremlin.structure.io.Mapper;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.io.Mapper$Builder'): Java.org.apache.tinkerpop.gremlin.structure.io.Mapper$Builder;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Property'): Java.org.apache.tinkerpop.gremlin.structure.Property;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Property$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Property$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.PropertyType'): Java.org.apache.tinkerpop.gremlin.structure.PropertyType;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.T'): Java.org.apache.tinkerpop.gremlin.structure.T;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Transaction'): Java.org.apache.tinkerpop.gremlin.structure.Transaction;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Transaction$CLOSE_BEHAVIOR'): Java.org.apache.tinkerpop.gremlin.structure.Transaction$CLOSE_BEHAVIOR;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Transaction$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Transaction$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Transaction$READ_WRITE_BEHAVIOR'): Java.org.apache.tinkerpop.gremlin.structure.Transaction$READ_WRITE_BEHAVIOR;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Transaction$Status'): Java.org.apache.tinkerpop.gremlin.structure.Transaction$Status;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Transaction$Workload'): Java.org.apache.tinkerpop.gremlin.structure.Transaction$Workload;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.AbstractTransaction'): Java.org.apache.tinkerpop.gremlin.structure.util.AbstractTransaction;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.AbstractTransaction$TransactionException'): Java.org.apache.tinkerpop.gremlin.structure.util.AbstractTransaction$TransactionException;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.Attachable'): Java.org.apache.tinkerpop.gremlin.structure.util.Attachable;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.Attachable$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.util.Attachable$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.Attachable$Method'): Java.org.apache.tinkerpop.gremlin.structure.util.Attachable$Method;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.Comparators'): Java.org.apache.tinkerpop.gremlin.structure.util.Comparators;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.detached.DetachedEdge'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedEdge;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.detached.DetachedElement'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedElement;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.detached.DetachedFactory'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedFactory;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.detached.DetachedPath'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedPath;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.detached.DetachedProperty'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedProperty;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.detached.DetachedVertex'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedVertex;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.detached.DetachedVertexProperty'): Java.org.apache.tinkerpop.gremlin.structure.util.detached.DetachedVertexProperty;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.ElementHelper'): Java.org.apache.tinkerpop.gremlin.structure.util.ElementHelper;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.FeatureDescriptor'): Java.org.apache.tinkerpop.gremlin.structure.util.FeatureDescriptor;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.GraphFactory'): Java.org.apache.tinkerpop.gremlin.structure.util.GraphFactory;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.GraphVariableHelper'): Java.org.apache.tinkerpop.gremlin.structure.util.GraphVariableHelper;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.Host'): Java.org.apache.tinkerpop.gremlin.structure.util.Host;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.util.StringFactory'): Java.org.apache.tinkerpop.gremlin.structure.util.StringFactory;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Vertex'): Java.org.apache.tinkerpop.gremlin.structure.Vertex;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.Vertex$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.Vertex$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.VertexProperty'): Java.org.apache.tinkerpop.gremlin.structure.VertexProperty;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.VertexProperty$Cardinality'): Java.org.apache.tinkerpop.gremlin.structure.VertexProperty$Cardinality;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.structure.VertexProperty$Exceptions'): Java.org.apache.tinkerpop.gremlin.structure.VertexProperty$Exceptions;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerGraphComputer'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerGraphComputer;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerGraphComputerView'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerGraphComputerView;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMapEmitter'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMapEmitter;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMemory'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMemory;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMessenger'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMessenger;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerReduceEmitter'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerReduceEmitter;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerWorkerPool'): Java.org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerWorkerPool;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerEdge'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerEdge;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerElement'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerElement;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerFactory'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerFactory;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$DefaultIdManager'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$DefaultIdManager;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$IdManager'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$IdManager;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphEdgeFeatures'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphEdgeFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphFeatures'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphGraphFeatures'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphGraphFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphVertexFeatures'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphVertexFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphVertexPropertyFeatures'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphVertexPropertyFeatures;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraphVariables'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraphVariables;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerHelper'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerHelper;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerProperty'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerProperty;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerVertex'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerVertex;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerVertexProperty'): Java.org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerVertexProperty;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.ArrayListSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.ArrayListSupplier;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.BulkSetSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.BulkSetSupplier;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.ChainedComparator'): Java.org.apache.tinkerpop.gremlin.util.function_.ChainedComparator;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.ConstantSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.ConstantSupplier;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.FunctionUtils'): Java.org.apache.tinkerpop.gremlin.util.function_.FunctionUtils;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.HashMapSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.HashMapSupplier;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.HashSetSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.HashSetSupplier;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.MeanNumberSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.MeanNumberSupplier;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.ScriptEngineLambda'): Java.org.apache.tinkerpop.gremlin.util.function_.ScriptEngineLambda;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.ThrowingBiConsumer'): Java.org.apache.tinkerpop.gremlin.util.function_.ThrowingBiConsumer;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.ThrowingConsumer'): Java.org.apache.tinkerpop.gremlin.util.function_.ThrowingConsumer;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.ThrowingFunction'): Java.org.apache.tinkerpop.gremlin.util.function_.ThrowingFunction;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.ThrowingSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.ThrowingSupplier;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.TraversableLambda'): Java.org.apache.tinkerpop.gremlin.util.function_.TraversableLambda;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.TreeSupplier'): Java.org.apache.tinkerpop.gremlin.util.function_.TreeSupplier;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.TriConsumer'): Java.org.apache.tinkerpop.gremlin.util.function_.TriConsumer;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.function.TriFunction'): Java.org.apache.tinkerpop.gremlin.util.function_.TriFunction;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.Gremlin'): Java.org.apache.tinkerpop.gremlin.util.Gremlin;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.ScriptEngineCache'): Java.org.apache.tinkerpop.gremlin.util.ScriptEngineCache;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.Serializer'): Java.org.apache.tinkerpop.gremlin.util.Serializer;
+        function asInstanceOf(obj: any, className: 'org.apache.tinkerpop.gremlin.util.TimeUtil'): Java.org.apache.tinkerpop.gremlin.util.TimeUtil;
+        function asInstanceOf(obj: any, className: 'org.codehaus.groovy.ast.ClassNode'): Java.org.codehaus.groovy.ast.ClassNode;
+        function asInstanceOf(obj: any, className: 'org.codehaus.groovy.control.CompilerConfiguration'): Java.org.codehaus.groovy.control.CompilerConfiguration;
+        function asInstanceOf(obj: any, className: 'org.codehaus.groovy.control.customizers.CompilationCustomizer'): Java.org.codehaus.groovy.control.customizers.CompilationCustomizer;
+        function asInstanceOf(obj: any, className: 'org.codehaus.groovy.runtime.NullObject'): Java.org.codehaus.groovy.runtime.NullObject;
+        function asInstanceOf(obj: any, className: 'org.codehaus.groovy.tools.shell.Groovysh'): Java.org.codehaus.groovy.tools.shell.Groovysh;
+        function asInstanceOf(obj: any, className: 'org.codehaus.groovy.util.ManagedReference'): Java.org.codehaus.groovy.util.ManagedReference;
+        function asInstanceOf(obj: any, className: 'org.codehaus.groovy.util.ReferenceBundle'): Java.org.codehaus.groovy.util.ReferenceBundle;
+        function asInstanceOf(obj: any, className: string): any;
         interface Callback<T> {
             (err?: Error, result?: T): void;
         }
@@ -937,6 +1764,231 @@ declare module '__ts-tinkerpop/tsJavaModule' {
         function newLong(val: number): Java.java.lang.Long;
         function newFloat(val: number): Java.java.lang.Float;
         function newDouble(val: number): Java.java.lang.Double;
+        function newInstanceA(className: 'GroovyLambda', arg0: string_t, arg1: Java.ScriptEngine, cb: Callback<Java.GroovyLambda>): void;
+        function newInstanceA(className: 'GroovyLambda', arg0: string_t, cb: Callback<Java.GroovyLambda>): void;
+        function newInstanceA(className: 'TestClass', cb: Callback<Java.TestClass>): void;
+        function newInstanceA(className: 'StringInputStream', cb: Callback<Java.StringInputStream>): void;
+        function newInstanceA(className: 'Binding', arg0: array_t<string_t>, cb: Callback<Java.Binding>): void;
+        function newInstanceA(className: 'Binding', arg0: Java.Map, cb: Callback<Java.Binding>): void;
+        function newInstanceA(className: 'Binding', cb: Callback<Java.Binding>): void;
+        function newInstanceA(className: 'Closure', arg0: object_t, arg1: object_t, cb: Callback<Java.Closure>): void;
+        function newInstanceA(className: 'Closure', arg0: object_t, cb: Callback<Java.Closure>): void;
+        function newInstanceA(className: 'DelegatingMetaClass', arg0: Java.MetaClass, cb: Callback<Java.DelegatingMetaClass>): void;
+        function newInstanceA(className: 'DelegatingMetaClass', arg0: Java.Class, cb: Callback<Java.DelegatingMetaClass>): void;
+        function newInstanceA(className: 'GroovyClassLoader', arg0: Java.ClassLoader, arg1: Java.CompilerConfiguration, arg2: boolean_t, cb: Callback<Java.GroovyClassLoader>): void;
+        function newInstanceA(className: 'GroovyClassLoader', arg0: Java.ClassLoader, arg1: Java.CompilerConfiguration, cb: Callback<Java.GroovyClassLoader>): void;
+        function newInstanceA(className: 'GroovyClassLoader', arg0: Java.GroovyClassLoader, cb: Callback<Java.GroovyClassLoader>): void;
+        function newInstanceA(className: 'GroovyClassLoader', arg0: Java.ClassLoader, cb: Callback<Java.GroovyClassLoader>): void;
+        function newInstanceA(className: 'GroovyClassLoader', cb: Callback<Java.GroovyClassLoader>): void;
+        function newInstanceA(className: 'GroovyCodeSource', arg0: string_t, arg1: string_t, arg2: string_t, cb: Callback<Java.GroovyCodeSource>): void;
+        function newInstanceA(className: 'GroovyCodeSource', arg0: object_t, arg1: string_t, arg2: string_t, cb: Callback<Java.GroovyCodeSource>): void;
+        function newInstanceA(className: 'GroovyCodeSource', arg0: object_t, arg1: string_t, cb: Callback<Java.GroovyCodeSource>): void;
+        function newInstanceA(className: 'GroovyCodeSource', arg0: object_t, cb: Callback<Java.GroovyCodeSource>): void;
+        function newInstanceA(className: 'GroovyCodeSource', arg0: object_t, cb: Callback<Java.GroovyCodeSource>): void;
+        function newInstanceA(className: 'GroovyCodeSource', arg0: object_t, cb: Callback<Java.GroovyCodeSource>): void;
+        function newInstanceA(className: 'GroovyObjectSupport', cb: Callback<Java.GroovyObjectSupport>): void;
+        function newInstanceA(className: 'IntRange', arg0: boolean_t, arg1: integer_t, arg2: integer_t, cb: Callback<Java.IntRange>): void;
+        function newInstanceA(className: 'IntRange', arg0: integer_t, arg1: integer_t, cb: Callback<Java.IntRange>): void;
+        function newInstanceA(className: 'MetaBeanProperty', arg0: string_t, arg1: Java.Class, arg2: Java.MetaMethod, arg3: Java.MetaMethod, cb: Callback<Java.MetaBeanProperty>): void;
+        function newInstanceA(className: 'MetaMethod', arg0: array_t<Java.Class>, cb: Callback<Java.MetaMethod>): void;
+        function newInstanceA(className: 'MetaMethod', cb: Callback<Java.MetaMethod>): void;
+        function newInstanceA(className: 'MetaProperty', arg0: string_t, arg1: Java.Class, cb: Callback<Java.MetaProperty>): void;
+        function newInstanceA(className: 'Reference', arg0: object_t, cb: Callback<Java.Reference>): void;
+        function newInstanceA(className: 'Reference', cb: Callback<Java.Reference>): void;
+        function newInstanceA(className: 'ByteArrayOutputStream', arg0: integer_t, cb: Callback<Java.ByteArrayOutputStream>): void;
+        function newInstanceA(className: 'ByteArrayOutputStream', cb: Callback<Java.ByteArrayOutputStream>): void;
+        function newInstanceA(className: 'FileInputStream', arg0: object_t, cb: Callback<Java.FileInputStream>): void;
+        function newInstanceA(className: 'FileInputStream', arg0: string_t, cb: Callback<Java.FileInputStream>): void;
+        function newInstanceA(className: 'FileInputStream', arg0: object_t, cb: Callback<Java.FileInputStream>): void;
+        function newInstanceA(className: 'FileOutputStream', arg0: string_t, arg1: boolean_t, cb: Callback<Java.FileOutputStream>): void;
+        function newInstanceA(className: 'FileOutputStream', arg0: object_t, arg1: boolean_t, cb: Callback<Java.FileOutputStream>): void;
+        function newInstanceA(className: 'FileOutputStream', arg0: object_t, cb: Callback<Java.FileOutputStream>): void;
+        function newInstanceA(className: 'FileOutputStream', arg0: string_t, cb: Callback<Java.FileOutputStream>): void;
+        function newInstanceA(className: 'FileOutputStream', arg0: object_t, cb: Callback<Java.FileOutputStream>): void;
+        function newInstanceA(className: 'InputStream', cb: Callback<Java.InputStream>): void;
+        function newInstanceA(className: 'OutputStream', cb: Callback<Java.OutputStream>): void;
+        function newInstanceA(className: 'Boolean', arg0: string_t, cb: Callback<boolean>): void;
+        function newInstanceA(className: 'Boolean', arg0: boolean_t, cb: Callback<boolean>): void;
+        function newInstanceA(className: 'Double', arg0: string_t, cb: Callback<number>): void;
+        function newInstanceA(className: 'Double', arg0: double_t, cb: Callback<number>): void;
+        function newInstanceA(className: 'Float', arg0: string_t, cb: Callback<number>): void;
+        function newInstanceA(className: 'Float', arg0: float_t, cb: Callback<number>): void;
+        function newInstanceA(className: 'Float', arg0: double_t, cb: Callback<number>): void;
+        function newInstanceA(className: 'Integer', arg0: string_t, cb: Callback<number>): void;
+        function newInstanceA(className: 'Integer', arg0: integer_t, cb: Callback<number>): void;
+        function newInstanceA(className: 'Long', arg0: string_t, cb: Callback<longValue_t>): void;
+        function newInstanceA(className: 'Long', arg0: long_t, cb: Callback<longValue_t>): void;
+        function newInstanceA(className: 'Object', cb: Callback<object_t>): void;
+        function newInstanceA(className: 'Short', arg0: string_t, cb: Callback<number>): void;
+        function newInstanceA(className: 'Short', arg0: short_t, cb: Callback<number>): void;
+        function newInstanceA(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t, arg3: Java.Charset, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t, arg3: string_t, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t, arg3: integer_t, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', arg0: array_t<integer_t>, arg1: integer_t, arg2: integer_t, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', arg0: object_array_t, arg1: Java.Charset, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', arg0: object_array_t, arg1: string_t, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', arg0: object_array_t, arg1: integer_t, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', arg0: object_t, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', arg0: object_t, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', arg0: string_t, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', arg0: object_array_t, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', arg0: object_array_t, cb: Callback<string>): void;
+        function newInstanceA(className: 'String', cb: Callback<string>): void;
+        function newInstanceA(className: 'ArrayList', arg0: Java.Collection, cb: Callback<Java.ArrayList>): void;
+        function newInstanceA(className: 'ArrayList', arg0: integer_t, cb: Callback<Java.ArrayList>): void;
+        function newInstanceA(className: 'ArrayList', cb: Callback<Java.ArrayList>): void;
+        function newInstanceA(className: 'HashMap', arg0: integer_t, arg1: float_t, cb: Callback<Java.HashMap>): void;
+        function newInstanceA(className: 'HashMap', arg0: Java.Map, cb: Callback<Java.HashMap>): void;
+        function newInstanceA(className: 'HashMap', arg0: integer_t, cb: Callback<Java.HashMap>): void;
+        function newInstanceA(className: 'HashMap', cb: Callback<Java.HashMap>): void;
+        function newInstanceA(className: 'HashSet', arg0: integer_t, arg1: float_t, cb: Callback<Java.HashSet>): void;
+        function newInstanceA(className: 'HashSet', arg0: Java.Collection, cb: Callback<Java.HashSet>): void;
+        function newInstanceA(className: 'HashSet', arg0: integer_t, cb: Callback<Java.HashSet>): void;
+        function newInstanceA(className: 'HashSet', cb: Callback<Java.HashSet>): void;
+        function newInstanceA(className: 'LinkedHashMap', arg0: integer_t, arg1: float_t, arg2: boolean_t, cb: Callback<Java.LinkedHashMap>): void;
+        function newInstanceA(className: 'LinkedHashMap', arg0: integer_t, arg1: float_t, cb: Callback<Java.LinkedHashMap>): void;
+        function newInstanceA(className: 'LinkedHashMap', arg0: Java.Map, cb: Callback<Java.LinkedHashMap>): void;
+        function newInstanceA(className: 'LinkedHashMap', arg0: integer_t, cb: Callback<Java.LinkedHashMap>): void;
+        function newInstanceA(className: 'LinkedHashMap', cb: Callback<Java.LinkedHashMap>): void;
+        function newInstanceA(className: 'NoSuchElementException', arg0: string_t, cb: Callback<Java.NoSuchElementException>): void;
+        function newInstanceA(className: 'NoSuchElementException', cb: Callback<Java.NoSuchElementException>): void;
+        function newInstanceA(className: 'AbstractScriptEngine', arg0: Java.Bindings, cb: Callback<Java.AbstractScriptEngine>): void;
+        function newInstanceA(className: 'AbstractScriptEngine', cb: Callback<Java.AbstractScriptEngine>): void;
+        function newInstanceA(className: 'CompiledScript', cb: Callback<Java.CompiledScript>): void;
+        function newInstanceA(className: 'GComparator', arg0: Java.Closure, cb: Callback<Java.GComparator>): void;
+        function newInstanceA(className: 'GFunction', arg0: Java.Closure, cb: Callback<Java.GFunction>): void;
+        function newInstanceA(className: 'GSupplier', arg0: Java.Closure, cb: Callback<Java.GSupplier>): void;
+        function newInstanceA(className: 'GUnaryOperator', arg0: Java.Closure, cb: Callback<Java.GUnaryOperator>): void;
+        function newInstanceA(className: 'GremlinGroovyScriptEngine', arg0: object_t, arg1: object_t, arg2: long_t, cb: Callback<Java.GremlinGroovyScriptEngine>): void;
+        function newInstanceA(className: 'GremlinGroovyScriptEngine', arg0: object_t, arg1: object_t, cb: Callback<Java.GremlinGroovyScriptEngine>): void;
+        function newInstanceA(className: 'GremlinGroovyScriptEngine', arg0: object_t, cb: Callback<Java.GremlinGroovyScriptEngine>): void;
+        function newInstanceA(className: 'GremlinGroovyScriptEngine', cb: Callback<Java.GremlinGroovyScriptEngine>): void;
+        function newInstanceA(className: 'KeyValue', arg0: object_t, arg1: object_t, cb: Callback<Java.KeyValue>): void;
+        function newInstanceA(className: 'MapReduce$NullObject', cb: Callback<Java.MapReduce$NullObject>): void;
+        function newInstanceA(className: 'MessageScope', cb: Callback<Java.MessageScope>): void;
+        function newInstanceA(className: 'MessageScope$Local$ReverseTraversalSupplier', arg0: Java.MessageScope$Local, cb: Callback<Java.MessageScope$Local$ReverseTraversalSupplier>): void;
+        function newInstanceA(className: 'SingleMessenger', arg0: Java.Messenger, arg1: object_t, cb: Callback<Java.SingleMessenger>): void;
+        function newInstanceA(className: 'TraverserExecutor', cb: Callback<Java.TraverserExecutor>): void;
+        function newInstanceA(className: 'DefaultGraphTraversal', arg0: Java.Graph, cb: Callback<Java.DefaultGraphTraversal>): void;
+        function newInstanceA(className: 'DefaultGraphTraversal', cb: Callback<Java.DefaultGraphTraversal>): void;
+        function newInstanceA(className: 'GraphTraversalSource$GraphTraversalSourceStub', arg0: Java.GraphTraversal$Admin, arg1: boolean_t, cb: Callback<Java.GraphTraversalSource$GraphTraversalSourceStub>): void;
+        function newInstanceA(className: 'ComputerTraversalEngine$Builder', cb: Callback<Java.ComputerTraversalEngine$Builder>): void;
+        function newInstanceA(className: 'StandardTraversalEngine$Builder', cb: Callback<Java.StandardTraversalEngine$Builder>): void;
+        function newInstanceA(className: 'P', arg0: Java.BiPredicate, arg1: object_t, cb: Callback<Java.P>): void;
+        function newInstanceA(className: 'Path$Exceptions', cb: Callback<Java.Path$Exceptions>): void;
+        function newInstanceA(className: 'AbstractStep', arg0: Java.Traversal$Admin, cb: Callback<Java.AbstractStep>): void;
+        function newInstanceA(className: 'BulkSet', cb: Callback<Java.BulkSet>): void;
+        function newInstanceA(className: 'CollectingBarrierStep', arg0: Java.Traversal$Admin, arg1: integer_t, cb: Callback<Java.CollectingBarrierStep>): void;
+        function newInstanceA(className: 'CollectingBarrierStep', arg0: Java.Traversal$Admin, cb: Callback<Java.CollectingBarrierStep>): void;
+        function newInstanceA(className: 'ComputerAwareStep', arg0: Java.Traversal$Admin, cb: Callback<Java.ComputerAwareStep>): void;
+        function newInstanceA(className: 'ComputerAwareStep$EndStep', arg0: Java.Traversal$Admin, cb: Callback<Java.ComputerAwareStep$EndStep>): void;
+        function newInstanceA(className: 'ElementFunctionComparator', arg0: Java.Function, arg1: Java.Comparator, cb: Callback<Java.ElementFunctionComparator>): void;
+        function newInstanceA(className: 'ElementValueComparator', arg0: string_t, arg1: Java.Comparator, cb: Callback<Java.ElementValueComparator>): void;
+        function newInstanceA(className: 'ConsoleMutationListener', arg0: Java.Graph, cb: Callback<Java.ConsoleMutationListener>): void;
+        function newInstanceA(className: 'Event$EdgeAddedEvent', arg0: Java.Edge, cb: Callback<Java.Event$EdgeAddedEvent>): void;
+        function newInstanceA(className: 'Event$EdgePropertyChangedEvent', arg0: Java.Edge, arg1: Java.Property, arg2: object_t, cb: Callback<Java.Event$EdgePropertyChangedEvent>): void;
+        function newInstanceA(className: 'Event$EdgePropertyRemovedEvent', arg0: Java.Edge, arg1: Java.Property, cb: Callback<Java.Event$EdgePropertyRemovedEvent>): void;
+        function newInstanceA(className: 'Event$EdgeRemovedEvent', arg0: Java.Edge, cb: Callback<Java.Event$EdgeRemovedEvent>): void;
+        function newInstanceA(className: 'Event$ElementPropertyChangedEvent', arg0: Java.Element, arg1: Java.Property, arg2: object_t, arg3: object_array_t, cb: Callback<Java.Event$ElementPropertyChangedEvent>): void;
+        function newInstanceA(className: 'Event$ElementPropertyEvent', arg0: Java.Element, arg1: Java.Property, arg2: object_t, arg3: object_array_t, cb: Callback<Java.Event$ElementPropertyEvent>): void;
+        function newInstanceA(className: 'Event$VertexAddedEvent', arg0: Java.Vertex, cb: Callback<Java.Event$VertexAddedEvent>): void;
+        function newInstanceA(className: 'Event$VertexPropertyChangedEvent', arg0: Java.Vertex, arg1: Java.Property, arg2: object_t, arg3: object_array_t, cb: Callback<Java.Event$VertexPropertyChangedEvent>): void;
+        function newInstanceA(className: 'Event$VertexPropertyPropertyChangedEvent', arg0: Java.VertexProperty, arg1: Java.Property, arg2: object_t, cb: Callback<Java.Event$VertexPropertyPropertyChangedEvent>): void;
+        function newInstanceA(className: 'Event$VertexPropertyPropertyRemovedEvent', arg0: Java.VertexProperty, arg1: Java.Property, cb: Callback<Java.Event$VertexPropertyPropertyRemovedEvent>): void;
+        function newInstanceA(className: 'Event$VertexPropertyRemovedEvent', arg0: Java.VertexProperty, cb: Callback<Java.Event$VertexPropertyRemovedEvent>): void;
+        function newInstanceA(className: 'Event$VertexRemovedEvent', arg0: Java.Vertex, cb: Callback<Java.Event$VertexRemovedEvent>): void;
+        function newInstanceA(className: 'ListCallbackRegistry', cb: Callback<Java.ListCallbackRegistry>): void;
+        function newInstanceA(className: 'ExpandableStepIterator', arg0: Java.Step, cb: Callback<Java.ExpandableStepIterator>): void;
+        function newInstanceA(className: 'HasContainer', arg0: string_t, arg1: Java.P, cb: Callback<Java.HasContainer>): void;
+        function newInstanceA(className: 'NoOpBarrierStep', arg0: Java.Traversal$Admin, arg1: integer_t, cb: Callback<Java.NoOpBarrierStep>): void;
+        function newInstanceA(className: 'NoOpBarrierStep', arg0: Java.Traversal$Admin, cb: Callback<Java.NoOpBarrierStep>): void;
+        function newInstanceA(className: 'PathIdentityStep', arg0: Java.Traversal$Admin, cb: Callback<Java.PathIdentityStep>): void;
+        function newInstanceA(className: 'ReducingBarrierStep', arg0: Java.Traversal$Admin, cb: Callback<Java.ReducingBarrierStep>): void;
+        function newInstanceA(className: 'ReducingBarrierStep$DefaultMapReduce', arg0: Java.Supplier, arg1: Java.BiFunction, cb: Callback<Java.ReducingBarrierStep$DefaultMapReduce>): void;
+        function newInstanceA(className: 'SupplyingBarrierStep', arg0: Java.Traversal$Admin, cb: Callback<Java.SupplyingBarrierStep>): void;
+        function newInstanceA(className: 'TraversalComparator', arg0: Java.Traversal$Admin, arg1: Java.Comparator, cb: Callback<Java.TraversalComparator>): void;
+        function newInstanceA(className: 'Tree', arg0: array_t<Java.Map$Entry>, cb: Callback<Java.Tree>): void;
+        function newInstanceA(className: 'Tree', arg0: object_array_t, cb: Callback<Java.Tree>): void;
+        function newInstanceA(className: 'Tree', cb: Callback<Java.Tree>): void;
+        function newInstanceA(className: 'EventStrategy$DefaultEventQueue', cb: Callback<Java.EventStrategy$DefaultEventQueue>): void;
+        function newInstanceA(className: 'EventStrategy$EventStrategyCallback', arg0: Java.EventStrategy, arg1: Java.EventStrategy$EventQueue, cb: Callback<Java.EventStrategy$EventStrategyCallback>): void;
+        function newInstanceA(className: 'EventStrategy$TransactionalEventQueue', arg0: Java.Graph, cb: Callback<Java.EventStrategy$TransactionalEventQueue>): void;
+        function newInstanceA(className: 'ComputerVerificationException', arg0: string_t, arg1: Java.Traversal, cb: Callback<Java.ComputerVerificationException>): void;
+        function newInstanceA(className: 'Traversal$Exceptions', cb: Callback<Java.Traversal$Exceptions>): void;
+        function newInstanceA(className: 'TraversalSideEffects$Exceptions', cb: Callback<Java.TraversalSideEffects$Exceptions>): void;
+        function newInstanceA(className: 'TraversalStrategies$GlobalCache', cb: Callback<Java.TraversalStrategies$GlobalCache>): void;
+        function newInstanceA(className: 'AndP', arg0: array_t<Java.P>, cb: Callback<Java.AndP>): void;
+        function newInstanceA(className: 'ConjunctionP', arg0: array_t<Java.P>, cb: Callback<Java.ConjunctionP>): void;
+        function newInstanceA(className: 'DefaultTraversal', arg0: Java.Graph, cb: Callback<Java.DefaultTraversal>): void;
+        function newInstanceA(className: 'DefaultTraversal', cb: Callback<Java.DefaultTraversal>): void;
+        function newInstanceA(className: 'DefaultTraversalSideEffects', cb: Callback<Java.DefaultTraversalSideEffects>): void;
+        function newInstanceA(className: 'DefaultTraversalStrategies', cb: Callback<Java.DefaultTraversalStrategies>): void;
+        function newInstanceA(className: 'DependantMutableMetrics', arg0: string_t, arg1: string_t, arg2: Java.DependantMutableMetrics, cb: Callback<Java.DependantMutableMetrics>): void;
+        function newInstanceA(className: 'MutableMetrics', arg0: string_t, arg1: string_t, cb: Callback<Java.MutableMetrics>): void;
+        function newInstanceA(className: 'OrP', arg0: array_t<Java.P>, cb: Callback<Java.OrP>): void;
+        function newInstanceA(className: 'StandardTraversalMetrics', cb: Callback<Java.StandardTraversalMetrics>): void;
+        function newInstanceA(className: 'StepPosition', cb: Callback<Java.StepPosition>): void;
+        function newInstanceA(className: 'TraversalClassFunction', arg0: Java.Class, cb: Callback<Java.TraversalClassFunction>): void;
+        function newInstanceA(className: 'TraversalMatrix', arg0: Java.Traversal$Admin, cb: Callback<Java.TraversalMatrix>): void;
+        function newInstanceA(className: 'TraversalObjectFunction', arg0: Java.Traversal$Admin, cb: Callback<Java.TraversalObjectFunction>): void;
+        function newInstanceA(className: 'TraversalRing', arg0: array_t<Java.Traversal$Admin>, cb: Callback<Java.TraversalRing>): void;
+        function newInstanceA(className: 'TraversalScriptFunction', arg0: Java.TraversalSource$Builder, arg1: string_t, arg2: string_t, arg3: object_array_t, cb: Callback<Java.TraversalScriptFunction>): void;
+        function newInstanceA(className: 'Graph$Exceptions', cb: Callback<Java.Graph$Exceptions>): void;
+        function newInstanceA(className: 'Graph$Hidden', cb: Callback<Java.Graph$Hidden>): void;
+        function newInstanceA(className: 'AbstractIoRegistry', cb: Callback<Java.AbstractIoRegistry>): void;
+        function newInstanceA(className: 'GraphMLIo$Builder', cb: Callback<Java.GraphMLIo$Builder>): void;
+        function newInstanceA(className: 'GraphMLMapper$Builder', cb: Callback<Java.GraphMLMapper$Builder>): void;
+        function newInstanceA(className: 'GraphMLWriterHelper$IndentingXMLStreamWriter', arg0: object_t, cb: Callback<Java.GraphMLWriterHelper$IndentingXMLStreamWriter>): void;
+        function newInstanceA(className: 'GraphSONIo$Builder', cb: Callback<Java.GraphSONIo$Builder>): void;
+        function newInstanceA(className: 'GryoIo$Builder', cb: Callback<Java.GryoIo$Builder>): void;
+        function newInstanceA(className: 'GryoPool', arg0: integer_t, arg1: Java.GryoPool$Type, arg2: Java.Optional, cb: Callback<Java.GryoPool>): void;
+        function newInstanceA(className: 'GryoPool', arg0: object_t, cb: Callback<Java.GryoPool>): void;
+        function newInstanceA(className: 'GryoPool', arg0: integer_t, cb: Callback<Java.GryoPool>): void;
+        function newInstanceA(className: 'VertexByteArrayInputStream', arg0: Java.InputStream, cb: Callback<Java.VertexByteArrayInputStream>): void;
+        function newInstanceA(className: 'Io$Exceptions', cb: Callback<Java.Io$Exceptions>): void;
+        function newInstanceA(className: 'Transaction$Workload', arg0: Java.Graph, arg1: Java.Function, cb: Callback<Java.Transaction$Workload>): void;
+        function newInstanceA(className: 'AbstractTransaction', arg0: Java.Graph, cb: Callback<Java.AbstractTransaction>): void;
+        function newInstanceA(className: 'AbstractTransaction$TransactionException', arg0: string_t, arg1: object_t, cb: Callback<Java.AbstractTransaction$TransactionException>): void;
+        function newInstanceA(className: 'AbstractTransaction$TransactionException', arg0: object_t, cb: Callback<Java.AbstractTransaction$TransactionException>): void;
+        function newInstanceA(className: 'AbstractTransaction$TransactionException', arg0: string_t, cb: Callback<Java.AbstractTransaction$TransactionException>): void;
+        function newInstanceA(className: 'Attachable$Method', cb: Callback<Java.Attachable$Method>): void;
+        function newInstanceA(className: 'DetachedEdge', arg0: object_t, arg1: string_t, arg2: Java.Map, arg3: object_t, arg4: object_t, cb: Callback<Java.DetachedEdge>): void;
+        function newInstanceA(className: 'DetachedProperty', arg0: string_t, arg1: object_t, arg2: Java.Element, cb: Callback<Java.DetachedProperty>): void;
+        function newInstanceA(className: 'DetachedProperty', arg0: string_t, arg1: object_t, cb: Callback<Java.DetachedProperty>): void;
+        function newInstanceA(className: 'DetachedVertex', arg0: object_t, arg1: string_t, arg2: Java.Map, cb: Callback<Java.DetachedVertex>): void;
+        function newInstanceA(className: 'DetachedVertexProperty', arg0: object_t, arg1: string_t, arg2: object_t, arg3: Java.Map, arg4: Java.Vertex, cb: Callback<Java.DetachedVertexProperty>): void;
+        function newInstanceA(className: 'DetachedVertexProperty', arg0: object_t, arg1: string_t, arg2: object_t, arg3: Java.Map, cb: Callback<Java.DetachedVertexProperty>): void;
+        function newInstanceA(className: 'TinkerGraphComputer', arg0: Java.TinkerGraph, cb: Callback<Java.TinkerGraphComputer>): void;
+        function newInstanceA(className: 'TinkerGraphComputerView', arg0: Java.TinkerGraph, arg1: Java.Set, cb: Callback<Java.TinkerGraphComputerView>): void;
+        function newInstanceA(className: 'TinkerMapEmitter', arg0: boolean_t, cb: Callback<Java.TinkerMapEmitter>): void;
+        function newInstanceA(className: 'TinkerMemory', arg0: Java.VertexProgram, arg1: Java.Set, cb: Callback<Java.TinkerMemory>): void;
+        function newInstanceA(className: 'TinkerMessenger', arg0: Java.Vertex, arg1: object_t, arg2: Java.Optional, cb: Callback<Java.TinkerMessenger>): void;
+        function newInstanceA(className: 'TinkerReduceEmitter', cb: Callback<Java.TinkerReduceEmitter>): void;
+        function newInstanceA(className: 'TinkerWorkerPool', arg0: integer_t, cb: Callback<Java.TinkerWorkerPool>): void;
+        function newInstanceA(className: 'TinkerGraphVariables', cb: Callback<Java.TinkerGraphVariables>): void;
+        function newInstanceA(className: 'TinkerProperty', arg0: Java.Element, arg1: string_t, arg2: object_t, cb: Callback<Java.TinkerProperty>): void;
+        function newInstanceA(className: 'TinkerVertexProperty', arg0: object_t, arg1: Java.TinkerVertex, arg2: string_t, arg3: object_t, arg4: object_array_t, cb: Callback<Java.TinkerVertexProperty>): void;
+        function newInstanceA(className: 'TinkerVertexProperty', arg0: Java.TinkerVertex, arg1: string_t, arg2: object_t, arg3: object_array_t, cb: Callback<Java.TinkerVertexProperty>): void;
+        function newInstanceA(className: 'ChainedComparator', arg0: Java.List, cb: Callback<Java.ChainedComparator>): void;
+        function newInstanceA(className: 'ConstantSupplier', arg0: object_t, cb: Callback<Java.ConstantSupplier>): void;
+        function newInstanceA(className: 'ScriptEngineLambda', arg0: string_t, arg1: string_t, cb: Callback<Java.ScriptEngineLambda>): void;
+        function newInstanceA(className: 'ClassNode', arg0: string_t, arg1: integer_t, arg2: Java.ClassNode, arg3: array_t<Java.ClassNode>, arg4: object_array_t, cb: Callback<Java.ClassNode>): void;
+        function newInstanceA(className: 'ClassNode', arg0: string_t, arg1: integer_t, arg2: Java.ClassNode, cb: Callback<Java.ClassNode>): void;
+        function newInstanceA(className: 'ClassNode', arg0: Java.Class, cb: Callback<Java.ClassNode>): void;
+        function newInstanceA(className: 'CompilerConfiguration', arg0: Java.CompilerConfiguration, cb: Callback<Java.CompilerConfiguration>): void;
+        function newInstanceA(className: 'CompilerConfiguration', arg0: object_t, cb: Callback<Java.CompilerConfiguration>): void;
+        function newInstanceA(className: 'CompilerConfiguration', cb: Callback<Java.CompilerConfiguration>): void;
+        function newInstanceA(className: 'CompilationCustomizer', arg0: object_t, cb: Callback<Java.CompilationCustomizer>): void;
+        function newInstanceA(className: 'Groovysh', arg0: Java.ClassLoader, arg1: Java.Binding, arg2: object_t, arg3: Java.Closure, cb: Callback<Java.Groovysh>): void;
+        function newInstanceA(className: 'Groovysh', arg0: Java.ClassLoader, arg1: Java.Binding, arg2: object_t, cb: Callback<Java.Groovysh>): void;
+        function newInstanceA(className: 'Groovysh', arg0: Java.Binding, arg1: object_t, cb: Callback<Java.Groovysh>): void;
+        function newInstanceA(className: 'Groovysh', arg0: object_t, cb: Callback<Java.Groovysh>): void;
+        function newInstanceA(className: 'Groovysh', cb: Callback<Java.Groovysh>): void;
+        function newInstanceA(className: 'ManagedReference', arg0: object_t, arg1: object_t, arg2: object_t, cb: Callback<Java.ManagedReference>): void;
+        function newInstanceA(className: 'ManagedReference', arg0: Java.ReferenceBundle, arg1: object_t, cb: Callback<Java.ManagedReference>): void;
+        function newInstanceA(className: 'ReferenceBundle', arg0: object_t, arg1: object_t, cb: Callback<Java.ReferenceBundle>): void;
         function newInstanceA(className: 'co.redseal.gremlinnode.function.GroovyLambda', arg0: string_t, arg1: Java.ScriptEngine, cb: Callback<Java.GroovyLambda>): void;
         function newInstanceA(className: 'co.redseal.gremlinnode.function.GroovyLambda', arg0: string_t, cb: Callback<Java.GroovyLambda>): void;
         function newInstanceA(className: 'co.redseal.gremlinnode.testing.TestClass', cb: Callback<Java.TestClass>): void;
@@ -1164,6 +2216,231 @@ declare module '__ts-tinkerpop/tsJavaModule' {
         function newInstanceA(className: 'org.codehaus.groovy.util.ManagedReference', arg0: Java.ReferenceBundle, arg1: object_t, cb: Callback<Java.ManagedReference>): void;
         function newInstanceA(className: 'org.codehaus.groovy.util.ReferenceBundle', arg0: object_t, arg1: object_t, cb: Callback<Java.ReferenceBundle>): void;
         function newInstanceA(className: string, ...args: any[]): void;
+        function newInstance(className: 'GroovyLambda', arg0: string_t, arg1: Java.ScriptEngine): Java.GroovyLambda;
+        function newInstance(className: 'GroovyLambda', arg0: string_t): Java.GroovyLambda;
+        function newInstance(className: 'TestClass'): Java.TestClass;
+        function newInstance(className: 'StringInputStream'): Java.StringInputStream;
+        function newInstance(className: 'Binding', arg0: array_t<string_t>): Java.Binding;
+        function newInstance(className: 'Binding', arg0: Java.Map): Java.Binding;
+        function newInstance(className: 'Binding'): Java.Binding;
+        function newInstance(className: 'Closure', arg0: object_t, arg1: object_t): Java.Closure;
+        function newInstance(className: 'Closure', arg0: object_t): Java.Closure;
+        function newInstance(className: 'DelegatingMetaClass', arg0: Java.MetaClass): Java.DelegatingMetaClass;
+        function newInstance(className: 'DelegatingMetaClass', arg0: Java.Class): Java.DelegatingMetaClass;
+        function newInstance(className: 'GroovyClassLoader', arg0: Java.ClassLoader, arg1: Java.CompilerConfiguration, arg2: boolean_t): Java.GroovyClassLoader;
+        function newInstance(className: 'GroovyClassLoader', arg0: Java.ClassLoader, arg1: Java.CompilerConfiguration): Java.GroovyClassLoader;
+        function newInstance(className: 'GroovyClassLoader', arg0: Java.GroovyClassLoader): Java.GroovyClassLoader;
+        function newInstance(className: 'GroovyClassLoader', arg0: Java.ClassLoader): Java.GroovyClassLoader;
+        function newInstance(className: 'GroovyClassLoader'): Java.GroovyClassLoader;
+        function newInstance(className: 'GroovyCodeSource', arg0: string_t, arg1: string_t, arg2: string_t): Java.GroovyCodeSource;
+        function newInstance(className: 'GroovyCodeSource', arg0: object_t, arg1: string_t, arg2: string_t): Java.GroovyCodeSource;
+        function newInstance(className: 'GroovyCodeSource', arg0: object_t, arg1: string_t): Java.GroovyCodeSource;
+        function newInstance(className: 'GroovyCodeSource', arg0: object_t): Java.GroovyCodeSource;
+        function newInstance(className: 'GroovyCodeSource', arg0: object_t): Java.GroovyCodeSource;
+        function newInstance(className: 'GroovyCodeSource', arg0: object_t): Java.GroovyCodeSource;
+        function newInstance(className: 'GroovyObjectSupport'): Java.GroovyObjectSupport;
+        function newInstance(className: 'IntRange', arg0: boolean_t, arg1: integer_t, arg2: integer_t): Java.IntRange;
+        function newInstance(className: 'IntRange', arg0: integer_t, arg1: integer_t): Java.IntRange;
+        function newInstance(className: 'MetaBeanProperty', arg0: string_t, arg1: Java.Class, arg2: Java.MetaMethod, arg3: Java.MetaMethod): Java.MetaBeanProperty;
+        function newInstance(className: 'MetaMethod', arg0: array_t<Java.Class>): Java.MetaMethod;
+        function newInstance(className: 'MetaMethod'): Java.MetaMethod;
+        function newInstance(className: 'MetaProperty', arg0: string_t, arg1: Java.Class): Java.MetaProperty;
+        function newInstance(className: 'Reference', arg0: object_t): Java.Reference;
+        function newInstance(className: 'Reference'): Java.Reference;
+        function newInstance(className: 'ByteArrayOutputStream', arg0: integer_t): Java.ByteArrayOutputStream;
+        function newInstance(className: 'ByteArrayOutputStream'): Java.ByteArrayOutputStream;
+        function newInstance(className: 'FileInputStream', arg0: object_t): Java.FileInputStream;
+        function newInstance(className: 'FileInputStream', arg0: string_t): Java.FileInputStream;
+        function newInstance(className: 'FileInputStream', arg0: object_t): Java.FileInputStream;
+        function newInstance(className: 'FileOutputStream', arg0: string_t, arg1: boolean_t): Java.FileOutputStream;
+        function newInstance(className: 'FileOutputStream', arg0: object_t, arg1: boolean_t): Java.FileOutputStream;
+        function newInstance(className: 'FileOutputStream', arg0: object_t): Java.FileOutputStream;
+        function newInstance(className: 'FileOutputStream', arg0: string_t): Java.FileOutputStream;
+        function newInstance(className: 'FileOutputStream', arg0: object_t): Java.FileOutputStream;
+        function newInstance(className: 'InputStream'): Java.InputStream;
+        function newInstance(className: 'OutputStream'): Java.OutputStream;
+        function newInstance(className: 'Boolean', arg0: string_t): boolean;
+        function newInstance(className: 'Boolean', arg0: boolean_t): boolean;
+        function newInstance(className: 'Double', arg0: string_t): number;
+        function newInstance(className: 'Double', arg0: double_t): number;
+        function newInstance(className: 'Float', arg0: string_t): number;
+        function newInstance(className: 'Float', arg0: float_t): number;
+        function newInstance(className: 'Float', arg0: double_t): number;
+        function newInstance(className: 'Integer', arg0: string_t): number;
+        function newInstance(className: 'Integer', arg0: integer_t): number;
+        function newInstance(className: 'Long', arg0: string_t): longValue_t;
+        function newInstance(className: 'Long', arg0: long_t): longValue_t;
+        function newInstance(className: 'Object'): object_t;
+        function newInstance(className: 'Short', arg0: string_t): number;
+        function newInstance(className: 'Short', arg0: short_t): number;
+        function newInstance(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t, arg3: Java.Charset): string;
+        function newInstance(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t, arg3: string_t): string;
+        function newInstance(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t, arg3: integer_t): string;
+        function newInstance(className: 'String', arg0: array_t<integer_t>, arg1: integer_t, arg2: integer_t): string;
+        function newInstance(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t): string;
+        function newInstance(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t): string;
+        function newInstance(className: 'String', arg0: object_array_t, arg1: Java.Charset): string;
+        function newInstance(className: 'String', arg0: object_array_t, arg1: string_t): string;
+        function newInstance(className: 'String', arg0: object_array_t, arg1: integer_t): string;
+        function newInstance(className: 'String', arg0: object_t): string;
+        function newInstance(className: 'String', arg0: object_t): string;
+        function newInstance(className: 'String', arg0: string_t): string;
+        function newInstance(className: 'String', arg0: object_array_t): string;
+        function newInstance(className: 'String', arg0: object_array_t): string;
+        function newInstance(className: 'String'): string;
+        function newInstance(className: 'ArrayList', arg0: Java.Collection): Java.ArrayList;
+        function newInstance(className: 'ArrayList', arg0: integer_t): Java.ArrayList;
+        function newInstance(className: 'ArrayList'): Java.ArrayList;
+        function newInstance(className: 'HashMap', arg0: integer_t, arg1: float_t): Java.HashMap;
+        function newInstance(className: 'HashMap', arg0: Java.Map): Java.HashMap;
+        function newInstance(className: 'HashMap', arg0: integer_t): Java.HashMap;
+        function newInstance(className: 'HashMap'): Java.HashMap;
+        function newInstance(className: 'HashSet', arg0: integer_t, arg1: float_t): Java.HashSet;
+        function newInstance(className: 'HashSet', arg0: Java.Collection): Java.HashSet;
+        function newInstance(className: 'HashSet', arg0: integer_t): Java.HashSet;
+        function newInstance(className: 'HashSet'): Java.HashSet;
+        function newInstance(className: 'LinkedHashMap', arg0: integer_t, arg1: float_t, arg2: boolean_t): Java.LinkedHashMap;
+        function newInstance(className: 'LinkedHashMap', arg0: integer_t, arg1: float_t): Java.LinkedHashMap;
+        function newInstance(className: 'LinkedHashMap', arg0: Java.Map): Java.LinkedHashMap;
+        function newInstance(className: 'LinkedHashMap', arg0: integer_t): Java.LinkedHashMap;
+        function newInstance(className: 'LinkedHashMap'): Java.LinkedHashMap;
+        function newInstance(className: 'NoSuchElementException', arg0: string_t): Java.NoSuchElementException;
+        function newInstance(className: 'NoSuchElementException'): Java.NoSuchElementException;
+        function newInstance(className: 'AbstractScriptEngine', arg0: Java.Bindings): Java.AbstractScriptEngine;
+        function newInstance(className: 'AbstractScriptEngine'): Java.AbstractScriptEngine;
+        function newInstance(className: 'CompiledScript'): Java.CompiledScript;
+        function newInstance(className: 'GComparator', arg0: Java.Closure): Java.GComparator;
+        function newInstance(className: 'GFunction', arg0: Java.Closure): Java.GFunction;
+        function newInstance(className: 'GSupplier', arg0: Java.Closure): Java.GSupplier;
+        function newInstance(className: 'GUnaryOperator', arg0: Java.Closure): Java.GUnaryOperator;
+        function newInstance(className: 'GremlinGroovyScriptEngine', arg0: object_t, arg1: object_t, arg2: long_t): Java.GremlinGroovyScriptEngine;
+        function newInstance(className: 'GremlinGroovyScriptEngine', arg0: object_t, arg1: object_t): Java.GremlinGroovyScriptEngine;
+        function newInstance(className: 'GremlinGroovyScriptEngine', arg0: object_t): Java.GremlinGroovyScriptEngine;
+        function newInstance(className: 'GremlinGroovyScriptEngine'): Java.GremlinGroovyScriptEngine;
+        function newInstance(className: 'KeyValue', arg0: object_t, arg1: object_t): Java.KeyValue;
+        function newInstance(className: 'MapReduce$NullObject'): Java.MapReduce$NullObject;
+        function newInstance(className: 'MessageScope'): Java.MessageScope;
+        function newInstance(className: 'MessageScope$Local$ReverseTraversalSupplier', arg0: Java.MessageScope$Local): Java.MessageScope$Local$ReverseTraversalSupplier;
+        function newInstance(className: 'SingleMessenger', arg0: Java.Messenger, arg1: object_t): Java.SingleMessenger;
+        function newInstance(className: 'TraverserExecutor'): Java.TraverserExecutor;
+        function newInstance(className: 'DefaultGraphTraversal', arg0: Java.Graph): Java.DefaultGraphTraversal;
+        function newInstance(className: 'DefaultGraphTraversal'): Java.DefaultGraphTraversal;
+        function newInstance(className: 'GraphTraversalSource$GraphTraversalSourceStub', arg0: Java.GraphTraversal$Admin, arg1: boolean_t): Java.GraphTraversalSource$GraphTraversalSourceStub;
+        function newInstance(className: 'ComputerTraversalEngine$Builder'): Java.ComputerTraversalEngine$Builder;
+        function newInstance(className: 'StandardTraversalEngine$Builder'): Java.StandardTraversalEngine$Builder;
+        function newInstance(className: 'P', arg0: Java.BiPredicate, arg1: object_t): Java.P;
+        function newInstance(className: 'Path$Exceptions'): Java.Path$Exceptions;
+        function newInstance(className: 'AbstractStep', arg0: Java.Traversal$Admin): Java.AbstractStep;
+        function newInstance(className: 'BulkSet'): Java.BulkSet;
+        function newInstance(className: 'CollectingBarrierStep', arg0: Java.Traversal$Admin, arg1: integer_t): Java.CollectingBarrierStep;
+        function newInstance(className: 'CollectingBarrierStep', arg0: Java.Traversal$Admin): Java.CollectingBarrierStep;
+        function newInstance(className: 'ComputerAwareStep', arg0: Java.Traversal$Admin): Java.ComputerAwareStep;
+        function newInstance(className: 'ComputerAwareStep$EndStep', arg0: Java.Traversal$Admin): Java.ComputerAwareStep$EndStep;
+        function newInstance(className: 'ElementFunctionComparator', arg0: Java.Function, arg1: Java.Comparator): Java.ElementFunctionComparator;
+        function newInstance(className: 'ElementValueComparator', arg0: string_t, arg1: Java.Comparator): Java.ElementValueComparator;
+        function newInstance(className: 'ConsoleMutationListener', arg0: Java.Graph): Java.ConsoleMutationListener;
+        function newInstance(className: 'Event$EdgeAddedEvent', arg0: Java.Edge): Java.Event$EdgeAddedEvent;
+        function newInstance(className: 'Event$EdgePropertyChangedEvent', arg0: Java.Edge, arg1: Java.Property, arg2: object_t): Java.Event$EdgePropertyChangedEvent;
+        function newInstance(className: 'Event$EdgePropertyRemovedEvent', arg0: Java.Edge, arg1: Java.Property): Java.Event$EdgePropertyRemovedEvent;
+        function newInstance(className: 'Event$EdgeRemovedEvent', arg0: Java.Edge): Java.Event$EdgeRemovedEvent;
+        function newInstance(className: 'Event$ElementPropertyChangedEvent', arg0: Java.Element, arg1: Java.Property, arg2: object_t, ...arg3: object_t[]): Java.Event$ElementPropertyChangedEvent;
+        function newInstance(className: 'Event$ElementPropertyEvent', arg0: Java.Element, arg1: Java.Property, arg2: object_t, ...arg3: object_t[]): Java.Event$ElementPropertyEvent;
+        function newInstance(className: 'Event$VertexAddedEvent', arg0: Java.Vertex): Java.Event$VertexAddedEvent;
+        function newInstance(className: 'Event$VertexPropertyChangedEvent', arg0: Java.Vertex, arg1: Java.Property, arg2: object_t, ...arg3: object_t[]): Java.Event$VertexPropertyChangedEvent;
+        function newInstance(className: 'Event$VertexPropertyPropertyChangedEvent', arg0: Java.VertexProperty, arg1: Java.Property, arg2: object_t): Java.Event$VertexPropertyPropertyChangedEvent;
+        function newInstance(className: 'Event$VertexPropertyPropertyRemovedEvent', arg0: Java.VertexProperty, arg1: Java.Property): Java.Event$VertexPropertyPropertyRemovedEvent;
+        function newInstance(className: 'Event$VertexPropertyRemovedEvent', arg0: Java.VertexProperty): Java.Event$VertexPropertyRemovedEvent;
+        function newInstance(className: 'Event$VertexRemovedEvent', arg0: Java.Vertex): Java.Event$VertexRemovedEvent;
+        function newInstance(className: 'ListCallbackRegistry'): Java.ListCallbackRegistry;
+        function newInstance(className: 'ExpandableStepIterator', arg0: Java.Step): Java.ExpandableStepIterator;
+        function newInstance(className: 'HasContainer', arg0: string_t, arg1: Java.P): Java.HasContainer;
+        function newInstance(className: 'NoOpBarrierStep', arg0: Java.Traversal$Admin, arg1: integer_t): Java.NoOpBarrierStep;
+        function newInstance(className: 'NoOpBarrierStep', arg0: Java.Traversal$Admin): Java.NoOpBarrierStep;
+        function newInstance(className: 'PathIdentityStep', arg0: Java.Traversal$Admin): Java.PathIdentityStep;
+        function newInstance(className: 'ReducingBarrierStep', arg0: Java.Traversal$Admin): Java.ReducingBarrierStep;
+        function newInstance(className: 'ReducingBarrierStep$DefaultMapReduce', arg0: Java.Supplier, arg1: Java.BiFunction): Java.ReducingBarrierStep$DefaultMapReduce;
+        function newInstance(className: 'SupplyingBarrierStep', arg0: Java.Traversal$Admin): Java.SupplyingBarrierStep;
+        function newInstance(className: 'TraversalComparator', arg0: Java.Traversal$Admin, arg1: Java.Comparator): Java.TraversalComparator;
+        function newInstance(className: 'Tree', ...arg0: Java.Map$Entry[]): Java.Tree;
+        function newInstance(className: 'Tree', ...arg0: object_t[]): Java.Tree;
+        function newInstance(className: 'Tree'): Java.Tree;
+        function newInstance(className: 'EventStrategy$DefaultEventQueue'): Java.EventStrategy$DefaultEventQueue;
+        function newInstance(className: 'EventStrategy$EventStrategyCallback', arg0: Java.EventStrategy, arg1: Java.EventStrategy$EventQueue): Java.EventStrategy$EventStrategyCallback;
+        function newInstance(className: 'EventStrategy$TransactionalEventQueue', arg0: Java.Graph): Java.EventStrategy$TransactionalEventQueue;
+        function newInstance(className: 'ComputerVerificationException', arg0: string_t, arg1: Java.Traversal): Java.ComputerVerificationException;
+        function newInstance(className: 'Traversal$Exceptions'): Java.Traversal$Exceptions;
+        function newInstance(className: 'TraversalSideEffects$Exceptions'): Java.TraversalSideEffects$Exceptions;
+        function newInstance(className: 'TraversalStrategies$GlobalCache'): Java.TraversalStrategies$GlobalCache;
+        function newInstance(className: 'AndP', ...arg0: Java.P[]): Java.AndP;
+        function newInstance(className: 'ConjunctionP', ...arg0: Java.P[]): Java.ConjunctionP;
+        function newInstance(className: 'DefaultTraversal', arg0: Java.Graph): Java.DefaultTraversal;
+        function newInstance(className: 'DefaultTraversal'): Java.DefaultTraversal;
+        function newInstance(className: 'DefaultTraversalSideEffects'): Java.DefaultTraversalSideEffects;
+        function newInstance(className: 'DefaultTraversalStrategies'): Java.DefaultTraversalStrategies;
+        function newInstance(className: 'DependantMutableMetrics', arg0: string_t, arg1: string_t, arg2: Java.DependantMutableMetrics): Java.DependantMutableMetrics;
+        function newInstance(className: 'MutableMetrics', arg0: string_t, arg1: string_t): Java.MutableMetrics;
+        function newInstance(className: 'OrP', ...arg0: Java.P[]): Java.OrP;
+        function newInstance(className: 'StandardTraversalMetrics'): Java.StandardTraversalMetrics;
+        function newInstance(className: 'StepPosition'): Java.StepPosition;
+        function newInstance(className: 'TraversalClassFunction', arg0: Java.Class): Java.TraversalClassFunction;
+        function newInstance(className: 'TraversalMatrix', arg0: Java.Traversal$Admin): Java.TraversalMatrix;
+        function newInstance(className: 'TraversalObjectFunction', arg0: Java.Traversal$Admin): Java.TraversalObjectFunction;
+        function newInstance(className: 'TraversalRing', ...arg0: Java.Traversal$Admin[]): Java.TraversalRing;
+        function newInstance(className: 'TraversalScriptFunction', arg0: Java.TraversalSource$Builder, arg1: string_t, arg2: string_t, ...arg3: object_t[]): Java.TraversalScriptFunction;
+        function newInstance(className: 'Graph$Exceptions'): Java.Graph$Exceptions;
+        function newInstance(className: 'Graph$Hidden'): Java.Graph$Hidden;
+        function newInstance(className: 'AbstractIoRegistry'): Java.AbstractIoRegistry;
+        function newInstance(className: 'GraphMLIo$Builder'): Java.GraphMLIo$Builder;
+        function newInstance(className: 'GraphMLMapper$Builder'): Java.GraphMLMapper$Builder;
+        function newInstance(className: 'GraphMLWriterHelper$IndentingXMLStreamWriter', arg0: object_t): Java.GraphMLWriterHelper$IndentingXMLStreamWriter;
+        function newInstance(className: 'GraphSONIo$Builder'): Java.GraphSONIo$Builder;
+        function newInstance(className: 'GryoIo$Builder'): Java.GryoIo$Builder;
+        function newInstance(className: 'GryoPool', arg0: integer_t, arg1: Java.GryoPool$Type, arg2: Java.Optional): Java.GryoPool;
+        function newInstance(className: 'GryoPool', arg0: object_t): Java.GryoPool;
+        function newInstance(className: 'GryoPool', arg0: integer_t): Java.GryoPool;
+        function newInstance(className: 'VertexByteArrayInputStream', arg0: Java.InputStream): Java.VertexByteArrayInputStream;
+        function newInstance(className: 'Io$Exceptions'): Java.Io$Exceptions;
+        function newInstance(className: 'Transaction$Workload', arg0: Java.Graph, arg1: Java.Function): Java.Transaction$Workload;
+        function newInstance(className: 'AbstractTransaction', arg0: Java.Graph): Java.AbstractTransaction;
+        function newInstance(className: 'AbstractTransaction$TransactionException', arg0: string_t, arg1: object_t): Java.AbstractTransaction$TransactionException;
+        function newInstance(className: 'AbstractTransaction$TransactionException', arg0: object_t): Java.AbstractTransaction$TransactionException;
+        function newInstance(className: 'AbstractTransaction$TransactionException', arg0: string_t): Java.AbstractTransaction$TransactionException;
+        function newInstance(className: 'Attachable$Method'): Java.Attachable$Method;
+        function newInstance(className: 'DetachedEdge', arg0: object_t, arg1: string_t, arg2: Java.Map, arg3: object_t, arg4: object_t): Java.DetachedEdge;
+        function newInstance(className: 'DetachedProperty', arg0: string_t, arg1: object_t, arg2: Java.Element): Java.DetachedProperty;
+        function newInstance(className: 'DetachedProperty', arg0: string_t, arg1: object_t): Java.DetachedProperty;
+        function newInstance(className: 'DetachedVertex', arg0: object_t, arg1: string_t, arg2: Java.Map): Java.DetachedVertex;
+        function newInstance(className: 'DetachedVertexProperty', arg0: object_t, arg1: string_t, arg2: object_t, arg3: Java.Map, arg4: Java.Vertex): Java.DetachedVertexProperty;
+        function newInstance(className: 'DetachedVertexProperty', arg0: object_t, arg1: string_t, arg2: object_t, arg3: Java.Map): Java.DetachedVertexProperty;
+        function newInstance(className: 'TinkerGraphComputer', arg0: Java.TinkerGraph): Java.TinkerGraphComputer;
+        function newInstance(className: 'TinkerGraphComputerView', arg0: Java.TinkerGraph, arg1: Java.Set): Java.TinkerGraphComputerView;
+        function newInstance(className: 'TinkerMapEmitter', arg0: boolean_t): Java.TinkerMapEmitter;
+        function newInstance(className: 'TinkerMemory', arg0: Java.VertexProgram, arg1: Java.Set): Java.TinkerMemory;
+        function newInstance(className: 'TinkerMessenger', arg0: Java.Vertex, arg1: object_t, arg2: Java.Optional): Java.TinkerMessenger;
+        function newInstance(className: 'TinkerReduceEmitter'): Java.TinkerReduceEmitter;
+        function newInstance(className: 'TinkerWorkerPool', arg0: integer_t): Java.TinkerWorkerPool;
+        function newInstance(className: 'TinkerGraphVariables'): Java.TinkerGraphVariables;
+        function newInstance(className: 'TinkerProperty', arg0: Java.Element, arg1: string_t, arg2: object_t): Java.TinkerProperty;
+        function newInstance(className: 'TinkerVertexProperty', arg0: object_t, arg1: Java.TinkerVertex, arg2: string_t, arg3: object_t, ...arg4: object_t[]): Java.TinkerVertexProperty;
+        function newInstance(className: 'TinkerVertexProperty', arg0: Java.TinkerVertex, arg1: string_t, arg2: object_t, ...arg3: object_t[]): Java.TinkerVertexProperty;
+        function newInstance(className: 'ChainedComparator', arg0: Java.List): Java.ChainedComparator;
+        function newInstance(className: 'ConstantSupplier', arg0: object_t): Java.ConstantSupplier;
+        function newInstance(className: 'ScriptEngineLambda', arg0: string_t, arg1: string_t): Java.ScriptEngineLambda;
+        function newInstance(className: 'ClassNode', arg0: string_t, arg1: integer_t, arg2: Java.ClassNode, arg3: array_t<Java.ClassNode>, arg4: object_array_t): Java.ClassNode;
+        function newInstance(className: 'ClassNode', arg0: string_t, arg1: integer_t, arg2: Java.ClassNode): Java.ClassNode;
+        function newInstance(className: 'ClassNode', arg0: Java.Class): Java.ClassNode;
+        function newInstance(className: 'CompilerConfiguration', arg0: Java.CompilerConfiguration): Java.CompilerConfiguration;
+        function newInstance(className: 'CompilerConfiguration', arg0: object_t): Java.CompilerConfiguration;
+        function newInstance(className: 'CompilerConfiguration'): Java.CompilerConfiguration;
+        function newInstance(className: 'CompilationCustomizer', arg0: object_t): Java.CompilationCustomizer;
+        function newInstance(className: 'Groovysh', arg0: Java.ClassLoader, arg1: Java.Binding, arg2: object_t, arg3: Java.Closure): Java.Groovysh;
+        function newInstance(className: 'Groovysh', arg0: Java.ClassLoader, arg1: Java.Binding, arg2: object_t): Java.Groovysh;
+        function newInstance(className: 'Groovysh', arg0: Java.Binding, arg1: object_t): Java.Groovysh;
+        function newInstance(className: 'Groovysh', arg0: object_t): Java.Groovysh;
+        function newInstance(className: 'Groovysh'): Java.Groovysh;
+        function newInstance(className: 'ManagedReference', arg0: object_t, arg1: object_t, arg2: object_t): Java.ManagedReference;
+        function newInstance(className: 'ManagedReference', arg0: Java.ReferenceBundle, arg1: object_t): Java.ManagedReference;
+        function newInstance(className: 'ReferenceBundle', arg0: object_t, arg1: object_t): Java.ReferenceBundle;
         function newInstance(className: 'co.redseal.gremlinnode.function.GroovyLambda', arg0: string_t, arg1: Java.ScriptEngine): Java.GroovyLambda;
         function newInstance(className: 'co.redseal.gremlinnode.function.GroovyLambda', arg0: string_t): Java.GroovyLambda;
         function newInstance(className: 'co.redseal.gremlinnode.testing.TestClass'): Java.TestClass;
@@ -1391,6 +2668,231 @@ declare module '__ts-tinkerpop/tsJavaModule' {
         function newInstance(className: 'org.codehaus.groovy.util.ManagedReference', arg0: Java.ReferenceBundle, arg1: object_t): Java.ManagedReference;
         function newInstance(className: 'org.codehaus.groovy.util.ReferenceBundle', arg0: object_t, arg1: object_t): Java.ReferenceBundle;
         function newInstance(className: string, ...args: any[]): any;
+        function newInstanceP(className: 'GroovyLambda', arg0: string_t, arg1: Java.ScriptEngine): Promise<Java.GroovyLambda>;
+        function newInstanceP(className: 'GroovyLambda', arg0: string_t): Promise<Java.GroovyLambda>;
+        function newInstanceP(className: 'TestClass'): Promise<Java.TestClass>;
+        function newInstanceP(className: 'StringInputStream'): Promise<Java.StringInputStream>;
+        function newInstanceP(className: 'Binding', arg0: array_t<string_t>): Promise<Java.Binding>;
+        function newInstanceP(className: 'Binding', arg0: Java.Map): Promise<Java.Binding>;
+        function newInstanceP(className: 'Binding'): Promise<Java.Binding>;
+        function newInstanceP(className: 'Closure', arg0: object_t, arg1: object_t): Promise<Java.Closure>;
+        function newInstanceP(className: 'Closure', arg0: object_t): Promise<Java.Closure>;
+        function newInstanceP(className: 'DelegatingMetaClass', arg0: Java.MetaClass): Promise<Java.DelegatingMetaClass>;
+        function newInstanceP(className: 'DelegatingMetaClass', arg0: Java.Class): Promise<Java.DelegatingMetaClass>;
+        function newInstanceP(className: 'GroovyClassLoader', arg0: Java.ClassLoader, arg1: Java.CompilerConfiguration, arg2: boolean_t): Promise<Java.GroovyClassLoader>;
+        function newInstanceP(className: 'GroovyClassLoader', arg0: Java.ClassLoader, arg1: Java.CompilerConfiguration): Promise<Java.GroovyClassLoader>;
+        function newInstanceP(className: 'GroovyClassLoader', arg0: Java.GroovyClassLoader): Promise<Java.GroovyClassLoader>;
+        function newInstanceP(className: 'GroovyClassLoader', arg0: Java.ClassLoader): Promise<Java.GroovyClassLoader>;
+        function newInstanceP(className: 'GroovyClassLoader'): Promise<Java.GroovyClassLoader>;
+        function newInstanceP(className: 'GroovyCodeSource', arg0: string_t, arg1: string_t, arg2: string_t): Promise<Java.GroovyCodeSource>;
+        function newInstanceP(className: 'GroovyCodeSource', arg0: object_t, arg1: string_t, arg2: string_t): Promise<Java.GroovyCodeSource>;
+        function newInstanceP(className: 'GroovyCodeSource', arg0: object_t, arg1: string_t): Promise<Java.GroovyCodeSource>;
+        function newInstanceP(className: 'GroovyCodeSource', arg0: object_t): Promise<Java.GroovyCodeSource>;
+        function newInstanceP(className: 'GroovyCodeSource', arg0: object_t): Promise<Java.GroovyCodeSource>;
+        function newInstanceP(className: 'GroovyCodeSource', arg0: object_t): Promise<Java.GroovyCodeSource>;
+        function newInstanceP(className: 'GroovyObjectSupport'): Promise<Java.GroovyObjectSupport>;
+        function newInstanceP(className: 'IntRange', arg0: boolean_t, arg1: integer_t, arg2: integer_t): Promise<Java.IntRange>;
+        function newInstanceP(className: 'IntRange', arg0: integer_t, arg1: integer_t): Promise<Java.IntRange>;
+        function newInstanceP(className: 'MetaBeanProperty', arg0: string_t, arg1: Java.Class, arg2: Java.MetaMethod, arg3: Java.MetaMethod): Promise<Java.MetaBeanProperty>;
+        function newInstanceP(className: 'MetaMethod', arg0: array_t<Java.Class>): Promise<Java.MetaMethod>;
+        function newInstanceP(className: 'MetaMethod'): Promise<Java.MetaMethod>;
+        function newInstanceP(className: 'MetaProperty', arg0: string_t, arg1: Java.Class): Promise<Java.MetaProperty>;
+        function newInstanceP(className: 'Reference', arg0: object_t): Promise<Java.Reference>;
+        function newInstanceP(className: 'Reference'): Promise<Java.Reference>;
+        function newInstanceP(className: 'ByteArrayOutputStream', arg0: integer_t): Promise<Java.ByteArrayOutputStream>;
+        function newInstanceP(className: 'ByteArrayOutputStream'): Promise<Java.ByteArrayOutputStream>;
+        function newInstanceP(className: 'FileInputStream', arg0: object_t): Promise<Java.FileInputStream>;
+        function newInstanceP(className: 'FileInputStream', arg0: string_t): Promise<Java.FileInputStream>;
+        function newInstanceP(className: 'FileInputStream', arg0: object_t): Promise<Java.FileInputStream>;
+        function newInstanceP(className: 'FileOutputStream', arg0: string_t, arg1: boolean_t): Promise<Java.FileOutputStream>;
+        function newInstanceP(className: 'FileOutputStream', arg0: object_t, arg1: boolean_t): Promise<Java.FileOutputStream>;
+        function newInstanceP(className: 'FileOutputStream', arg0: object_t): Promise<Java.FileOutputStream>;
+        function newInstanceP(className: 'FileOutputStream', arg0: string_t): Promise<Java.FileOutputStream>;
+        function newInstanceP(className: 'FileOutputStream', arg0: object_t): Promise<Java.FileOutputStream>;
+        function newInstanceP(className: 'InputStream'): Promise<Java.InputStream>;
+        function newInstanceP(className: 'OutputStream'): Promise<Java.OutputStream>;
+        function newInstanceP(className: 'Boolean', arg0: string_t): Promise<boolean>;
+        function newInstanceP(className: 'Boolean', arg0: boolean_t): Promise<boolean>;
+        function newInstanceP(className: 'Double', arg0: string_t): Promise<number>;
+        function newInstanceP(className: 'Double', arg0: double_t): Promise<number>;
+        function newInstanceP(className: 'Float', arg0: string_t): Promise<number>;
+        function newInstanceP(className: 'Float', arg0: float_t): Promise<number>;
+        function newInstanceP(className: 'Float', arg0: double_t): Promise<number>;
+        function newInstanceP(className: 'Integer', arg0: string_t): Promise<number>;
+        function newInstanceP(className: 'Integer', arg0: integer_t): Promise<number>;
+        function newInstanceP(className: 'Long', arg0: string_t): Promise<longValue_t>;
+        function newInstanceP(className: 'Long', arg0: long_t): Promise<longValue_t>;
+        function newInstanceP(className: 'Object'): Promise<object_t>;
+        function newInstanceP(className: 'Short', arg0: string_t): Promise<number>;
+        function newInstanceP(className: 'Short', arg0: short_t): Promise<number>;
+        function newInstanceP(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t, arg3: Java.Charset): Promise<string>;
+        function newInstanceP(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t, arg3: string_t): Promise<string>;
+        function newInstanceP(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t, arg3: integer_t): Promise<string>;
+        function newInstanceP(className: 'String', arg0: array_t<integer_t>, arg1: integer_t, arg2: integer_t): Promise<string>;
+        function newInstanceP(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t): Promise<string>;
+        function newInstanceP(className: 'String', arg0: object_array_t, arg1: integer_t, arg2: integer_t): Promise<string>;
+        function newInstanceP(className: 'String', arg0: object_array_t, arg1: Java.Charset): Promise<string>;
+        function newInstanceP(className: 'String', arg0: object_array_t, arg1: string_t): Promise<string>;
+        function newInstanceP(className: 'String', arg0: object_array_t, arg1: integer_t): Promise<string>;
+        function newInstanceP(className: 'String', arg0: object_t): Promise<string>;
+        function newInstanceP(className: 'String', arg0: object_t): Promise<string>;
+        function newInstanceP(className: 'String', arg0: string_t): Promise<string>;
+        function newInstanceP(className: 'String', arg0: object_array_t): Promise<string>;
+        function newInstanceP(className: 'String', arg0: object_array_t): Promise<string>;
+        function newInstanceP(className: 'String'): Promise<string>;
+        function newInstanceP(className: 'ArrayList', arg0: Java.Collection): Promise<Java.ArrayList>;
+        function newInstanceP(className: 'ArrayList', arg0: integer_t): Promise<Java.ArrayList>;
+        function newInstanceP(className: 'ArrayList'): Promise<Java.ArrayList>;
+        function newInstanceP(className: 'HashMap', arg0: integer_t, arg1: float_t): Promise<Java.HashMap>;
+        function newInstanceP(className: 'HashMap', arg0: Java.Map): Promise<Java.HashMap>;
+        function newInstanceP(className: 'HashMap', arg0: integer_t): Promise<Java.HashMap>;
+        function newInstanceP(className: 'HashMap'): Promise<Java.HashMap>;
+        function newInstanceP(className: 'HashSet', arg0: integer_t, arg1: float_t): Promise<Java.HashSet>;
+        function newInstanceP(className: 'HashSet', arg0: Java.Collection): Promise<Java.HashSet>;
+        function newInstanceP(className: 'HashSet', arg0: integer_t): Promise<Java.HashSet>;
+        function newInstanceP(className: 'HashSet'): Promise<Java.HashSet>;
+        function newInstanceP(className: 'LinkedHashMap', arg0: integer_t, arg1: float_t, arg2: boolean_t): Promise<Java.LinkedHashMap>;
+        function newInstanceP(className: 'LinkedHashMap', arg0: integer_t, arg1: float_t): Promise<Java.LinkedHashMap>;
+        function newInstanceP(className: 'LinkedHashMap', arg0: Java.Map): Promise<Java.LinkedHashMap>;
+        function newInstanceP(className: 'LinkedHashMap', arg0: integer_t): Promise<Java.LinkedHashMap>;
+        function newInstanceP(className: 'LinkedHashMap'): Promise<Java.LinkedHashMap>;
+        function newInstanceP(className: 'NoSuchElementException', arg0: string_t): Promise<Java.NoSuchElementException>;
+        function newInstanceP(className: 'NoSuchElementException'): Promise<Java.NoSuchElementException>;
+        function newInstanceP(className: 'AbstractScriptEngine', arg0: Java.Bindings): Promise<Java.AbstractScriptEngine>;
+        function newInstanceP(className: 'AbstractScriptEngine'): Promise<Java.AbstractScriptEngine>;
+        function newInstanceP(className: 'CompiledScript'): Promise<Java.CompiledScript>;
+        function newInstanceP(className: 'GComparator', arg0: Java.Closure): Promise<Java.GComparator>;
+        function newInstanceP(className: 'GFunction', arg0: Java.Closure): Promise<Java.GFunction>;
+        function newInstanceP(className: 'GSupplier', arg0: Java.Closure): Promise<Java.GSupplier>;
+        function newInstanceP(className: 'GUnaryOperator', arg0: Java.Closure): Promise<Java.GUnaryOperator>;
+        function newInstanceP(className: 'GremlinGroovyScriptEngine', arg0: object_t, arg1: object_t, arg2: long_t): Promise<Java.GremlinGroovyScriptEngine>;
+        function newInstanceP(className: 'GremlinGroovyScriptEngine', arg0: object_t, arg1: object_t): Promise<Java.GremlinGroovyScriptEngine>;
+        function newInstanceP(className: 'GremlinGroovyScriptEngine', arg0: object_t): Promise<Java.GremlinGroovyScriptEngine>;
+        function newInstanceP(className: 'GremlinGroovyScriptEngine'): Promise<Java.GremlinGroovyScriptEngine>;
+        function newInstanceP(className: 'KeyValue', arg0: object_t, arg1: object_t): Promise<Java.KeyValue>;
+        function newInstanceP(className: 'MapReduce$NullObject'): Promise<Java.MapReduce$NullObject>;
+        function newInstanceP(className: 'MessageScope'): Promise<Java.MessageScope>;
+        function newInstanceP(className: 'MessageScope$Local$ReverseTraversalSupplier', arg0: Java.MessageScope$Local): Promise<Java.MessageScope$Local$ReverseTraversalSupplier>;
+        function newInstanceP(className: 'SingleMessenger', arg0: Java.Messenger, arg1: object_t): Promise<Java.SingleMessenger>;
+        function newInstanceP(className: 'TraverserExecutor'): Promise<Java.TraverserExecutor>;
+        function newInstanceP(className: 'DefaultGraphTraversal', arg0: Java.Graph): Promise<Java.DefaultGraphTraversal>;
+        function newInstanceP(className: 'DefaultGraphTraversal'): Promise<Java.DefaultGraphTraversal>;
+        function newInstanceP(className: 'GraphTraversalSource$GraphTraversalSourceStub', arg0: Java.GraphTraversal$Admin, arg1: boolean_t): Promise<Java.GraphTraversalSource$GraphTraversalSourceStub>;
+        function newInstanceP(className: 'ComputerTraversalEngine$Builder'): Promise<Java.ComputerTraversalEngine$Builder>;
+        function newInstanceP(className: 'StandardTraversalEngine$Builder'): Promise<Java.StandardTraversalEngine$Builder>;
+        function newInstanceP(className: 'P', arg0: Java.BiPredicate, arg1: object_t): Promise<Java.P>;
+        function newInstanceP(className: 'Path$Exceptions'): Promise<Java.Path$Exceptions>;
+        function newInstanceP(className: 'AbstractStep', arg0: Java.Traversal$Admin): Promise<Java.AbstractStep>;
+        function newInstanceP(className: 'BulkSet'): Promise<Java.BulkSet>;
+        function newInstanceP(className: 'CollectingBarrierStep', arg0: Java.Traversal$Admin, arg1: integer_t): Promise<Java.CollectingBarrierStep>;
+        function newInstanceP(className: 'CollectingBarrierStep', arg0: Java.Traversal$Admin): Promise<Java.CollectingBarrierStep>;
+        function newInstanceP(className: 'ComputerAwareStep', arg0: Java.Traversal$Admin): Promise<Java.ComputerAwareStep>;
+        function newInstanceP(className: 'ComputerAwareStep$EndStep', arg0: Java.Traversal$Admin): Promise<Java.ComputerAwareStep$EndStep>;
+        function newInstanceP(className: 'ElementFunctionComparator', arg0: Java.Function, arg1: Java.Comparator): Promise<Java.ElementFunctionComparator>;
+        function newInstanceP(className: 'ElementValueComparator', arg0: string_t, arg1: Java.Comparator): Promise<Java.ElementValueComparator>;
+        function newInstanceP(className: 'ConsoleMutationListener', arg0: Java.Graph): Promise<Java.ConsoleMutationListener>;
+        function newInstanceP(className: 'Event$EdgeAddedEvent', arg0: Java.Edge): Promise<Java.Event$EdgeAddedEvent>;
+        function newInstanceP(className: 'Event$EdgePropertyChangedEvent', arg0: Java.Edge, arg1: Java.Property, arg2: object_t): Promise<Java.Event$EdgePropertyChangedEvent>;
+        function newInstanceP(className: 'Event$EdgePropertyRemovedEvent', arg0: Java.Edge, arg1: Java.Property): Promise<Java.Event$EdgePropertyRemovedEvent>;
+        function newInstanceP(className: 'Event$EdgeRemovedEvent', arg0: Java.Edge): Promise<Java.Event$EdgeRemovedEvent>;
+        function newInstanceP(className: 'Event$ElementPropertyChangedEvent', arg0: Java.Element, arg1: Java.Property, arg2: object_t, ...arg3: object_t[]): Promise<Java.Event$ElementPropertyChangedEvent>;
+        function newInstanceP(className: 'Event$ElementPropertyEvent', arg0: Java.Element, arg1: Java.Property, arg2: object_t, ...arg3: object_t[]): Promise<Java.Event$ElementPropertyEvent>;
+        function newInstanceP(className: 'Event$VertexAddedEvent', arg0: Java.Vertex): Promise<Java.Event$VertexAddedEvent>;
+        function newInstanceP(className: 'Event$VertexPropertyChangedEvent', arg0: Java.Vertex, arg1: Java.Property, arg2: object_t, ...arg3: object_t[]): Promise<Java.Event$VertexPropertyChangedEvent>;
+        function newInstanceP(className: 'Event$VertexPropertyPropertyChangedEvent', arg0: Java.VertexProperty, arg1: Java.Property, arg2: object_t): Promise<Java.Event$VertexPropertyPropertyChangedEvent>;
+        function newInstanceP(className: 'Event$VertexPropertyPropertyRemovedEvent', arg0: Java.VertexProperty, arg1: Java.Property): Promise<Java.Event$VertexPropertyPropertyRemovedEvent>;
+        function newInstanceP(className: 'Event$VertexPropertyRemovedEvent', arg0: Java.VertexProperty): Promise<Java.Event$VertexPropertyRemovedEvent>;
+        function newInstanceP(className: 'Event$VertexRemovedEvent', arg0: Java.Vertex): Promise<Java.Event$VertexRemovedEvent>;
+        function newInstanceP(className: 'ListCallbackRegistry'): Promise<Java.ListCallbackRegistry>;
+        function newInstanceP(className: 'ExpandableStepIterator', arg0: Java.Step): Promise<Java.ExpandableStepIterator>;
+        function newInstanceP(className: 'HasContainer', arg0: string_t, arg1: Java.P): Promise<Java.HasContainer>;
+        function newInstanceP(className: 'NoOpBarrierStep', arg0: Java.Traversal$Admin, arg1: integer_t): Promise<Java.NoOpBarrierStep>;
+        function newInstanceP(className: 'NoOpBarrierStep', arg0: Java.Traversal$Admin): Promise<Java.NoOpBarrierStep>;
+        function newInstanceP(className: 'PathIdentityStep', arg0: Java.Traversal$Admin): Promise<Java.PathIdentityStep>;
+        function newInstanceP(className: 'ReducingBarrierStep', arg0: Java.Traversal$Admin): Promise<Java.ReducingBarrierStep>;
+        function newInstanceP(className: 'ReducingBarrierStep$DefaultMapReduce', arg0: Java.Supplier, arg1: Java.BiFunction): Promise<Java.ReducingBarrierStep$DefaultMapReduce>;
+        function newInstanceP(className: 'SupplyingBarrierStep', arg0: Java.Traversal$Admin): Promise<Java.SupplyingBarrierStep>;
+        function newInstanceP(className: 'TraversalComparator', arg0: Java.Traversal$Admin, arg1: Java.Comparator): Promise<Java.TraversalComparator>;
+        function newInstanceP(className: 'Tree', ...arg0: Java.Map$Entry[]): Promise<Java.Tree>;
+        function newInstanceP(className: 'Tree', ...arg0: object_t[]): Promise<Java.Tree>;
+        function newInstanceP(className: 'Tree'): Promise<Java.Tree>;
+        function newInstanceP(className: 'EventStrategy$DefaultEventQueue'): Promise<Java.EventStrategy$DefaultEventQueue>;
+        function newInstanceP(className: 'EventStrategy$EventStrategyCallback', arg0: Java.EventStrategy, arg1: Java.EventStrategy$EventQueue): Promise<Java.EventStrategy$EventStrategyCallback>;
+        function newInstanceP(className: 'EventStrategy$TransactionalEventQueue', arg0: Java.Graph): Promise<Java.EventStrategy$TransactionalEventQueue>;
+        function newInstanceP(className: 'ComputerVerificationException', arg0: string_t, arg1: Java.Traversal): Promise<Java.ComputerVerificationException>;
+        function newInstanceP(className: 'Traversal$Exceptions'): Promise<Java.Traversal$Exceptions>;
+        function newInstanceP(className: 'TraversalSideEffects$Exceptions'): Promise<Java.TraversalSideEffects$Exceptions>;
+        function newInstanceP(className: 'TraversalStrategies$GlobalCache'): Promise<Java.TraversalStrategies$GlobalCache>;
+        function newInstanceP(className: 'AndP', ...arg0: Java.P[]): Promise<Java.AndP>;
+        function newInstanceP(className: 'ConjunctionP', ...arg0: Java.P[]): Promise<Java.ConjunctionP>;
+        function newInstanceP(className: 'DefaultTraversal', arg0: Java.Graph): Promise<Java.DefaultTraversal>;
+        function newInstanceP(className: 'DefaultTraversal'): Promise<Java.DefaultTraversal>;
+        function newInstanceP(className: 'DefaultTraversalSideEffects'): Promise<Java.DefaultTraversalSideEffects>;
+        function newInstanceP(className: 'DefaultTraversalStrategies'): Promise<Java.DefaultTraversalStrategies>;
+        function newInstanceP(className: 'DependantMutableMetrics', arg0: string_t, arg1: string_t, arg2: Java.DependantMutableMetrics): Promise<Java.DependantMutableMetrics>;
+        function newInstanceP(className: 'MutableMetrics', arg0: string_t, arg1: string_t): Promise<Java.MutableMetrics>;
+        function newInstanceP(className: 'OrP', ...arg0: Java.P[]): Promise<Java.OrP>;
+        function newInstanceP(className: 'StandardTraversalMetrics'): Promise<Java.StandardTraversalMetrics>;
+        function newInstanceP(className: 'StepPosition'): Promise<Java.StepPosition>;
+        function newInstanceP(className: 'TraversalClassFunction', arg0: Java.Class): Promise<Java.TraversalClassFunction>;
+        function newInstanceP(className: 'TraversalMatrix', arg0: Java.Traversal$Admin): Promise<Java.TraversalMatrix>;
+        function newInstanceP(className: 'TraversalObjectFunction', arg0: Java.Traversal$Admin): Promise<Java.TraversalObjectFunction>;
+        function newInstanceP(className: 'TraversalRing', ...arg0: Java.Traversal$Admin[]): Promise<Java.TraversalRing>;
+        function newInstanceP(className: 'TraversalScriptFunction', arg0: Java.TraversalSource$Builder, arg1: string_t, arg2: string_t, ...arg3: object_t[]): Promise<Java.TraversalScriptFunction>;
+        function newInstanceP(className: 'Graph$Exceptions'): Promise<Java.Graph$Exceptions>;
+        function newInstanceP(className: 'Graph$Hidden'): Promise<Java.Graph$Hidden>;
+        function newInstanceP(className: 'AbstractIoRegistry'): Promise<Java.AbstractIoRegistry>;
+        function newInstanceP(className: 'GraphMLIo$Builder'): Promise<Java.GraphMLIo$Builder>;
+        function newInstanceP(className: 'GraphMLMapper$Builder'): Promise<Java.GraphMLMapper$Builder>;
+        function newInstanceP(className: 'GraphMLWriterHelper$IndentingXMLStreamWriter', arg0: object_t): Promise<Java.GraphMLWriterHelper$IndentingXMLStreamWriter>;
+        function newInstanceP(className: 'GraphSONIo$Builder'): Promise<Java.GraphSONIo$Builder>;
+        function newInstanceP(className: 'GryoIo$Builder'): Promise<Java.GryoIo$Builder>;
+        function newInstanceP(className: 'GryoPool', arg0: integer_t, arg1: Java.GryoPool$Type, arg2: Java.Optional): Promise<Java.GryoPool>;
+        function newInstanceP(className: 'GryoPool', arg0: object_t): Promise<Java.GryoPool>;
+        function newInstanceP(className: 'GryoPool', arg0: integer_t): Promise<Java.GryoPool>;
+        function newInstanceP(className: 'VertexByteArrayInputStream', arg0: Java.InputStream): Promise<Java.VertexByteArrayInputStream>;
+        function newInstanceP(className: 'Io$Exceptions'): Promise<Java.Io$Exceptions>;
+        function newInstanceP(className: 'Transaction$Workload', arg0: Java.Graph, arg1: Java.Function): Promise<Java.Transaction$Workload>;
+        function newInstanceP(className: 'AbstractTransaction', arg0: Java.Graph): Promise<Java.AbstractTransaction>;
+        function newInstanceP(className: 'AbstractTransaction$TransactionException', arg0: string_t, arg1: object_t): Promise<Java.AbstractTransaction$TransactionException>;
+        function newInstanceP(className: 'AbstractTransaction$TransactionException', arg0: object_t): Promise<Java.AbstractTransaction$TransactionException>;
+        function newInstanceP(className: 'AbstractTransaction$TransactionException', arg0: string_t): Promise<Java.AbstractTransaction$TransactionException>;
+        function newInstanceP(className: 'Attachable$Method'): Promise<Java.Attachable$Method>;
+        function newInstanceP(className: 'DetachedEdge', arg0: object_t, arg1: string_t, arg2: Java.Map, arg3: object_t, arg4: object_t): Promise<Java.DetachedEdge>;
+        function newInstanceP(className: 'DetachedProperty', arg0: string_t, arg1: object_t, arg2: Java.Element): Promise<Java.DetachedProperty>;
+        function newInstanceP(className: 'DetachedProperty', arg0: string_t, arg1: object_t): Promise<Java.DetachedProperty>;
+        function newInstanceP(className: 'DetachedVertex', arg0: object_t, arg1: string_t, arg2: Java.Map): Promise<Java.DetachedVertex>;
+        function newInstanceP(className: 'DetachedVertexProperty', arg0: object_t, arg1: string_t, arg2: object_t, arg3: Java.Map, arg4: Java.Vertex): Promise<Java.DetachedVertexProperty>;
+        function newInstanceP(className: 'DetachedVertexProperty', arg0: object_t, arg1: string_t, arg2: object_t, arg3: Java.Map): Promise<Java.DetachedVertexProperty>;
+        function newInstanceP(className: 'TinkerGraphComputer', arg0: Java.TinkerGraph): Promise<Java.TinkerGraphComputer>;
+        function newInstanceP(className: 'TinkerGraphComputerView', arg0: Java.TinkerGraph, arg1: Java.Set): Promise<Java.TinkerGraphComputerView>;
+        function newInstanceP(className: 'TinkerMapEmitter', arg0: boolean_t): Promise<Java.TinkerMapEmitter>;
+        function newInstanceP(className: 'TinkerMemory', arg0: Java.VertexProgram, arg1: Java.Set): Promise<Java.TinkerMemory>;
+        function newInstanceP(className: 'TinkerMessenger', arg0: Java.Vertex, arg1: object_t, arg2: Java.Optional): Promise<Java.TinkerMessenger>;
+        function newInstanceP(className: 'TinkerReduceEmitter'): Promise<Java.TinkerReduceEmitter>;
+        function newInstanceP(className: 'TinkerWorkerPool', arg0: integer_t): Promise<Java.TinkerWorkerPool>;
+        function newInstanceP(className: 'TinkerGraphVariables'): Promise<Java.TinkerGraphVariables>;
+        function newInstanceP(className: 'TinkerProperty', arg0: Java.Element, arg1: string_t, arg2: object_t): Promise<Java.TinkerProperty>;
+        function newInstanceP(className: 'TinkerVertexProperty', arg0: object_t, arg1: Java.TinkerVertex, arg2: string_t, arg3: object_t, ...arg4: object_t[]): Promise<Java.TinkerVertexProperty>;
+        function newInstanceP(className: 'TinkerVertexProperty', arg0: Java.TinkerVertex, arg1: string_t, arg2: object_t, ...arg3: object_t[]): Promise<Java.TinkerVertexProperty>;
+        function newInstanceP(className: 'ChainedComparator', arg0: Java.List): Promise<Java.ChainedComparator>;
+        function newInstanceP(className: 'ConstantSupplier', arg0: object_t): Promise<Java.ConstantSupplier>;
+        function newInstanceP(className: 'ScriptEngineLambda', arg0: string_t, arg1: string_t): Promise<Java.ScriptEngineLambda>;
+        function newInstanceP(className: 'ClassNode', arg0: string_t, arg1: integer_t, arg2: Java.ClassNode, arg3: array_t<Java.ClassNode>, arg4: object_array_t): Promise<Java.ClassNode>;
+        function newInstanceP(className: 'ClassNode', arg0: string_t, arg1: integer_t, arg2: Java.ClassNode): Promise<Java.ClassNode>;
+        function newInstanceP(className: 'ClassNode', arg0: Java.Class): Promise<Java.ClassNode>;
+        function newInstanceP(className: 'CompilerConfiguration', arg0: Java.CompilerConfiguration): Promise<Java.CompilerConfiguration>;
+        function newInstanceP(className: 'CompilerConfiguration', arg0: object_t): Promise<Java.CompilerConfiguration>;
+        function newInstanceP(className: 'CompilerConfiguration'): Promise<Java.CompilerConfiguration>;
+        function newInstanceP(className: 'CompilationCustomizer', arg0: object_t): Promise<Java.CompilationCustomizer>;
+        function newInstanceP(className: 'Groovysh', arg0: Java.ClassLoader, arg1: Java.Binding, arg2: object_t, arg3: Java.Closure): Promise<Java.Groovysh>;
+        function newInstanceP(className: 'Groovysh', arg0: Java.ClassLoader, arg1: Java.Binding, arg2: object_t): Promise<Java.Groovysh>;
+        function newInstanceP(className: 'Groovysh', arg0: Java.Binding, arg1: object_t): Promise<Java.Groovysh>;
+        function newInstanceP(className: 'Groovysh', arg0: object_t): Promise<Java.Groovysh>;
+        function newInstanceP(className: 'Groovysh'): Promise<Java.Groovysh>;
+        function newInstanceP(className: 'ManagedReference', arg0: object_t, arg1: object_t, arg2: object_t): Promise<Java.ManagedReference>;
+        function newInstanceP(className: 'ManagedReference', arg0: Java.ReferenceBundle, arg1: object_t): Promise<Java.ManagedReference>;
+        function newInstanceP(className: 'ReferenceBundle', arg0: object_t, arg1: object_t): Promise<Java.ReferenceBundle>;
         function newInstanceP(className: 'co.redseal.gremlinnode.function.GroovyLambda', arg0: string_t, arg1: Java.ScriptEngine): Promise<Java.GroovyLambda>;
         function newInstanceP(className: 'co.redseal.gremlinnode.function.GroovyLambda', arg0: string_t): Promise<Java.GroovyLambda>;
         function newInstanceP(className: 'co.redseal.gremlinnode.testing.TestClass'): Promise<Java.TestClass>;
@@ -1618,6 +3120,419 @@ declare module '__ts-tinkerpop/tsJavaModule' {
         function newInstanceP(className: 'org.codehaus.groovy.util.ManagedReference', arg0: Java.ReferenceBundle, arg1: object_t): Promise<Java.ManagedReference>;
         function newInstanceP(className: 'org.codehaus.groovy.util.ReferenceBundle', arg0: object_t, arg1: object_t): Promise<Java.ReferenceBundle>;
         function newInstanceP(className: string, ...args: any[]): Promise<any>;
+        function newArray(className: 'GlobFunction', arg: Java.GlobFunction[]): array_t<co.redseal.gremlinnode.function_.GlobFunction>;
+        function newArray(className: 'GroovyLambda', arg: Java.GroovyLambda[]): array_t<co.redseal.gremlinnode.function_.GroovyLambda>;
+        function newArray(className: 'TestClass', arg: Java.TestClass[]): array_t<co.redseal.gremlinnode.testing.TestClass>;
+        function newArray(className: 'StringInputStream', arg: Java.StringInputStream[]): array_t<co.redseal.util.StringInputStream>;
+        function newArray(className: 'Binding', arg: Java.Binding[]): array_t<groovy.lang.Binding>;
+        function newArray(className: 'Closure', arg: Java.Closure[]): array_t<groovy.lang.Closure>;
+        function newArray(className: 'DelegatingMetaClass', arg: Java.DelegatingMetaClass[]): array_t<groovy.lang.DelegatingMetaClass>;
+        function newArray(className: 'GroovyClassLoader', arg: Java.GroovyClassLoader[]): array_t<groovy.lang.GroovyClassLoader>;
+        function newArray(className: 'GroovyCodeSource', arg: Java.GroovyCodeSource[]): array_t<groovy.lang.GroovyCodeSource>;
+        function newArray(className: 'GroovyObjectSupport', arg: Java.GroovyObjectSupport[]): array_t<groovy.lang.GroovyObjectSupport>;
+        function newArray(className: 'GroovyResourceLoader', arg: Java.GroovyResourceLoader[]): array_t<groovy.lang.GroovyResourceLoader>;
+        function newArray(className: 'IntRange', arg: Java.IntRange[]): array_t<groovy.lang.IntRange>;
+        function newArray(className: 'MetaBeanProperty', arg: Java.MetaBeanProperty[]): array_t<groovy.lang.MetaBeanProperty>;
+        function newArray(className: 'MetaClass', arg: Java.MetaClass[]): array_t<groovy.lang.MetaClass>;
+        function newArray(className: 'MetaMethod', arg: Java.MetaMethod[]): array_t<groovy.lang.MetaMethod>;
+        function newArray(className: 'MetaProperty', arg: Java.MetaProperty[]): array_t<groovy.lang.MetaProperty>;
+        function newArray(className: 'Range', arg: Java.Range[]): array_t<groovy.lang.Range>;
+        function newArray(className: 'Reference', arg: Java.Reference[]): array_t<groovy.lang.Reference>;
+        function newArray(className: 'ByteArrayOutputStream', arg: Java.ByteArrayOutputStream[]): array_t<java.io.ByteArrayOutputStream>;
+        function newArray(className: 'FileInputStream', arg: Java.FileInputStream[]): array_t<java.io.FileInputStream>;
+        function newArray(className: 'FileOutputStream', arg: Java.FileOutputStream[]): array_t<java.io.FileOutputStream>;
+        function newArray(className: 'InputStream', arg: Java.InputStream[]): array_t<java.io.InputStream>;
+        function newArray(className: 'OutputStream', arg: Java.OutputStream[]): array_t<java.io.OutputStream>;
+        function newArray(className: 'Boolean', arg: boolean_t[]): array_t<java.lang.Boolean>;
+        function newArray(className: 'Class', arg: Java.Class[]): array_t<java.lang.Class>;
+        function newArray(className: 'ClassLoader', arg: Java.ClassLoader[]): array_t<java.lang.ClassLoader>;
+        function newArray(className: 'Double', arg: double_t[]): array_t<java.lang.Double>;
+        function newArray(className: 'Enum', arg: Java.Enum[]): array_t<java.lang.Enum>;
+        function newArray(className: 'Float', arg: float_t[]): array_t<java.lang.Float>;
+        function newArray(className: 'Integer', arg: integer_t[]): array_t<java.lang.Integer>;
+        function newArray(className: 'Iterable', arg: Java.Iterable[]): array_t<java.lang.Iterable>;
+        function newArray(className: 'Long', arg: long_t[]): array_t<java.lang.Long>;
+        function newArray(className: 'Object', arg: object_t[]): array_t<java.lang.Object>;
+        function newArray(className: 'Array', arg: Java.Array[]): array_t<java.lang.reflect.Array>;
+        function newArray(className: 'Short', arg: short_t[]): array_t<java.lang.Short>;
+        function newArray(className: 'String', arg: string_t[]): array_t<java.lang.String>;
+        function newArray(className: 'Charset', arg: Java.Charset[]): array_t<java.nio.charset.Charset>;
+        function newArray(className: 'StandardCharsets', arg: Java.StandardCharsets[]): array_t<java.nio.charset.StandardCharsets>;
+        function newArray(className: 'AbstractCollection', arg: Java.AbstractCollection[]): array_t<java.util.AbstractCollection>;
+        function newArray(className: 'AbstractList', arg: Java.AbstractList[]): array_t<java.util.AbstractList>;
+        function newArray(className: 'AbstractMap', arg: Java.AbstractMap[]): array_t<java.util.AbstractMap>;
+        function newArray(className: 'AbstractSet', arg: Java.AbstractSet[]): array_t<java.util.AbstractSet>;
+        function newArray(className: 'ArrayList', arg: Java.ArrayList[]): array_t<java.util.ArrayList>;
+        function newArray(className: 'Collection', arg: Java.Collection[]): array_t<java.util.Collection>;
+        function newArray(className: 'Comparator', arg: Java.Comparator[]): array_t<java.util.Comparator>;
+        function newArray(className: 'BiConsumer', arg: Java.BiConsumer[]): array_t<java.util.function_.BiConsumer>;
+        function newArray(className: 'BiFunction', arg: Java.BiFunction[]): array_t<java.util.function_.BiFunction>;
+        function newArray(className: 'BinaryOperator', arg: Java.BinaryOperator[]): array_t<java.util.function_.BinaryOperator>;
+        function newArray(className: 'BiPredicate', arg: Java.BiPredicate[]): array_t<java.util.function_.BiPredicate>;
+        function newArray(className: 'Consumer', arg: Java.Consumer[]): array_t<java.util.function_.Consumer>;
+        function newArray(className: 'Function', arg: Java.Function[]): array_t<java.util.function_.Function>;
+        function newArray(className: 'Predicate', arg: Java.Predicate[]): array_t<java.util.function_.Predicate>;
+        function newArray(className: 'Supplier', arg: Java.Supplier[]): array_t<java.util.function_.Supplier>;
+        function newArray(className: 'UnaryOperator', arg: Java.UnaryOperator[]): array_t<java.util.function_.UnaryOperator>;
+        function newArray(className: 'HashMap', arg: Java.HashMap[]): array_t<java.util.HashMap>;
+        function newArray(className: 'HashSet', arg: Java.HashSet[]): array_t<java.util.HashSet>;
+        function newArray(className: 'Iterator', arg: Java.Iterator[]): array_t<java.util.Iterator>;
+        function newArray(className: 'LinkedHashMap', arg: Java.LinkedHashMap[]): array_t<java.util.LinkedHashMap>;
+        function newArray(className: 'List', arg: Java.List[]): array_t<java.util.List>;
+        function newArray(className: 'ListIterator', arg: Java.ListIterator[]): array_t<java.util.ListIterator>;
+        function newArray(className: 'Map', arg: Java.Map[]): array_t<java.util.Map>;
+        function newArray(className: 'Map$Entry', arg: Java.Map$Entry[]): array_t<java.util.Map$Entry>;
+        function newArray(className: 'NoSuchElementException', arg: Java.NoSuchElementException[]): array_t<java.util.NoSuchElementException>;
+        function newArray(className: 'Optional', arg: Java.Optional[]): array_t<java.util.Optional>;
+        function newArray(className: 'Set', arg: Java.Set[]): array_t<java.util.Set>;
+        function newArray(className: 'AbstractScriptEngine', arg: Java.AbstractScriptEngine[]): array_t<javax.script.AbstractScriptEngine>;
+        function newArray(className: 'Bindings', arg: Java.Bindings[]): array_t<javax.script.Bindings>;
+        function newArray(className: 'CompiledScript', arg: Java.CompiledScript[]): array_t<javax.script.CompiledScript>;
+        function newArray(className: 'ScriptContext', arg: Java.ScriptContext[]): array_t<javax.script.ScriptContext>;
+        function newArray(className: 'ScriptEngine', arg: Java.ScriptEngine[]): array_t<javax.script.ScriptEngine>;
+        function newArray(className: 'ScriptEngineFactory', arg: Java.ScriptEngineFactory[]): array_t<javax.script.ScriptEngineFactory>;
+        function newArray(className: 'GComparator', arg: Java.GComparator[]): array_t<org.apache.tinkerpop.gremlin.groovy.function_.GComparator>;
+        function newArray(className: 'GFunction', arg: Java.GFunction[]): array_t<org.apache.tinkerpop.gremlin.groovy.function_.GFunction>;
+        function newArray(className: 'GSupplier', arg: Java.GSupplier[]): array_t<org.apache.tinkerpop.gremlin.groovy.function_.GSupplier>;
+        function newArray(className: 'GUnaryOperator', arg: Java.GUnaryOperator[]): array_t<org.apache.tinkerpop.gremlin.groovy.function_.GUnaryOperator>;
+        function newArray(className: 'GremlinGroovyScriptEngine', arg: Java.GremlinGroovyScriptEngine[]): array_t<org.apache.tinkerpop.gremlin.groovy.jsr223.GremlinGroovyScriptEngine>;
+        function newArray(className: 'ClusterCountMapReduce', arg: Java.ClusterCountMapReduce[]): array_t<org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterCountMapReduce>;
+        function newArray(className: 'ClusterCountMapReduce$Builder', arg: Java.ClusterCountMapReduce$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterCountMapReduce$Builder>;
+        function newArray(className: 'ClusterPopulationMapReduce', arg: Java.ClusterPopulationMapReduce[]): array_t<org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterPopulationMapReduce>;
+        function newArray(className: 'ClusterPopulationMapReduce$Builder', arg: Java.ClusterPopulationMapReduce$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.ClusterPopulationMapReduce$Builder>;
+        function newArray(className: 'PeerPressureVertexProgram', arg: Java.PeerPressureVertexProgram[]): array_t<org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.PeerPressureVertexProgram>;
+        function newArray(className: 'PeerPressureVertexProgram$Builder', arg: Java.PeerPressureVertexProgram$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.computer.clustering.peerpressure.PeerPressureVertexProgram$Builder>;
+        function newArray(className: 'ComputerResult', arg: Java.ComputerResult[]): array_t<org.apache.tinkerpop.gremlin.process.computer.ComputerResult>;
+        function newArray(className: 'GraphComputer', arg: Java.GraphComputer[]): array_t<org.apache.tinkerpop.gremlin.process.computer.GraphComputer>;
+        function newArray(className: 'GraphComputer$Exceptions', arg: Java.GraphComputer$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.process.computer.GraphComputer$Exceptions>;
+        function newArray(className: 'GraphComputer$Features', arg: Java.GraphComputer$Features[]): array_t<org.apache.tinkerpop.gremlin.process.computer.GraphComputer$Features>;
+        function newArray(className: 'GraphComputer$Persist', arg: Java.GraphComputer$Persist[]): array_t<org.apache.tinkerpop.gremlin.process.computer.GraphComputer$Persist>;
+        function newArray(className: 'GraphComputer$ResultGraph', arg: Java.GraphComputer$ResultGraph[]): array_t<org.apache.tinkerpop.gremlin.process.computer.GraphComputer$ResultGraph>;
+        function newArray(className: 'KeyValue', arg: Java.KeyValue[]): array_t<org.apache.tinkerpop.gremlin.process.computer.KeyValue>;
+        function newArray(className: 'MapReduce', arg: Java.MapReduce[]): array_t<org.apache.tinkerpop.gremlin.process.computer.MapReduce>;
+        function newArray(className: 'MapReduce$MapEmitter', arg: Java.MapReduce$MapEmitter[]): array_t<org.apache.tinkerpop.gremlin.process.computer.MapReduce$MapEmitter>;
+        function newArray(className: 'MapReduce$NullObject', arg: Java.MapReduce$NullObject[]): array_t<org.apache.tinkerpop.gremlin.process.computer.MapReduce$NullObject>;
+        function newArray(className: 'MapReduce$ReduceEmitter', arg: Java.MapReduce$ReduceEmitter[]): array_t<org.apache.tinkerpop.gremlin.process.computer.MapReduce$ReduceEmitter>;
+        function newArray(className: 'MapReduce$Stage', arg: Java.MapReduce$Stage[]): array_t<org.apache.tinkerpop.gremlin.process.computer.MapReduce$Stage>;
+        function newArray(className: 'Memory', arg: Java.Memory[]): array_t<org.apache.tinkerpop.gremlin.process.computer.Memory>;
+        function newArray(className: 'Memory$Admin', arg: Java.Memory$Admin[]): array_t<org.apache.tinkerpop.gremlin.process.computer.Memory$Admin>;
+        function newArray(className: 'Memory$Exceptions', arg: Java.Memory$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.process.computer.Memory$Exceptions>;
+        function newArray(className: 'MessageCombiner', arg: Java.MessageCombiner[]): array_t<org.apache.tinkerpop.gremlin.process.computer.MessageCombiner>;
+        function newArray(className: 'MessageScope', arg: Java.MessageScope[]): array_t<org.apache.tinkerpop.gremlin.process.computer.MessageScope>;
+        function newArray(className: 'MessageScope$Global', arg: Java.MessageScope$Global[]): array_t<org.apache.tinkerpop.gremlin.process.computer.MessageScope$Global>;
+        function newArray(className: 'MessageScope$Local', arg: Java.MessageScope$Local[]): array_t<org.apache.tinkerpop.gremlin.process.computer.MessageScope$Local>;
+        function newArray(className: 'MessageScope$Local$ReverseTraversalSupplier', arg: Java.MessageScope$Local$ReverseTraversalSupplier[]): array_t<org.apache.tinkerpop.gremlin.process.computer.MessageScope$Local$ReverseTraversalSupplier>;
+        function newArray(className: 'Messenger', arg: Java.Messenger[]): array_t<org.apache.tinkerpop.gremlin.process.computer.Messenger>;
+        function newArray(className: 'PageRankMapReduce', arg: Java.PageRankMapReduce[]): array_t<org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankMapReduce>;
+        function newArray(className: 'PageRankMapReduce$Builder', arg: Java.PageRankMapReduce$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankMapReduce$Builder>;
+        function newArray(className: 'PageRankMessageCombiner', arg: Java.PageRankMessageCombiner[]): array_t<org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankMessageCombiner>;
+        function newArray(className: 'PageRankVertexProgram', arg: Java.PageRankVertexProgram[]): array_t<org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankVertexProgram>;
+        function newArray(className: 'PageRankVertexProgram$Builder', arg: Java.PageRankVertexProgram$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.computer.ranking.pagerank.PageRankVertexProgram$Builder>;
+        function newArray(className: 'SingleMessenger', arg: Java.SingleMessenger[]): array_t<org.apache.tinkerpop.gremlin.process.computer.traversal.SingleMessenger>;
+        function newArray(className: 'TraversalVertexProgram', arg: Java.TraversalVertexProgram[]): array_t<org.apache.tinkerpop.gremlin.process.computer.traversal.TraversalVertexProgram>;
+        function newArray(className: 'TraversalVertexProgram$Builder', arg: Java.TraversalVertexProgram$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.computer.traversal.TraversalVertexProgram$Builder>;
+        function newArray(className: 'TraversalVertexProgramMessageCombiner', arg: Java.TraversalVertexProgramMessageCombiner[]): array_t<org.apache.tinkerpop.gremlin.process.computer.traversal.TraversalVertexProgramMessageCombiner>;
+        function newArray(className: 'TraverserExecutor', arg: Java.TraverserExecutor[]): array_t<org.apache.tinkerpop.gremlin.process.computer.traversal.TraverserExecutor>;
+        function newArray(className: 'VertexTraversalSideEffects', arg: Java.VertexTraversalSideEffects[]): array_t<org.apache.tinkerpop.gremlin.process.computer.traversal.VertexTraversalSideEffects>;
+        function newArray(className: 'VertexProgram', arg: Java.VertexProgram[]): array_t<org.apache.tinkerpop.gremlin.process.computer.VertexProgram>;
+        function newArray(className: 'VertexProgram$Builder', arg: Java.VertexProgram$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.computer.VertexProgram$Builder>;
+        function newArray(className: 'VertexProgram$Features', arg: Java.VertexProgram$Features[]): array_t<org.apache.tinkerpop.gremlin.process.computer.VertexProgram$Features>;
+        function newArray(className: 'Compare', arg: Java.Compare[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Compare>;
+        function newArray(className: 'Contains', arg: Java.Contains[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Contains>;
+        function newArray(className: '__', arg: Java.__[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__>;
+        function newArray(className: 'DefaultGraphTraversal', arg: Java.DefaultGraphTraversal[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.DefaultGraphTraversal>;
+        function newArray(className: 'EmptyGraphTraversal', arg: Java.EmptyGraphTraversal[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.EmptyGraphTraversal>;
+        function newArray(className: 'GraphTraversal', arg: Java.GraphTraversal[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal>;
+        function newArray(className: 'GraphTraversal$Admin', arg: Java.GraphTraversal$Admin[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal$Admin>;
+        function newArray(className: 'GraphTraversalSource', arg: Java.GraphTraversalSource[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource>;
+        function newArray(className: 'GraphTraversalSource$Builder', arg: Java.GraphTraversalSource$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource$Builder>;
+        function newArray(className: 'GraphTraversalSource$GraphTraversalSourceStub', arg: Java.GraphTraversalSource$GraphTraversalSourceStub[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource$GraphTraversalSourceStub>;
+        function newArray(className: 'ComputerTraversalEngine', arg: Java.ComputerTraversalEngine[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.engine.ComputerTraversalEngine>;
+        function newArray(className: 'ComputerTraversalEngine$Builder', arg: Java.ComputerTraversalEngine$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.engine.ComputerTraversalEngine$Builder>;
+        function newArray(className: 'ComputerTraversalEngine$ComputerResultStrategy', arg: Java.ComputerTraversalEngine$ComputerResultStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.engine.ComputerTraversalEngine$ComputerResultStrategy>;
+        function newArray(className: 'StandardTraversalEngine', arg: Java.StandardTraversalEngine[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.engine.StandardTraversalEngine>;
+        function newArray(className: 'StandardTraversalEngine$Builder', arg: Java.StandardTraversalEngine$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.engine.StandardTraversalEngine$Builder>;
+        function newArray(className: 'Operator', arg: Java.Operator[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Operator>;
+        function newArray(className: 'Order', arg: Java.Order[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Order>;
+        function newArray(className: 'P', arg: Java.P[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.P>;
+        function newArray(className: 'Path', arg: Java.Path[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Path>;
+        function newArray(className: 'Path$Exceptions', arg: Java.Path$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Path$Exceptions>;
+        function newArray(className: 'Pop', arg: Java.Pop[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Pop>;
+        function newArray(className: 'Scope', arg: Java.Scope[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Scope>;
+        function newArray(className: 'Step', arg: Java.Step[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Step>;
+        function newArray(className: 'AbstractStep', arg: Java.AbstractStep[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.AbstractStep>;
+        function newArray(className: 'BulkSet', arg: Java.BulkSet[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.BulkSet>;
+        function newArray(className: 'CollectingBarrierStep', arg: Java.CollectingBarrierStep[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.CollectingBarrierStep>;
+        function newArray(className: 'ComputerAwareStep', arg: Java.ComputerAwareStep[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.ComputerAwareStep>;
+        function newArray(className: 'ComputerAwareStep$EndStep', arg: Java.ComputerAwareStep$EndStep[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.ComputerAwareStep$EndStep>;
+        function newArray(className: 'ElementFunctionComparator', arg: Java.ElementFunctionComparator[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.ElementFunctionComparator>;
+        function newArray(className: 'ElementValueComparator', arg: Java.ElementValueComparator[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.ElementValueComparator>;
+        function newArray(className: 'EmptyPath', arg: Java.EmptyPath[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.EmptyPath>;
+        function newArray(className: 'EmptyStep', arg: Java.EmptyStep[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.EmptyStep>;
+        function newArray(className: 'CallbackRegistry', arg: Java.CallbackRegistry[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.CallbackRegistry>;
+        function newArray(className: 'ConsoleMutationListener', arg: Java.ConsoleMutationListener[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.ConsoleMutationListener>;
+        function newArray(className: 'Event', arg: Java.Event[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event>;
+        function newArray(className: 'Event$EdgeAddedEvent', arg: Java.Event$EdgeAddedEvent[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgeAddedEvent>;
+        function newArray(className: 'Event$EdgePropertyChangedEvent', arg: Java.Event$EdgePropertyChangedEvent[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgePropertyChangedEvent>;
+        function newArray(className: 'Event$EdgePropertyRemovedEvent', arg: Java.Event$EdgePropertyRemovedEvent[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgePropertyRemovedEvent>;
+        function newArray(className: 'Event$EdgeRemovedEvent', arg: Java.Event$EdgeRemovedEvent[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgeRemovedEvent>;
+        function newArray(className: 'Event$ElementPropertyChangedEvent', arg: Java.Event$ElementPropertyChangedEvent[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$ElementPropertyChangedEvent>;
+        function newArray(className: 'Event$ElementPropertyEvent', arg: Java.Event$ElementPropertyEvent[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$ElementPropertyEvent>;
+        function newArray(className: 'Event$VertexAddedEvent', arg: Java.Event$VertexAddedEvent[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexAddedEvent>;
+        function newArray(className: 'Event$VertexPropertyChangedEvent', arg: Java.Event$VertexPropertyChangedEvent[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyChangedEvent>;
+        function newArray(className: 'Event$VertexPropertyPropertyChangedEvent', arg: Java.Event$VertexPropertyPropertyChangedEvent[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyPropertyChangedEvent>;
+        function newArray(className: 'Event$VertexPropertyPropertyRemovedEvent', arg: Java.Event$VertexPropertyPropertyRemovedEvent[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyPropertyRemovedEvent>;
+        function newArray(className: 'Event$VertexPropertyRemovedEvent', arg: Java.Event$VertexPropertyRemovedEvent[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyRemovedEvent>;
+        function newArray(className: 'Event$VertexRemovedEvent', arg: Java.Event$VertexRemovedEvent[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexRemovedEvent>;
+        function newArray(className: 'EventCallback', arg: Java.EventCallback[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.EventCallback>;
+        function newArray(className: 'ListCallbackRegistry', arg: Java.ListCallbackRegistry[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.ListCallbackRegistry>;
+        function newArray(className: 'MutationListener', arg: Java.MutationListener[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.event.MutationListener>;
+        function newArray(className: 'ExpandableStepIterator', arg: Java.ExpandableStepIterator[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.ExpandableStepIterator>;
+        function newArray(className: 'HasContainer', arg: Java.HasContainer[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.HasContainer>;
+        function newArray(className: 'ImmutablePath', arg: Java.ImmutablePath[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.ImmutablePath>;
+        function newArray(className: 'MapHelper', arg: Java.MapHelper[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.MapHelper>;
+        function newArray(className: 'MutablePath', arg: Java.MutablePath[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.MutablePath>;
+        function newArray(className: 'NoOpBarrierStep', arg: Java.NoOpBarrierStep[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.NoOpBarrierStep>;
+        function newArray(className: 'PathIdentityStep', arg: Java.PathIdentityStep[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.PathIdentityStep>;
+        function newArray(className: 'ReducingBarrierStep', arg: Java.ReducingBarrierStep[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep>;
+        function newArray(className: 'ReducingBarrierStep$DefaultMapReduce', arg: Java.ReducingBarrierStep$DefaultMapReduce[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep$DefaultMapReduce>;
+        function newArray(className: 'ReducingBarrierStep$FinalGet', arg: Java.ReducingBarrierStep$FinalGet[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep$FinalGet>;
+        function newArray(className: 'SupplyingBarrierStep', arg: Java.SupplyingBarrierStep[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.SupplyingBarrierStep>;
+        function newArray(className: 'TraversalComparator', arg: Java.TraversalComparator[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.TraversalComparator>;
+        function newArray(className: 'Tree', arg: Java.Tree[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.step.util.Tree>;
+        function newArray(className: 'ConjunctionStrategy', arg: Java.ConjunctionStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.ConjunctionStrategy>;
+        function newArray(className: 'ElementIdStrategy', arg: Java.ElementIdStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.ElementIdStrategy>;
+        function newArray(className: 'ElementIdStrategy$Builder', arg: Java.ElementIdStrategy$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.ElementIdStrategy$Builder>;
+        function newArray(className: 'EventStrategy', arg: Java.EventStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy>;
+        function newArray(className: 'EventStrategy$Builder', arg: Java.EventStrategy$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$Builder>;
+        function newArray(className: 'EventStrategy$DefaultEventQueue', arg: Java.EventStrategy$DefaultEventQueue[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$DefaultEventQueue>;
+        function newArray(className: 'EventStrategy$EventQueue', arg: Java.EventStrategy$EventQueue[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$EventQueue>;
+        function newArray(className: 'EventStrategy$EventStrategyCallback', arg: Java.EventStrategy$EventStrategyCallback[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$EventStrategyCallback>;
+        function newArray(className: 'EventStrategy$TransactionalEventQueue', arg: Java.EventStrategy$TransactionalEventQueue[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$TransactionalEventQueue>;
+        function newArray(className: 'PartitionStrategy', arg: Java.PartitionStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.PartitionStrategy>;
+        function newArray(className: 'PartitionStrategy$Builder', arg: Java.PartitionStrategy$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.PartitionStrategy$Builder>;
+        function newArray(className: 'SubgraphStrategy', arg: Java.SubgraphStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.SubgraphStrategy>;
+        function newArray(className: 'SubgraphStrategy$Builder', arg: Java.SubgraphStrategy$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.SubgraphStrategy$Builder>;
+        function newArray(className: 'EngineDependentStrategy', arg: Java.EngineDependentStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.EngineDependentStrategy>;
+        function newArray(className: 'LazyBarrierStrategy', arg: Java.LazyBarrierStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.LazyBarrierStrategy>;
+        function newArray(className: 'MatchAlgorithmStrategy', arg: Java.MatchAlgorithmStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.MatchAlgorithmStrategy>;
+        function newArray(className: 'MatchAlgorithmStrategy$Builder', arg: Java.MatchAlgorithmStrategy$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.MatchAlgorithmStrategy$Builder>;
+        function newArray(className: 'ProfileStrategy', arg: Java.ProfileStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.finalization.ProfileStrategy>;
+        function newArray(className: 'AdjacentToIncidentStrategy', arg: Java.AdjacentToIncidentStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.AdjacentToIncidentStrategy>;
+        function newArray(className: 'DedupBijectionStrategy', arg: Java.DedupBijectionStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.DedupBijectionStrategy>;
+        function newArray(className: 'IdentityRemovalStrategy', arg: Java.IdentityRemovalStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.IdentityRemovalStrategy>;
+        function newArray(className: 'IncidentToAdjacentStrategy', arg: Java.IncidentToAdjacentStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.IncidentToAdjacentStrategy>;
+        function newArray(className: 'MatchPredicateStrategy', arg: Java.MatchPredicateStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.MatchPredicateStrategy>;
+        function newArray(className: 'RangeByIsCountStrategy', arg: Java.RangeByIsCountStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.optimization.RangeByIsCountStrategy>;
+        function newArray(className: 'ComputerVerificationException', arg: Java.ComputerVerificationException[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.ComputerVerificationException>;
+        function newArray(className: 'ComputerVerificationStrategy', arg: Java.ComputerVerificationStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.ComputerVerificationStrategy>;
+        function newArray(className: 'LambdaRestrictionStrategy', arg: Java.LambdaRestrictionStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.LambdaRestrictionStrategy>;
+        function newArray(className: 'ReadOnlyStrategy', arg: Java.ReadOnlyStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.ReadOnlyStrategy>;
+        function newArray(className: 'Traversal', arg: Java.Traversal[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Traversal>;
+        function newArray(className: 'Traversal$Admin', arg: Java.Traversal$Admin[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Traversal$Admin>;
+        function newArray(className: 'Traversal$Exceptions', arg: Java.Traversal$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Traversal$Exceptions>;
+        function newArray(className: 'TraversalEngine', arg: Java.TraversalEngine[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalEngine>;
+        function newArray(className: 'TraversalEngine$Builder', arg: Java.TraversalEngine$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalEngine$Builder>;
+        function newArray(className: 'TraversalEngine$Type', arg: Java.TraversalEngine$Type[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalEngine$Type>;
+        function newArray(className: 'TraversalSideEffects', arg: Java.TraversalSideEffects[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalSideEffects>;
+        function newArray(className: 'TraversalSideEffects$Exceptions', arg: Java.TraversalSideEffects$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalSideEffects$Exceptions>;
+        function newArray(className: 'TraversalSource', arg: Java.TraversalSource[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalSource>;
+        function newArray(className: 'TraversalSource$Builder', arg: Java.TraversalSource$Builder[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalSource$Builder>;
+        function newArray(className: 'TraversalStrategies', arg: Java.TraversalStrategies[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategies>;
+        function newArray(className: 'TraversalStrategies$GlobalCache', arg: Java.TraversalStrategies$GlobalCache[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategies$GlobalCache>;
+        function newArray(className: 'TraversalStrategy', arg: Java.TraversalStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy>;
+        function newArray(className: 'TraversalStrategy$DecorationStrategy', arg: Java.TraversalStrategy$DecorationStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$DecorationStrategy>;
+        function newArray(className: 'TraversalStrategy$FinalizationStrategy', arg: Java.TraversalStrategy$FinalizationStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$FinalizationStrategy>;
+        function newArray(className: 'TraversalStrategy$OptimizationStrategy', arg: Java.TraversalStrategy$OptimizationStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$OptimizationStrategy>;
+        function newArray(className: 'TraversalStrategy$VendorOptimizationStrategy', arg: Java.TraversalStrategy$VendorOptimizationStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$VendorOptimizationStrategy>;
+        function newArray(className: 'TraversalStrategy$VerificationStrategy', arg: Java.TraversalStrategy$VerificationStrategy[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategy$VerificationStrategy>;
+        function newArray(className: 'Traverser', arg: Java.Traverser[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Traverser>;
+        function newArray(className: 'Traverser$Admin', arg: Java.Traverser$Admin[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.Traverser$Admin>;
+        function newArray(className: 'TraverserGenerator', arg: Java.TraverserGenerator[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.TraverserGenerator>;
+        function newArray(className: 'AndP', arg: Java.AndP[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.AndP>;
+        function newArray(className: 'ConjunctionP', arg: Java.ConjunctionP[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.ConjunctionP>;
+        function newArray(className: 'DefaultTraversal', arg: Java.DefaultTraversal[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversal>;
+        function newArray(className: 'DefaultTraversalSideEffects', arg: Java.DefaultTraversalSideEffects[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversalSideEffects>;
+        function newArray(className: 'DefaultTraversalStrategies', arg: Java.DefaultTraversalStrategies[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversalStrategies>;
+        function newArray(className: 'DependantMutableMetrics', arg: Java.DependantMutableMetrics[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.DependantMutableMetrics>;
+        function newArray(className: 'EmptyTraversal', arg: Java.EmptyTraversal[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.EmptyTraversal>;
+        function newArray(className: 'EmptyTraversalSideEffects', arg: Java.EmptyTraversalSideEffects[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.EmptyTraversalSideEffects>;
+        function newArray(className: 'EmptyTraversalStrategies', arg: Java.EmptyTraversalStrategies[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.EmptyTraversalStrategies>;
+        function newArray(className: 'FastNoSuchElementException', arg: Java.FastNoSuchElementException[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.FastNoSuchElementException>;
+        function newArray(className: 'ImmutableMetrics', arg: Java.ImmutableMetrics[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.ImmutableMetrics>;
+        function newArray(className: 'Metrics', arg: Java.Metrics[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.Metrics>;
+        function newArray(className: 'MutableMetrics', arg: Java.MutableMetrics[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.MutableMetrics>;
+        function newArray(className: 'OrP', arg: Java.OrP[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.OrP>;
+        function newArray(className: 'SideEffectHelper', arg: Java.SideEffectHelper[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.SideEffectHelper>;
+        function newArray(className: 'StandardTraversalMetrics', arg: Java.StandardTraversalMetrics[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.StandardTraversalMetrics>;
+        function newArray(className: 'StepPosition', arg: Java.StepPosition[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.StepPosition>;
+        function newArray(className: 'TraversalClassFunction', arg: Java.TraversalClassFunction[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.TraversalClassFunction>;
+        function newArray(className: 'TraversalHelper', arg: Java.TraversalHelper[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.TraversalHelper>;
+        function newArray(className: 'TraversalMatrix', arg: Java.TraversalMatrix[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.TraversalMatrix>;
+        function newArray(className: 'TraversalMetrics', arg: Java.TraversalMetrics[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.TraversalMetrics>;
+        function newArray(className: 'TraversalObjectFunction', arg: Java.TraversalObjectFunction[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.TraversalObjectFunction>;
+        function newArray(className: 'TraversalRing', arg: Java.TraversalRing[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.TraversalRing>;
+        function newArray(className: 'TraversalScriptFunction', arg: Java.TraversalScriptFunction[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.TraversalScriptFunction>;
+        function newArray(className: 'TraversalScriptHelper', arg: Java.TraversalScriptHelper[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.TraversalScriptHelper>;
+        function newArray(className: 'TraversalUtil', arg: Java.TraversalUtil[]): array_t<org.apache.tinkerpop.gremlin.process.traversal.util.TraversalUtil>;
+        function newArray(className: 'Direction', arg: Java.Direction[]): array_t<org.apache.tinkerpop.gremlin.structure.Direction>;
+        function newArray(className: 'Edge', arg: Java.Edge[]): array_t<org.apache.tinkerpop.gremlin.structure.Edge>;
+        function newArray(className: 'Edge$Exceptions', arg: Java.Edge$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.structure.Edge$Exceptions>;
+        function newArray(className: 'Element', arg: Java.Element[]): array_t<org.apache.tinkerpop.gremlin.structure.Element>;
+        function newArray(className: 'Element$Exceptions', arg: Java.Element$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.structure.Element$Exceptions>;
+        function newArray(className: 'Graph', arg: Java.Graph[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph>;
+        function newArray(className: 'Graph$Exceptions', arg: Java.Graph$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Exceptions>;
+        function newArray(className: 'Graph$Features', arg: Java.Graph$Features[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Features>;
+        function newArray(className: 'Graph$Features$DataTypeFeatures', arg: Java.Graph$Features$DataTypeFeatures[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Features$DataTypeFeatures>;
+        function newArray(className: 'Graph$Features$EdgeFeatures', arg: Java.Graph$Features$EdgeFeatures[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Features$EdgeFeatures>;
+        function newArray(className: 'Graph$Features$EdgePropertyFeatures', arg: Java.Graph$Features$EdgePropertyFeatures[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Features$EdgePropertyFeatures>;
+        function newArray(className: 'Graph$Features$ElementFeatures', arg: Java.Graph$Features$ElementFeatures[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Features$ElementFeatures>;
+        function newArray(className: 'Graph$Features$FeatureSet', arg: Java.Graph$Features$FeatureSet[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Features$FeatureSet>;
+        function newArray(className: 'Graph$Features$GraphFeatures', arg: Java.Graph$Features$GraphFeatures[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Features$GraphFeatures>;
+        function newArray(className: 'Graph$Features$PropertyFeatures', arg: Java.Graph$Features$PropertyFeatures[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Features$PropertyFeatures>;
+        function newArray(className: 'Graph$Features$VariableFeatures', arg: Java.Graph$Features$VariableFeatures[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Features$VariableFeatures>;
+        function newArray(className: 'Graph$Features$VertexFeatures', arg: Java.Graph$Features$VertexFeatures[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Features$VertexFeatures>;
+        function newArray(className: 'Graph$Features$VertexPropertyFeatures', arg: Java.Graph$Features$VertexPropertyFeatures[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Features$VertexPropertyFeatures>;
+        function newArray(className: 'Graph$Hidden', arg: Java.Graph$Hidden[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Hidden>;
+        function newArray(className: 'Graph$OptIn', arg: Java.Graph$OptIn[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$OptIn>;
+        function newArray(className: 'Graph$OptIns', arg: Java.Graph$OptIns[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$OptIns>;
+        function newArray(className: 'Graph$OptOut', arg: Java.Graph$OptOut[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$OptOut>;
+        function newArray(className: 'Graph$OptOuts', arg: Java.Graph$OptOuts[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$OptOuts>;
+        function newArray(className: 'Graph$Variables', arg: Java.Graph$Variables[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Variables>;
+        function newArray(className: 'Graph$Variables$Exceptions', arg: Java.Graph$Variables$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.structure.Graph$Variables$Exceptions>;
+        function newArray(className: 'AbstractIoRegistry', arg: Java.AbstractIoRegistry[]): array_t<org.apache.tinkerpop.gremlin.structure.io.AbstractIoRegistry>;
+        function newArray(className: 'GraphMigrator', arg: Java.GraphMigrator[]): array_t<org.apache.tinkerpop.gremlin.structure.io.GraphMigrator>;
+        function newArray(className: 'GraphMLIo', arg: Java.GraphMLIo[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLIo>;
+        function newArray(className: 'GraphMLIo$Builder', arg: Java.GraphMLIo$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLIo$Builder>;
+        function newArray(className: 'GraphMLMapper', arg: Java.GraphMLMapper[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLMapper>;
+        function newArray(className: 'GraphMLMapper$Builder', arg: Java.GraphMLMapper$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLMapper$Builder>;
+        function newArray(className: 'GraphMLReader', arg: Java.GraphMLReader[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLReader>;
+        function newArray(className: 'GraphMLReader$Builder', arg: Java.GraphMLReader$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLReader$Builder>;
+        function newArray(className: 'GraphMLWriter', arg: Java.GraphMLWriter[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLWriter>;
+        function newArray(className: 'GraphMLWriter$Builder', arg: Java.GraphMLWriter$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLWriter$Builder>;
+        function newArray(className: 'GraphMLWriterHelper$IndentingXMLStreamWriter', arg: Java.GraphMLWriterHelper$IndentingXMLStreamWriter[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLWriterHelper$IndentingXMLStreamWriter>;
+        function newArray(className: 'GraphReader', arg: Java.GraphReader[]): array_t<org.apache.tinkerpop.gremlin.structure.io.GraphReader>;
+        function newArray(className: 'GraphReader$ReaderBuilder', arg: Java.GraphReader$ReaderBuilder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.GraphReader$ReaderBuilder>;
+        function newArray(className: 'GraphSONIo', arg: Java.GraphSONIo[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONIo>;
+        function newArray(className: 'GraphSONIo$Builder', arg: Java.GraphSONIo$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONIo$Builder>;
+        function newArray(className: 'GraphSONMapper', arg: Java.GraphSONMapper[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONMapper>;
+        function newArray(className: 'GraphSONMapper$Builder', arg: Java.GraphSONMapper$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONMapper$Builder>;
+        function newArray(className: 'GraphSONReader', arg: Java.GraphSONReader[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONReader>;
+        function newArray(className: 'GraphSONReader$Builder', arg: Java.GraphSONReader$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONReader$Builder>;
+        function newArray(className: 'GraphSONTokens', arg: Java.GraphSONTokens[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONTokens>;
+        function newArray(className: 'GraphSONUtil', arg: Java.GraphSONUtil[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONUtil>;
+        function newArray(className: 'GraphSONVersion', arg: Java.GraphSONVersion[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONVersion>;
+        function newArray(className: 'GraphSONWriter', arg: Java.GraphSONWriter[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONWriter>;
+        function newArray(className: 'GraphSONWriter$Builder', arg: Java.GraphSONWriter$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONWriter$Builder>;
+        function newArray(className: 'LegacyGraphSONReader', arg: Java.LegacyGraphSONReader[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.LegacyGraphSONReader>;
+        function newArray(className: 'LegacyGraphSONReader$Builder', arg: Java.LegacyGraphSONReader$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.LegacyGraphSONReader$Builder>;
+        function newArray(className: 'LegacyGraphSONReader$GraphSONTokensTP2', arg: Java.LegacyGraphSONReader$GraphSONTokensTP2[]): array_t<org.apache.tinkerpop.gremlin.structure.io.graphson.LegacyGraphSONReader$GraphSONTokensTP2>;
+        function newArray(className: 'GraphWriter', arg: Java.GraphWriter[]): array_t<org.apache.tinkerpop.gremlin.structure.io.GraphWriter>;
+        function newArray(className: 'GraphWriter$WriterBuilder', arg: Java.GraphWriter$WriterBuilder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.GraphWriter$WriterBuilder>;
+        function newArray(className: 'GryoIo', arg: Java.GryoIo[]): array_t<org.apache.tinkerpop.gremlin.structure.io.gryo.GryoIo>;
+        function newArray(className: 'GryoIo$Builder', arg: Java.GryoIo$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.gryo.GryoIo$Builder>;
+        function newArray(className: 'GryoMapper', arg: Java.GryoMapper[]): array_t<org.apache.tinkerpop.gremlin.structure.io.gryo.GryoMapper>;
+        function newArray(className: 'GryoMapper$Builder', arg: Java.GryoMapper$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.gryo.GryoMapper$Builder>;
+        function newArray(className: 'GryoPool', arg: Java.GryoPool[]): array_t<org.apache.tinkerpop.gremlin.structure.io.gryo.GryoPool>;
+        function newArray(className: 'GryoPool$Type', arg: Java.GryoPool$Type[]): array_t<org.apache.tinkerpop.gremlin.structure.io.gryo.GryoPool$Type>;
+        function newArray(className: 'GryoReader', arg: Java.GryoReader[]): array_t<org.apache.tinkerpop.gremlin.structure.io.gryo.GryoReader>;
+        function newArray(className: 'GryoReader$Builder', arg: Java.GryoReader$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.gryo.GryoReader$Builder>;
+        function newArray(className: 'GryoWriter', arg: Java.GryoWriter[]): array_t<org.apache.tinkerpop.gremlin.structure.io.gryo.GryoWriter>;
+        function newArray(className: 'GryoWriter$Builder', arg: Java.GryoWriter$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.gryo.GryoWriter$Builder>;
+        function newArray(className: 'VertexByteArrayInputStream', arg: Java.VertexByteArrayInputStream[]): array_t<org.apache.tinkerpop.gremlin.structure.io.gryo.VertexByteArrayInputStream>;
+        function newArray(className: 'VertexTerminator', arg: Java.VertexTerminator[]): array_t<org.apache.tinkerpop.gremlin.structure.io.gryo.VertexTerminator>;
+        function newArray(className: 'Io', arg: Java.Io[]): array_t<org.apache.tinkerpop.gremlin.structure.io.Io>;
+        function newArray(className: 'Io$Builder', arg: Java.Io$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.Io$Builder>;
+        function newArray(className: 'Io$Exceptions', arg: Java.Io$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.structure.io.Io$Exceptions>;
+        function newArray(className: 'IoCore', arg: Java.IoCore[]): array_t<org.apache.tinkerpop.gremlin.structure.io.IoCore>;
+        function newArray(className: 'IoRegistry', arg: Java.IoRegistry[]): array_t<org.apache.tinkerpop.gremlin.structure.io.IoRegistry>;
+        function newArray(className: 'Mapper', arg: Java.Mapper[]): array_t<org.apache.tinkerpop.gremlin.structure.io.Mapper>;
+        function newArray(className: 'Mapper$Builder', arg: Java.Mapper$Builder[]): array_t<org.apache.tinkerpop.gremlin.structure.io.Mapper$Builder>;
+        function newArray(className: 'Property', arg: Java.Property[]): array_t<org.apache.tinkerpop.gremlin.structure.Property>;
+        function newArray(className: 'Property$Exceptions', arg: Java.Property$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.structure.Property$Exceptions>;
+        function newArray(className: 'PropertyType', arg: Java.PropertyType[]): array_t<org.apache.tinkerpop.gremlin.structure.PropertyType>;
+        function newArray(className: 'T', arg: Java.T[]): array_t<org.apache.tinkerpop.gremlin.structure.T>;
+        function newArray(className: 'Transaction', arg: Java.Transaction[]): array_t<org.apache.tinkerpop.gremlin.structure.Transaction>;
+        function newArray(className: 'Transaction$CLOSE_BEHAVIOR', arg: Java.Transaction$CLOSE_BEHAVIOR[]): array_t<org.apache.tinkerpop.gremlin.structure.Transaction$CLOSE_BEHAVIOR>;
+        function newArray(className: 'Transaction$Exceptions', arg: Java.Transaction$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.structure.Transaction$Exceptions>;
+        function newArray(className: 'Transaction$READ_WRITE_BEHAVIOR', arg: Java.Transaction$READ_WRITE_BEHAVIOR[]): array_t<org.apache.tinkerpop.gremlin.structure.Transaction$READ_WRITE_BEHAVIOR>;
+        function newArray(className: 'Transaction$Status', arg: Java.Transaction$Status[]): array_t<org.apache.tinkerpop.gremlin.structure.Transaction$Status>;
+        function newArray(className: 'Transaction$Workload', arg: Java.Transaction$Workload[]): array_t<org.apache.tinkerpop.gremlin.structure.Transaction$Workload>;
+        function newArray(className: 'AbstractTransaction', arg: Java.AbstractTransaction[]): array_t<org.apache.tinkerpop.gremlin.structure.util.AbstractTransaction>;
+        function newArray(className: 'AbstractTransaction$TransactionException', arg: Java.AbstractTransaction$TransactionException[]): array_t<org.apache.tinkerpop.gremlin.structure.util.AbstractTransaction$TransactionException>;
+        function newArray(className: 'Attachable', arg: Java.Attachable[]): array_t<org.apache.tinkerpop.gremlin.structure.util.Attachable>;
+        function newArray(className: 'Attachable$Exceptions', arg: Java.Attachable$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.structure.util.Attachable$Exceptions>;
+        function newArray(className: 'Attachable$Method', arg: Java.Attachable$Method[]): array_t<org.apache.tinkerpop.gremlin.structure.util.Attachable$Method>;
+        function newArray(className: 'Comparators', arg: Java.Comparators[]): array_t<org.apache.tinkerpop.gremlin.structure.util.Comparators>;
+        function newArray(className: 'DetachedEdge', arg: Java.DetachedEdge[]): array_t<org.apache.tinkerpop.gremlin.structure.util.detached.DetachedEdge>;
+        function newArray(className: 'DetachedElement', arg: Java.DetachedElement[]): array_t<org.apache.tinkerpop.gremlin.structure.util.detached.DetachedElement>;
+        function newArray(className: 'DetachedFactory', arg: Java.DetachedFactory[]): array_t<org.apache.tinkerpop.gremlin.structure.util.detached.DetachedFactory>;
+        function newArray(className: 'DetachedPath', arg: Java.DetachedPath[]): array_t<org.apache.tinkerpop.gremlin.structure.util.detached.DetachedPath>;
+        function newArray(className: 'DetachedProperty', arg: Java.DetachedProperty[]): array_t<org.apache.tinkerpop.gremlin.structure.util.detached.DetachedProperty>;
+        function newArray(className: 'DetachedVertex', arg: Java.DetachedVertex[]): array_t<org.apache.tinkerpop.gremlin.structure.util.detached.DetachedVertex>;
+        function newArray(className: 'DetachedVertexProperty', arg: Java.DetachedVertexProperty[]): array_t<org.apache.tinkerpop.gremlin.structure.util.detached.DetachedVertexProperty>;
+        function newArray(className: 'ElementHelper', arg: Java.ElementHelper[]): array_t<org.apache.tinkerpop.gremlin.structure.util.ElementHelper>;
+        function newArray(className: 'FeatureDescriptor', arg: Java.FeatureDescriptor[]): array_t<org.apache.tinkerpop.gremlin.structure.util.FeatureDescriptor>;
+        function newArray(className: 'GraphFactory', arg: Java.GraphFactory[]): array_t<org.apache.tinkerpop.gremlin.structure.util.GraphFactory>;
+        function newArray(className: 'GraphVariableHelper', arg: Java.GraphVariableHelper[]): array_t<org.apache.tinkerpop.gremlin.structure.util.GraphVariableHelper>;
+        function newArray(className: 'Host', arg: Java.Host[]): array_t<org.apache.tinkerpop.gremlin.structure.util.Host>;
+        function newArray(className: 'StringFactory', arg: Java.StringFactory[]): array_t<org.apache.tinkerpop.gremlin.structure.util.StringFactory>;
+        function newArray(className: 'Vertex', arg: Java.Vertex[]): array_t<org.apache.tinkerpop.gremlin.structure.Vertex>;
+        function newArray(className: 'Vertex$Exceptions', arg: Java.Vertex$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.structure.Vertex$Exceptions>;
+        function newArray(className: 'VertexProperty', arg: Java.VertexProperty[]): array_t<org.apache.tinkerpop.gremlin.structure.VertexProperty>;
+        function newArray(className: 'VertexProperty$Cardinality', arg: Java.VertexProperty$Cardinality[]): array_t<org.apache.tinkerpop.gremlin.structure.VertexProperty$Cardinality>;
+        function newArray(className: 'VertexProperty$Exceptions', arg: Java.VertexProperty$Exceptions[]): array_t<org.apache.tinkerpop.gremlin.structure.VertexProperty$Exceptions>;
+        function newArray(className: 'TinkerGraphComputer', arg: Java.TinkerGraphComputer[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerGraphComputer>;
+        function newArray(className: 'TinkerGraphComputerView', arg: Java.TinkerGraphComputerView[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerGraphComputerView>;
+        function newArray(className: 'TinkerMapEmitter', arg: Java.TinkerMapEmitter[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMapEmitter>;
+        function newArray(className: 'TinkerMemory', arg: Java.TinkerMemory[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMemory>;
+        function newArray(className: 'TinkerMessenger', arg: Java.TinkerMessenger[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMessenger>;
+        function newArray(className: 'TinkerReduceEmitter', arg: Java.TinkerReduceEmitter[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerReduceEmitter>;
+        function newArray(className: 'TinkerWorkerPool', arg: Java.TinkerWorkerPool[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerWorkerPool>;
+        function newArray(className: 'TinkerEdge', arg: Java.TinkerEdge[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerEdge>;
+        function newArray(className: 'TinkerElement', arg: Java.TinkerElement[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerElement>;
+        function newArray(className: 'TinkerFactory', arg: Java.TinkerFactory[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerFactory>;
+        function newArray(className: 'TinkerGraph', arg: Java.TinkerGraph[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph>;
+        function newArray(className: 'TinkerGraph$DefaultIdManager', arg: Java.TinkerGraph$DefaultIdManager[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$DefaultIdManager>;
+        function newArray(className: 'TinkerGraph$IdManager', arg: Java.TinkerGraph$IdManager[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$IdManager>;
+        function newArray(className: 'TinkerGraph$TinkerGraphEdgeFeatures', arg: Java.TinkerGraph$TinkerGraphEdgeFeatures[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphEdgeFeatures>;
+        function newArray(className: 'TinkerGraph$TinkerGraphFeatures', arg: Java.TinkerGraph$TinkerGraphFeatures[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphFeatures>;
+        function newArray(className: 'TinkerGraph$TinkerGraphGraphFeatures', arg: Java.TinkerGraph$TinkerGraphGraphFeatures[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphGraphFeatures>;
+        function newArray(className: 'TinkerGraph$TinkerGraphVertexFeatures', arg: Java.TinkerGraph$TinkerGraphVertexFeatures[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphVertexFeatures>;
+        function newArray(className: 'TinkerGraph$TinkerGraphVertexPropertyFeatures', arg: Java.TinkerGraph$TinkerGraphVertexPropertyFeatures[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph$TinkerGraphVertexPropertyFeatures>;
+        function newArray(className: 'TinkerGraphVariables', arg: Java.TinkerGraphVariables[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraphVariables>;
+        function newArray(className: 'TinkerHelper', arg: Java.TinkerHelper[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerHelper>;
+        function newArray(className: 'TinkerProperty', arg: Java.TinkerProperty[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerProperty>;
+        function newArray(className: 'TinkerVertex', arg: Java.TinkerVertex[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerVertex>;
+        function newArray(className: 'TinkerVertexProperty', arg: Java.TinkerVertexProperty[]): array_t<org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerVertexProperty>;
+        function newArray(className: 'ArrayListSupplier', arg: Java.ArrayListSupplier[]): array_t<org.apache.tinkerpop.gremlin.util.function_.ArrayListSupplier>;
+        function newArray(className: 'BulkSetSupplier', arg: Java.BulkSetSupplier[]): array_t<org.apache.tinkerpop.gremlin.util.function_.BulkSetSupplier>;
+        function newArray(className: 'ChainedComparator', arg: Java.ChainedComparator[]): array_t<org.apache.tinkerpop.gremlin.util.function_.ChainedComparator>;
+        function newArray(className: 'ConstantSupplier', arg: Java.ConstantSupplier[]): array_t<org.apache.tinkerpop.gremlin.util.function_.ConstantSupplier>;
+        function newArray(className: 'FunctionUtils', arg: Java.FunctionUtils[]): array_t<org.apache.tinkerpop.gremlin.util.function_.FunctionUtils>;
+        function newArray(className: 'HashMapSupplier', arg: Java.HashMapSupplier[]): array_t<org.apache.tinkerpop.gremlin.util.function_.HashMapSupplier>;
+        function newArray(className: 'HashSetSupplier', arg: Java.HashSetSupplier[]): array_t<org.apache.tinkerpop.gremlin.util.function_.HashSetSupplier>;
+        function newArray(className: 'MeanNumberSupplier', arg: Java.MeanNumberSupplier[]): array_t<org.apache.tinkerpop.gremlin.util.function_.MeanNumberSupplier>;
+        function newArray(className: 'ScriptEngineLambda', arg: Java.ScriptEngineLambda[]): array_t<org.apache.tinkerpop.gremlin.util.function_.ScriptEngineLambda>;
+        function newArray(className: 'ThrowingBiConsumer', arg: Java.ThrowingBiConsumer[]): array_t<org.apache.tinkerpop.gremlin.util.function_.ThrowingBiConsumer>;
+        function newArray(className: 'ThrowingConsumer', arg: Java.ThrowingConsumer[]): array_t<org.apache.tinkerpop.gremlin.util.function_.ThrowingConsumer>;
+        function newArray(className: 'ThrowingFunction', arg: Java.ThrowingFunction[]): array_t<org.apache.tinkerpop.gremlin.util.function_.ThrowingFunction>;
+        function newArray(className: 'ThrowingSupplier', arg: Java.ThrowingSupplier[]): array_t<org.apache.tinkerpop.gremlin.util.function_.ThrowingSupplier>;
+        function newArray(className: 'TraversableLambda', arg: Java.TraversableLambda[]): array_t<org.apache.tinkerpop.gremlin.util.function_.TraversableLambda>;
+        function newArray(className: 'TreeSupplier', arg: Java.TreeSupplier[]): array_t<org.apache.tinkerpop.gremlin.util.function_.TreeSupplier>;
+        function newArray(className: 'TriConsumer', arg: Java.TriConsumer[]): array_t<org.apache.tinkerpop.gremlin.util.function_.TriConsumer>;
+        function newArray(className: 'TriFunction', arg: Java.TriFunction[]): array_t<org.apache.tinkerpop.gremlin.util.function_.TriFunction>;
+        function newArray(className: 'Gremlin', arg: Java.Gremlin[]): array_t<org.apache.tinkerpop.gremlin.util.Gremlin>;
+        function newArray(className: 'ScriptEngineCache', arg: Java.ScriptEngineCache[]): array_t<org.apache.tinkerpop.gremlin.util.ScriptEngineCache>;
+        function newArray(className: 'Serializer', arg: Java.Serializer[]): array_t<org.apache.tinkerpop.gremlin.util.Serializer>;
+        function newArray(className: 'TimeUtil', arg: Java.TimeUtil[]): array_t<org.apache.tinkerpop.gremlin.util.TimeUtil>;
+        function newArray(className: 'ClassNode', arg: Java.ClassNode[]): array_t<org.codehaus.groovy.ast.ClassNode>;
+        function newArray(className: 'CompilerConfiguration', arg: Java.CompilerConfiguration[]): array_t<org.codehaus.groovy.control.CompilerConfiguration>;
+        function newArray(className: 'CompilationCustomizer', arg: Java.CompilationCustomizer[]): array_t<org.codehaus.groovy.control.customizers.CompilationCustomizer>;
+        function newArray(className: 'NullObject', arg: Java.NullObject[]): array_t<org.codehaus.groovy.runtime.NullObject>;
+        function newArray(className: 'Groovysh', arg: Java.Groovysh[]): array_t<org.codehaus.groovy.tools.shell.Groovysh>;
+        function newArray(className: 'ManagedReference', arg: Java.ManagedReference[]): array_t<org.codehaus.groovy.util.ManagedReference>;
+        function newArray(className: 'ReferenceBundle', arg: Java.ReferenceBundle[]): array_t<org.codehaus.groovy.util.ReferenceBundle>;
         function newArray(className: 'co.redseal.gremlinnode.function.GlobFunction', arg: Java.GlobFunction[]): array_t<co.redseal.gremlinnode.function_.GlobFunction>;
         function newArray(className: 'co.redseal.gremlinnode.function.GroovyLambda', arg: Java.GroovyLambda[]): array_t<co.redseal.gremlinnode.function_.GroovyLambda>;
         function newArray(className: 'co.redseal.gremlinnode.testing.TestClass', arg: Java.TestClass[]): array_t<co.redseal.gremlinnode.testing.TestClass>;
@@ -2517,6 +4432,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GlobFunction {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -2593,6 +4509,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GroovyLambda {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: string_t, arg1: Java.ScriptEngine): co.redseal.gremlinnode.function_.GroovyLambda;
                     new (arg0: string_t): co.redseal.gremlinnode.function_.GroovyLambda;
                     getDefaultEngine(): Java.ScriptEngine;
@@ -2623,6 +4540,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TestClass {
                 interface Static {
+                    class: Java.Class;
                     new (): co.redseal.gremlinnode.testing.TestClass;
                 }
             }
@@ -2650,6 +4568,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module StringInputStream {
                 interface Static {
+                    class: Java.Class;
                     new (): co.redseal.util.StringInputStream;
                     from(arg0: string_t): Java.InputStream;
                     fromP(arg0: string_t): Promise<Java.InputStream>;
@@ -2697,6 +4616,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Binding {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: array_t<string_t>): groovy.lang.Binding;
                     new (arg0: Java.Map): groovy.lang.Binding;
                     new (): groovy.lang.Binding;
@@ -2822,6 +4742,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     DONE: number;
                     SKIP: number;
                     IDENTITY: Java.Closure;
+                    class: Java.Class;
                     new (arg0: object_t, arg1: object_t): groovy.lang.Closure;
                     new (arg0: object_t): groovy.lang.Closure;
                 }
@@ -2936,6 +4857,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module DelegatingMetaClass {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.MetaClass): groovy.lang.DelegatingMetaClass;
                     new (arg0: Java.Class): groovy.lang.DelegatingMetaClass;
                 }
@@ -3028,6 +4950,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GroovyClassLoader {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.ClassLoader, arg1: Java.CompilerConfiguration, arg2: boolean_t): groovy.lang.GroovyClassLoader;
                     new (arg0: Java.ClassLoader, arg1: Java.CompilerConfiguration): groovy.lang.GroovyClassLoader;
                     new (arg0: Java.GroovyClassLoader): groovy.lang.GroovyClassLoader;
@@ -3083,6 +5006,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GroovyCodeSource {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: string_t, arg1: string_t, arg2: string_t): groovy.lang.GroovyCodeSource;
                     new (arg0: object_t, arg1: string_t, arg2: string_t): groovy.lang.GroovyCodeSource;
                     new (arg0: object_t, arg1: string_t): groovy.lang.GroovyCodeSource;
@@ -3125,6 +5049,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GroovyObjectSupport {
                 interface Static {
+                    class: Java.Class;
                     new (): groovy.lang.GroovyObjectSupport;
                 }
             }
@@ -3136,6 +5061,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GroovyResourceLoader {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -3252,6 +5178,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module IntRange {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: boolean_t, arg1: integer_t, arg2: integer_t): groovy.lang.IntRange;
                     new (arg0: integer_t, arg1: integer_t): groovy.lang.IntRange;
                 }
@@ -3299,6 +5226,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module MetaBeanProperty {
                 interface Static {
                     PROPERTY_SET_PREFIX: string;
+                    class: Java.Class;
                     new (arg0: string_t, arg1: Java.Class, arg2: Java.MetaMethod, arg3: Java.MetaMethod): groovy.lang.MetaBeanProperty;
                     getGetterName(arg0: string_t, arg1: Java.Class): string;
                     getGetterNameP(arg0: string_t, arg1: Java.Class): Promise<string>;
@@ -3370,6 +5298,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MetaClass {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -3456,6 +5385,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MetaMethod {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: array_t<Java.Class>): groovy.lang.MetaMethod;
                     new (): groovy.lang.MetaMethod;
                 }
@@ -3495,6 +5425,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module MetaProperty {
                 interface Static {
                     PROPERTY_SET_PREFIX: string;
+                    class: Java.Class;
                     new (arg0: string_t, arg1: Java.Class): groovy.lang.MetaProperty;
                     getGetterName(arg0: string_t, arg1: Java.Class): string;
                     getGetterNameP(arg0: string_t, arg1: Java.Class): Promise<string>;
@@ -3586,6 +5517,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Range {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -3626,6 +5558,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Reference {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: object_t): groovy.lang.Reference;
                     new (): groovy.lang.Reference;
                 }
@@ -3676,6 +5609,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ByteArrayOutputStream {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: integer_t): java.io.ByteArrayOutputStream;
                     new (): java.io.ByteArrayOutputStream;
                 }
@@ -3726,6 +5660,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module FileInputStream {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: object_t): java.io.FileInputStream;
                     new (arg0: string_t): java.io.FileInputStream;
                     new (arg0: object_t): java.io.FileInputStream;
@@ -3769,6 +5704,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module FileOutputStream {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: string_t, arg1: boolean_t): java.io.FileOutputStream;
                     new (arg0: object_t, arg1: boolean_t): java.io.FileOutputStream;
                     new (arg0: object_t): java.io.FileOutputStream;
@@ -3818,6 +5754,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module InputStream {
                 interface Static {
+                    class: Java.Class;
                     new (): java.io.InputStream;
                 }
             }
@@ -3855,6 +5792,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module OutputStream {
                 interface Static {
+                    class: Java.Class;
                     new (): java.io.OutputStream;
                 }
             }
@@ -3891,6 +5829,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     TRUE: boolean;
                     FALSE: boolean;
                     TYPE: Java.Class;
+                    class: Java.Class;
                     new (arg0: string_t): java.lang.Boolean;
                     new (arg0: boolean_t): java.lang.Boolean;
                     compare(arg0: boolean_t, arg1: boolean_t): number;
@@ -4069,6 +6008,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Class {
                 interface Static {
+                    class: Java.Class;
                     forName(arg0: string_t, arg1: boolean_t, arg2: Java.ClassLoader): Java.Class;
                     forNameP(arg0: string_t, arg1: boolean_t, arg2: Java.ClassLoader): Promise<Java.Class>;
                     forName(arg0: string_t): Java.Class;
@@ -4117,6 +6057,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ClassLoader {
                 interface Static {
+                    class: Java.Class;
                     getSystemClassLoader(): Java.ClassLoader;
                     getSystemClassLoaderP(): Promise<Java.ClassLoader>;
                     getSystemResource(arg0: string_t): object_t;
@@ -4182,6 +6123,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     SIZE: number;
                     BYTES: number;
                     TYPE: Java.Class;
+                    class: Java.Class;
                     new (arg0: string_t): java.lang.Double;
                     new (arg0: double_t): java.lang.Double;
                     compare(arg0: double_t, arg1: double_t): number;
@@ -4252,6 +6194,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Enum {
                 interface Static {
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                 }
@@ -4311,6 +6254,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     SIZE: number;
                     BYTES: number;
                     TYPE: Java.Class;
+                    class: Java.Class;
                     new (arg0: string_t): java.lang.Float;
                     new (arg0: float_t): java.lang.Float;
                     new (arg0: double_t): java.lang.Float;
@@ -4393,6 +6337,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     TYPE: Java.Class;
                     SIZE: number;
                     BYTES: number;
+                    class: Java.Class;
                     new (arg0: string_t): java.lang.Integer;
                     new (arg0: integer_t): java.lang.Integer;
                     bitCount(arg0: integer_t): number;
@@ -4483,6 +6428,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Iterable {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -4530,6 +6476,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     TYPE: Java.Class;
                     SIZE: number;
                     BYTES: number;
+                    class: Java.Class;
                     new (arg0: string_t): java.lang.Long;
                     new (arg0: long_t): java.lang.Long;
                     bitCount(arg0: long_t): number;
@@ -4642,6 +6589,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Number {
                 interface Static {
+                    class: Java.Class;
                     new (): java.lang.Number;
                 }
             }
@@ -4669,6 +6617,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Object {
                 interface Static {
+                    class: Java.Class;
                     new (): java.lang.Object;
                 }
             }
@@ -4696,6 +6645,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Array {
                 interface Static {
+                    class: Java.Class;
                     get(arg0: object_t, arg1: integer_t): object_t;
                     getP(arg0: object_t, arg1: integer_t): Promise<object_t>;
                     getBoolean(arg0: object_t, arg1: integer_t): boolean;
@@ -4787,6 +6737,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     TYPE: Java.Class;
                     SIZE: number;
                     BYTES: number;
+                    class: Java.Class;
                     new (arg0: string_t): java.lang.Short;
                     new (arg0: short_t): java.lang.Short;
                     compare(arg0: short_t, arg1: short_t): number;
@@ -4944,6 +6895,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module String {
                 interface Static {
                     CASE_INSENSITIVE_ORDER: Java.Comparator;
+                    class: Java.Class;
                     new (arg0: object_array_t, arg1: integer_t, arg2: integer_t, arg3: Java.Charset): java.lang.String;
                     new (arg0: object_array_t, arg1: integer_t, arg2: integer_t, arg3: string_t): java.lang.String;
                     new (arg0: object_array_t, arg1: integer_t, arg2: integer_t, arg3: integer_t): java.lang.String;
@@ -5049,6 +7001,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Charset {
                 interface Static {
+                    class: Java.Class;
                     availableCharsets(): object_t;
                     availableCharsetsP(): Promise<object_t>;
                     defaultCharset(): Java.Charset;
@@ -5089,6 +7042,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     UTF_16BE: Java.Charset;
                     UTF_16LE: Java.Charset;
                     UTF_16: Java.Charset;
+                    class: Java.Class;
                 }
             }
         }
@@ -5151,6 +7105,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module AbstractCollection {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -5237,6 +7192,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module AbstractList {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -5309,6 +7265,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module AbstractMap {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -5371,6 +7328,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module AbstractSet {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -5463,6 +7421,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ArrayList {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Collection): java.util.ArrayList;
                     new (arg0: integer_t): java.util.ArrayList;
                     new (): java.util.ArrayList;
@@ -5514,6 +7473,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Collection {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -5540,6 +7500,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Comparator {
                 interface Static {
+                    class: Java.Class;
                     comparing(arg0: Java.Function, arg1: Java.Comparator): Java.Comparator;
                     comparingP(arg0: Java.Function, arg1: Java.Comparator): Promise<Java.Comparator>;
                     comparing(arg0: Java.Function): Java.Comparator;
@@ -5570,6 +7531,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module BiConsumer {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -5582,6 +7544,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module BiFunction {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -5594,6 +7557,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module BinaryOperator {
                 interface Static {
+                    class: Java.Class;
                     maxBy(arg0: Java.Comparator): Java.BinaryOperator;
                     maxByP(arg0: Java.Comparator): Promise<Java.BinaryOperator>;
                     minBy(arg0: Java.Comparator): Java.BinaryOperator;
@@ -5614,6 +7578,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module BiPredicate {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -5626,6 +7591,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Consumer {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -5640,6 +7606,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Function {
                 interface Static {
+                    class: Java.Class;
                     identity(): Java.Function;
                     identityP(): Promise<Java.Function>;
                 }
@@ -5658,6 +7625,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Predicate {
                 interface Static {
+                    class: Java.Class;
                     isEqual(arg0: object_t): Java.Predicate;
                     isEqualP(arg0: object_t): Promise<Java.Predicate>;
                 }
@@ -5670,6 +7638,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Supplier {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -5684,6 +7653,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module UnaryOperator {
                 interface Static {
+                    class: Java.Class;
                     identity(): Java.UnaryOperator;
                     identityP(): Promise<Java.UnaryOperator>;
                     identity(): Java.Function;
@@ -5762,6 +7732,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module HashMap {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: integer_t, arg1: float_t): java.util.HashMap;
                     new (arg0: Java.Map): java.util.HashMap;
                     new (arg0: integer_t): java.util.HashMap;
@@ -5830,6 +7801,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module HashSet {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: integer_t, arg1: float_t): java.util.HashSet;
                     new (arg0: Java.Collection): java.util.HashSet;
                     new (arg0: integer_t): java.util.HashSet;
@@ -5850,6 +7822,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Iterator {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -5924,6 +7897,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module LinkedHashMap {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: integer_t, arg1: float_t, arg2: boolean_t): java.util.LinkedHashMap;
                     new (arg0: integer_t, arg1: float_t): java.util.LinkedHashMap;
                     new (arg0: Java.Map): java.util.LinkedHashMap;
@@ -6001,6 +7975,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module List {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -6029,6 +8004,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ListIterator {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -6087,6 +8063,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Map {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -6105,6 +8082,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Map$Entry {
                 interface Static {
+                    class: Java.Class;
                     comparingByKey(arg0: Java.Comparator): Java.Comparator;
                     comparingByKeyP(arg0: Java.Comparator): Promise<Java.Comparator>;
                     comparingByKey(): Java.Comparator;
@@ -6163,6 +8141,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module NoSuchElementException {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: string_t): java.util.NoSuchElementException;
                     new (): java.util.NoSuchElementException;
                 }
@@ -6209,6 +8188,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Optional {
                 interface Static {
+                    class: Java.Class;
                     empty(): Java.Optional;
                     emptyP(): Promise<Java.Optional>;
                     of(arg0: object_t): Java.Optional;
@@ -6263,6 +8243,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Set {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -6324,6 +8305,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     NAME: string;
                     LANGUAGE: string;
                     LANGUAGE_VERSION: string;
+                    class: Java.Class;
                     new (arg0: Java.Bindings): javax.script.AbstractScriptEngine;
                     new (): javax.script.AbstractScriptEngine;
                 }
@@ -6386,6 +8368,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Bindings {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -6420,6 +8403,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module CompiledScript {
                 interface Static {
+                    class: Java.Class;
                     new (): javax.script.CompiledScript;
                 }
             }
@@ -6459,6 +8443,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     ENGINE_SCOPE: number;
                     GLOBAL_SCOPE: number;
+                    class: Java.Class;
                 }
             }
         }
@@ -6502,6 +8487,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     NAME: string;
                     LANGUAGE: string;
                     LANGUAGE_VERSION: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -6538,6 +8524,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ScriptEngineFactory {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -6580,6 +8567,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GComparator {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Closure): org.apache.tinkerpop.gremlin.groovy.function_.GComparator;
                     make(...arg0: Java.Closure[]): Java.GComparator[];
                     make(arg0: array_t<Java.Closure>): Java.GComparator[];
@@ -6617,6 +8605,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GFunction {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Closure): org.apache.tinkerpop.gremlin.groovy.function_.GFunction;
                     make(...arg0: Java.Closure[]): Java.GFunction[];
                     make(arg0: array_t<Java.Closure>): Java.GFunction[];
@@ -6650,6 +8639,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GSupplier {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Closure): org.apache.tinkerpop.gremlin.groovy.function_.GSupplier;
                     make(...arg0: Java.Closure[]): Java.GSupplier[];
                     make(arg0: array_t<Java.Closure>): Java.GSupplier[];
@@ -6687,6 +8677,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GUnaryOperator {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Closure): org.apache.tinkerpop.gremlin.groovy.function_.GUnaryOperator;
                     make(...arg0: Java.Closure[]): Java.GUnaryOperator[];
                     make(arg0: array_t<Java.Closure>): Java.GUnaryOperator[];
@@ -6795,6 +8786,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     NAME: string;
                     LANGUAGE: string;
                     LANGUAGE_VERSION: string;
+                    class: Java.Class;
                     new (arg0: object_t, arg1: object_t, arg2: long_t): org.apache.tinkerpop.gremlin.groovy.jsr223.GremlinGroovyScriptEngine;
                     new (arg0: object_t, arg1: object_t): org.apache.tinkerpop.gremlin.groovy.jsr223.GremlinGroovyScriptEngine;
                     new (arg0: object_t): org.apache.tinkerpop.gremlin.groovy.jsr223.GremlinGroovyScriptEngine;
@@ -6864,6 +8856,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     CLUSTER_COUNT_MEMORY_KEY: string;
                     DEFAULT_MEMORY_KEY: string;
                     MAP_REDUCE: string;
+                    class: Java.Class;
                     build(): Java.ClusterCountMapReduce$Builder;
                     buildP(): Promise<Java.ClusterCountMapReduce$Builder>;
                 }
@@ -6896,6 +8889,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ClusterCountMapReduce$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -6961,6 +8955,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     CLUSTER_POPULATION_MEMORY_KEY: string;
                     DEFAULT_MEMORY_KEY: string;
                     MAP_REDUCE: string;
+                    class: Java.Class;
                     build(): Java.ClusterPopulationMapReduce$Builder;
                     buildP(): Promise<Java.ClusterPopulationMapReduce$Builder>;
                 }
@@ -6993,6 +8988,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ClusterPopulationMapReduce$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -7058,6 +9054,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     CLUSTER: string;
                     VOTE_STRENGTH: string;
                     VERTEX_PROGRAM: string;
+                    class: Java.Class;
                     build(): Java.PeerPressureVertexProgram$Builder;
                     buildP(): Promise<Java.PeerPressureVertexProgram$Builder>;
                 }
@@ -7105,6 +9102,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module PeerPressureVertexProgram$Builder {
                 interface Static {
                     GREMLIN_GROOVY: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -7119,6 +9117,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ComputerResult {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -7139,6 +9138,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphComputer {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -7165,6 +9165,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphComputer$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     adjacentVertexEdgesAndVerticesCanNotBeReadOrUpdated(): object_t;
                     adjacentVertexEdgesAndVerticesCanNotBeReadOrUpdatedP(): Promise<object_t>;
                     adjacentVertexLabelsCanNotBeRead(): object_t;
@@ -7217,6 +9218,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphComputer$Features {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -7256,6 +9258,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     NOTHING: Java.GraphComputer$Persist;
                     VERTEX_PROPERTIES: Java.GraphComputer$Persist;
                     EDGES: Java.GraphComputer$Persist;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.GraphComputer$Persist;
@@ -7300,6 +9303,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     ORIGINAL: Java.GraphComputer$ResultGraph;
                     NEW: Java.GraphComputer$ResultGraph;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.GraphComputer$ResultGraph;
@@ -7336,6 +9340,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module KeyValue {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: object_t, arg1: object_t): org.apache.tinkerpop.gremlin.process.computer.KeyValue;
                 }
             }
@@ -7374,6 +9379,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module MapReduce {
                 interface Static {
                     MAP_REDUCE: string;
+                    class: Java.Class;
                     createMapReduce(arg0: Java.Graph, arg1: object_t): Java.MapReduce;
                     createMapReduceP(arg0: Java.Graph, arg1: object_t): Promise<Java.MapReduce>;
                 }
@@ -7388,6 +9394,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MapReduce$MapEmitter {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -7416,6 +9423,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MapReduce$NullObject {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.computer.MapReduce$NullObject;
                     instance(): Java.MapReduce$NullObject;
                     instanceP(): Promise<Java.MapReduce$NullObject>;
@@ -7431,6 +9439,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MapReduce$ReduceEmitter {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -7470,6 +9479,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     MAP: Java.MapReduce$Stage;
                     COMBINE: Java.MapReduce$Stage;
                     REDUCE: Java.MapReduce$Stage;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.MapReduce$Stage;
@@ -7506,6 +9516,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Memory {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -7544,6 +9555,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Memory$Admin {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -7570,6 +9582,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Memory$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     dataTypeOfMemoryValueNotSupported(arg0: object_t): object_t;
                     dataTypeOfMemoryValueNotSupportedP(arg0: object_t): Promise<object_t>;
                     memoryDoesNotExist(arg0: string_t): object_t;
@@ -7592,6 +9605,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MessageCombiner {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -7618,6 +9632,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MessageScope {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.computer.MessageScope;
                 }
             }
@@ -7647,6 +9662,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MessageScope$Global {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.MessageScope$Global;
                     instanceP(): Promise<Java.MessageScope$Global>;
                     of(...arg0: Java.Vertex[]): Java.MessageScope$Global;
@@ -7687,6 +9703,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MessageScope$Local {
                 interface Static {
+                    class: Java.Class;
                     of(arg0: Java.Supplier, arg1: Java.BiFunction): Java.MessageScope$Local;
                     ofP(arg0: Java.Supplier, arg1: Java.BiFunction): Promise<Java.MessageScope$Local>;
                     of(arg0: Java.Supplier): Java.MessageScope$Local;
@@ -7721,6 +9738,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MessageScope$Local$ReverseTraversalSupplier {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.MessageScope$Local): org.apache.tinkerpop.gremlin.process.computer.MessageScope$Local$ReverseTraversalSupplier;
                 }
             }
@@ -7734,6 +9752,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Messenger {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -7795,6 +9814,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     PAGE_RANK_MEMORY_KEY: string;
                     DEFAULT_MEMORY_KEY: string;
                     MAP_REDUCE: string;
+                    class: Java.Class;
                     build(): Java.PageRankMapReduce$Builder;
                     buildP(): Promise<Java.PageRankMapReduce$Builder>;
                 }
@@ -7827,6 +9847,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module PageRankMapReduce$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -7857,6 +9878,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module PageRankMessageCombiner {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.Optional;
                     instanceP(): Promise<Java.Optional>;
                 }
@@ -7924,6 +9946,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     PAGE_RANK: string;
                     EDGE_COUNT: string;
                     VERTEX_PROGRAM: string;
+                    class: Java.Class;
                     build(): Java.PageRankVertexProgram$Builder;
                     buildP(): Promise<Java.PageRankVertexProgram$Builder>;
                 }
@@ -7973,6 +9996,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module PageRankVertexProgram$Builder {
                 interface Static {
                     GREMLIN_GROOVY: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -8003,6 +10027,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module SingleMessenger {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Messenger, arg1: object_t): org.apache.tinkerpop.gremlin.process.computer.traversal.SingleMessenger;
                 }
             }
@@ -8073,6 +10098,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     HALTED_TRAVERSERS: string;
                     TRAVERSAL_SUPPLIER: string;
                     VERTEX_PROGRAM: string;
+                    class: Java.Class;
                     build(): Java.TraversalVertexProgram$Builder;
                     buildP(): Promise<Java.TraversalVertexProgram$Builder>;
                     getTraversal(arg0: Java.Graph, arg1: object_t): Java.Traversal$Admin;
@@ -8118,6 +10144,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module TraversalVertexProgram$Builder {
                 interface Static {
                     GREMLIN_GROOVY: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -8148,6 +10175,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalVertexProgramMessageCombiner {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.Optional;
                     instanceP(): Promise<Java.Optional>;
                 }
@@ -8176,6 +10204,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraverserExecutor {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.computer.traversal.TraverserExecutor;
                     execute(arg0: Java.Vertex, arg1: Java.Messenger, arg2: Java.TraversalMatrix): boolean;
                     executeP(arg0: Java.Vertex, arg1: Java.Messenger, arg2: Java.TraversalMatrix): Promise<boolean>;
@@ -8240,6 +10269,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module VertexTraversalSideEffects {
                 interface Static {
                     SIDE_EFFECTS: string;
+                    class: Java.Class;
                     of(arg0: Java.Vertex): Java.TraversalSideEffects;
                     ofP(arg0: Java.Vertex): Promise<Java.TraversalSideEffects>;
                 }
@@ -8283,6 +10313,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module VertexProgram {
                 interface Static {
                     VERTEX_PROGRAM: string;
+                    class: Java.Class;
                     createVertexProgram(arg0: Java.Graph, arg1: object_t): Java.VertexProgram;
                     createVertexProgramP(arg0: Java.Graph, arg1: object_t): Promise<Java.VertexProgram>;
                 }
@@ -8299,6 +10330,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module VertexProgram$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -8327,6 +10359,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module VertexProgram$Features {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -8379,6 +10412,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     gte: Java.Compare;
                     lt: Java.Compare;
                     lte: Java.Compare;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.Compare;
@@ -8435,6 +10469,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     within: Java.Contains;
                     without: Java.Contains;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.Contains;
@@ -8467,6 +10502,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module __ {
                 interface Static {
+                    class: Java.Class;
                     __(...arg0: object_t[]): Java.GraphTraversal;
                     __(arg0: object_array_t): Java.GraphTraversal;
                     __P(...arg0: object_t[]): Promise<Java.GraphTraversal>;
@@ -9289,6 +11325,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module DefaultGraphTraversal {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Graph): org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.DefaultGraphTraversal;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.DefaultGraphTraversal;
                 }
@@ -9771,6 +11808,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module EmptyGraphTraversal {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.EmptyGraphTraversal;
                     instanceP(): Promise<Java.EmptyGraphTraversal>;
                     instance(): Java.EmptyTraversal;
@@ -10175,6 +12213,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphTraversal {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -10633,6 +12672,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphTraversal$Admin {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -10697,6 +12737,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphTraversalSource {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.GraphTraversalSource$Builder;
                     buildP(): Promise<Java.GraphTraversalSource$Builder>;
                     computer(arg0: Java.Class): Java.GraphTraversalSource$Builder;
@@ -10745,6 +12786,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphTraversalSource$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -10797,6 +12839,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphTraversalSource$GraphTraversalSourceStub {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.GraphTraversal$Admin, arg1: boolean_t): org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource$GraphTraversalSourceStub;
                 }
             }
@@ -10832,6 +12875,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ComputerTraversalEngine {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.ComputerTraversalEngine$Builder;
                     buildP(): Promise<Java.ComputerTraversalEngine$Builder>;
                 }
@@ -10870,6 +12914,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ComputerTraversalEngine$Builder {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.engine.ComputerTraversalEngine$Builder;
                 }
             }
@@ -10909,6 +12954,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ComputerTraversalEngine$ComputerResultStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.ComputerTraversalEngine$ComputerResultStrategy;
                     instanceP(): Promise<Java.ComputerTraversalEngine$ComputerResultStrategy>;
                 }
@@ -10945,6 +12991,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module StandardTraversalEngine {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.StandardTraversalEngine$Builder;
                     buildP(): Promise<Java.StandardTraversalEngine$Builder>;
                     instance(): Java.StandardTraversalEngine;
@@ -10981,6 +13028,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module StandardTraversalEngine$Builder {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.engine.StandardTraversalEngine$Builder;
                 }
             }
@@ -11028,6 +13076,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     div: Java.Operator;
                     min: Java.Operator;
                     max: Java.Operator;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.Operator;
@@ -11095,6 +13144,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     keyDecr: Java.Order;
                     valueDecr: Java.Order;
                     shuffle: Java.Order;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.Order;
@@ -11153,6 +13203,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module P {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.BiPredicate, arg1: object_t): org.apache.tinkerpop.gremlin.process.traversal.P;
                     between(arg0: object_t, arg1: object_t): Java.P;
                     betweenP(arg0: object_t, arg1: object_t): Promise<Java.P>;
@@ -11228,6 +13279,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Path {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -11254,6 +13306,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Path$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.Path$Exceptions;
                     stepWithProvidedLabelDoesNotExist(arg0: string_t): object_t;
                     stepWithProvidedLabelDoesNotExistP(arg0: string_t): Promise<object_t>;
@@ -11296,6 +13349,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     first: Java.Pop;
                     last: Java.Pop;
                     all: Java.Pop;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.Pop;
@@ -11342,6 +13396,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     global: Java.Scope;
                     local: Java.Scope;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.Scope;
@@ -11400,6 +13455,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Step {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -11474,6 +13530,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module AbstractStep {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Traversal$Admin): org.apache.tinkerpop.gremlin.process.traversal.step.util.AbstractStep;
                 }
             }
@@ -11547,6 +13604,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module BulkSet {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.step.util.BulkSet;
                 }
             }
@@ -11628,6 +13686,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module CollectingBarrierStep {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Traversal$Admin, arg1: integer_t): org.apache.tinkerpop.gremlin.process.traversal.step.util.CollectingBarrierStep;
                     new (arg0: Java.Traversal$Admin): org.apache.tinkerpop.gremlin.process.traversal.step.util.CollectingBarrierStep;
                 }
@@ -11708,6 +13767,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ComputerAwareStep {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Traversal$Admin): org.apache.tinkerpop.gremlin.process.traversal.step.util.ComputerAwareStep;
                 }
             }
@@ -11785,6 +13845,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ComputerAwareStep$EndStep {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Traversal$Admin): org.apache.tinkerpop.gremlin.process.traversal.step.util.ComputerAwareStep$EndStep;
                 }
             }
@@ -11834,6 +13895,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ElementFunctionComparator {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Function, arg1: Java.Comparator): org.apache.tinkerpop.gremlin.process.traversal.step.util.ElementFunctionComparator;
                 }
             }
@@ -11883,6 +13945,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ElementValueComparator {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: string_t, arg1: Java.Comparator): org.apache.tinkerpop.gremlin.process.traversal.step.util.ElementValueComparator;
                 }
             }
@@ -11946,6 +14009,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module EmptyPath {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.Path;
                     instanceP(): Promise<Java.Path>;
                 }
@@ -12042,6 +14106,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module EmptyStep {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.Step;
                     instanceP(): Promise<Java.Step>;
                 }
@@ -12060,6 +14125,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module CallbackRegistry {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -12108,6 +14174,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ConsoleMutationListener {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Graph): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.ConsoleMutationListener;
                 }
             }
@@ -12119,6 +14186,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Event {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -12147,6 +14215,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Event$EdgeAddedEvent {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Edge): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgeAddedEvent;
                 }
             }
@@ -12176,6 +14245,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Event$EdgePropertyChangedEvent {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Edge, arg1: Java.Property, arg2: object_t): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgePropertyChangedEvent;
                 }
             }
@@ -12205,6 +14275,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Event$EdgePropertyRemovedEvent {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Edge, arg1: Java.Property): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgePropertyRemovedEvent;
                 }
             }
@@ -12234,6 +14305,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Event$EdgeRemovedEvent {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Edge): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$EdgeRemovedEvent;
                 }
             }
@@ -12263,6 +14335,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Event$ElementPropertyChangedEvent {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Element, arg1: Java.Property, arg2: object_t, ...arg3: object_t[]): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$ElementPropertyChangedEvent;
                 }
             }
@@ -12292,6 +14365,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Event$ElementPropertyEvent {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Element, arg1: Java.Property, arg2: object_t, ...arg3: object_t[]): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$ElementPropertyEvent;
                 }
             }
@@ -12321,6 +14395,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Event$VertexAddedEvent {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Vertex): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexAddedEvent;
                 }
             }
@@ -12350,6 +14425,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Event$VertexPropertyChangedEvent {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Vertex, arg1: Java.Property, arg2: object_t, ...arg3: object_t[]): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyChangedEvent;
                 }
             }
@@ -12379,6 +14455,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Event$VertexPropertyPropertyChangedEvent {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.VertexProperty, arg1: Java.Property, arg2: object_t): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyPropertyChangedEvent;
                 }
             }
@@ -12408,6 +14485,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Event$VertexPropertyPropertyRemovedEvent {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.VertexProperty, arg1: Java.Property): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyPropertyRemovedEvent;
                 }
             }
@@ -12437,6 +14515,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Event$VertexPropertyRemovedEvent {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.VertexProperty): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexPropertyRemovedEvent;
                 }
             }
@@ -12466,6 +14545,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Event$VertexRemovedEvent {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Vertex): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.Event$VertexRemovedEvent;
                 }
             }
@@ -12479,6 +14559,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module EventCallback {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -12513,6 +14594,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ListCallbackRegistry {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.step.util.event.ListCallbackRegistry;
                 }
             }
@@ -12544,6 +14626,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MutationListener {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -12586,6 +14669,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ExpandableStepIterator {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Step): org.apache.tinkerpop.gremlin.process.traversal.step.util.ExpandableStepIterator;
                 }
             }
@@ -12637,6 +14721,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module HasContainer {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: string_t, arg1: Java.P): org.apache.tinkerpop.gremlin.process.traversal.step.util.HasContainer;
                     makeHasContainers(arg0: string_t, arg1: Java.P): Java.HasContainer[];
                     makeHasContainersP(arg0: string_t, arg1: Java.P): Promise<Java.HasContainer[]>;
@@ -12708,6 +14793,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ImmutablePath {
                 interface Static {
+                    class: Java.Class;
                     make(): Java.Path;
                     makeP(): Promise<Java.Path>;
                 }
@@ -12736,6 +14822,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MapHelper {
                 interface Static {
+                    class: Java.Class;
                     incr(arg0: Java.Map, arg1: object_t, arg2: object_t): void;
                     incrP(arg0: Java.Map, arg1: object_t, arg2: object_t): Promise<void>;
                     incr(arg0: Java.Map, arg1: object_t, arg2: double_t): void;
@@ -12804,6 +14891,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MutablePath {
                 interface Static {
+                    class: Java.Class;
                     make(): Java.Path;
                     makeP(): Promise<Java.Path>;
                 }
@@ -12886,6 +14974,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module NoOpBarrierStep {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Traversal$Admin, arg1: integer_t): org.apache.tinkerpop.gremlin.process.traversal.step.util.NoOpBarrierStep;
                     new (arg0: Java.Traversal$Admin): org.apache.tinkerpop.gremlin.process.traversal.step.util.NoOpBarrierStep;
                 }
@@ -12962,6 +15051,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module PathIdentityStep {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Traversal$Admin): org.apache.tinkerpop.gremlin.process.traversal.step.util.PathIdentityStep;
                 }
             }
@@ -13050,6 +15140,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module ReducingBarrierStep {
                 interface Static {
                     REDUCING: string;
+                    class: Java.Class;
                     new (arg0: Java.Traversal$Admin): org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep;
                 }
             }
@@ -13110,6 +15201,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module ReducingBarrierStep$DefaultMapReduce {
                 interface Static {
                     MAP_REDUCE: string;
+                    class: Java.Class;
                     new (arg0: Java.Supplier, arg1: Java.BiFunction): org.apache.tinkerpop.gremlin.process.traversal.step.util.ReducingBarrierStep$DefaultMapReduce;
                 }
             }
@@ -13121,6 +15213,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ReducingBarrierStep$FinalGet {
                 interface Static {
+                    class: Java.Class;
                     tryFinalGet(arg0: object_t): object_t;
                     tryFinalGetP(arg0: object_t): Promise<object_t>;
                 }
@@ -13201,6 +15294,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module SupplyingBarrierStep {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Traversal$Admin): org.apache.tinkerpop.gremlin.process.traversal.step.util.SupplyingBarrierStep;
                 }
             }
@@ -13250,6 +15344,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalComparator {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Traversal$Admin, arg1: Java.Comparator): org.apache.tinkerpop.gremlin.process.traversal.step.util.TraversalComparator;
                 }
             }
@@ -13339,6 +15434,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Tree {
                 interface Static {
+                    class: Java.Class;
                     new (...arg0: Java.Map$Entry[]): org.apache.tinkerpop.gremlin.process.traversal.step.util.Tree;
                     new (...arg0: object_t[]): org.apache.tinkerpop.gremlin.process.traversal.step.util.Tree;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.step.util.Tree;
@@ -13380,6 +15476,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ConjunctionStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.ConjunctionStrategy;
                     instanceP(): Promise<Java.ConjunctionStrategy>;
                 }
@@ -13424,6 +15521,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ElementIdStrategy {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.ElementIdStrategy$Builder;
                     buildP(): Promise<Java.ElementIdStrategy$Builder>;
                 }
@@ -13458,6 +15556,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ElementIdStrategy$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -13496,6 +15595,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module EventStrategy {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.EventStrategy$Builder;
                     buildP(): Promise<Java.EventStrategy$Builder>;
                 }
@@ -13530,6 +15630,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module EventStrategy$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -13560,6 +15661,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module EventStrategy$DefaultEventQueue {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$DefaultEventQueue;
                 }
             }
@@ -13573,6 +15675,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module EventStrategy$EventQueue {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -13605,6 +15708,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module EventStrategy$EventStrategyCallback {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.EventStrategy, arg1: Java.EventStrategy$EventQueue): org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$EventStrategyCallback;
                 }
             }
@@ -13636,6 +15740,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module EventStrategy$TransactionalEventQueue {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Graph): org.apache.tinkerpop.gremlin.process.traversal.strategy.decoration.EventStrategy$TransactionalEventQueue;
                 }
             }
@@ -13681,6 +15786,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module PartitionStrategy {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.PartitionStrategy$Builder;
                     buildP(): Promise<Java.PartitionStrategy$Builder>;
                 }
@@ -13717,6 +15823,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module PartitionStrategy$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -13759,6 +15866,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module SubgraphStrategy {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.SubgraphStrategy$Builder;
                     buildP(): Promise<Java.SubgraphStrategy$Builder>;
                 }
@@ -13793,6 +15901,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module SubgraphStrategy$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -13831,6 +15940,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module EngineDependentStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.EngineDependentStrategy;
                     instanceP(): Promise<Java.EngineDependentStrategy>;
                 }
@@ -13871,6 +15981,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module LazyBarrierStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.LazyBarrierStrategy;
                     instanceP(): Promise<Java.LazyBarrierStrategy>;
                 }
@@ -13911,6 +16022,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MatchAlgorithmStrategy {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.MatchAlgorithmStrategy$Builder;
                     buildP(): Promise<Java.MatchAlgorithmStrategy$Builder>;
                 }
@@ -13943,6 +16055,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MatchAlgorithmStrategy$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -13981,6 +16094,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ProfileStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.ProfileStrategy;
                     instanceP(): Promise<Java.ProfileStrategy>;
                 }
@@ -14021,6 +16135,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module AdjacentToIncidentStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.AdjacentToIncidentStrategy;
                     instanceP(): Promise<Java.AdjacentToIncidentStrategy>;
                 }
@@ -14061,6 +16176,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module DedupBijectionStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.DedupBijectionStrategy;
                     instanceP(): Promise<Java.DedupBijectionStrategy>;
                 }
@@ -14101,6 +16217,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module IdentityRemovalStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.IdentityRemovalStrategy;
                     instanceP(): Promise<Java.IdentityRemovalStrategy>;
                 }
@@ -14141,6 +16258,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module IncidentToAdjacentStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.IncidentToAdjacentStrategy;
                     instanceP(): Promise<Java.IncidentToAdjacentStrategy>;
                 }
@@ -14181,6 +16299,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MatchPredicateStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.MatchPredicateStrategy;
                     instanceP(): Promise<Java.MatchPredicateStrategy>;
                 }
@@ -14221,6 +16340,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module RangeByIsCountStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.RangeByIsCountStrategy;
                     instanceP(): Promise<Java.RangeByIsCountStrategy>;
                 }
@@ -14275,6 +16395,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ComputerVerificationException {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: string_t, arg1: Java.Traversal): org.apache.tinkerpop.gremlin.process.traversal.strategy.verification.ComputerVerificationException;
                 }
             }
@@ -14314,6 +16435,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ComputerVerificationStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.ComputerVerificationStrategy;
                     instanceP(): Promise<Java.ComputerVerificationStrategy>;
                 }
@@ -14354,6 +16476,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module LambdaRestrictionStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.LambdaRestrictionStrategy;
                     instanceP(): Promise<Java.LambdaRestrictionStrategy>;
                 }
@@ -14394,6 +16517,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ReadOnlyStrategy {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.ReadOnlyStrategy;
                     instanceP(): Promise<Java.ReadOnlyStrategy>;
                 }
@@ -14432,6 +16556,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Traversal {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -14522,6 +16647,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Traversal$Admin {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -14548,6 +16674,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Traversal$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.Traversal$Exceptions;
                     traversalIsLocked(): object_t;
                     traversalIsLockedP(): Promise<object_t>;
@@ -14569,6 +16696,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalEngine {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -14583,6 +16711,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalEngine$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -14621,6 +16750,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     STANDARD: Java.TraversalEngine$Type;
                     COMPUTER: Java.TraversalEngine$Type;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.TraversalEngine$Type;
@@ -14666,6 +16796,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module TraversalSideEffects {
                 interface Static {
                     SIDE_EFFECTS: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -14692,6 +16823,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalSideEffects$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.TraversalSideEffects$Exceptions;
                     dataTypeOfSideEffectValueNotSupported(arg0: object_t): object_t;
                     dataTypeOfSideEffectValueNotSupportedP(arg0: object_t): Promise<object_t>;
@@ -14717,6 +16849,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalSource {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -14733,6 +16866,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalSource$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -14760,6 +16894,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module TraversalStrategies {
                 interface Static {
                     STRATEGY_CATEGORIES: Java.List;
+                    class: Java.Class;
                     sortStrategies(arg0: Java.List): Java.List;
                     sortStrategiesP(arg0: Java.List): Promise<Java.List>;
                     visit(arg0: Java.Map, arg1: Java.List, arg2: Java.Set, arg3: Java.List, arg4: Java.Class): void;
@@ -14790,6 +16925,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalStrategies$GlobalCache {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategies$GlobalCache;
                     getStrategies(arg0: Java.Class): Java.TraversalStrategies;
                     getStrategiesP(arg0: Java.Class): Promise<Java.TraversalStrategies>;
@@ -14815,6 +16951,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalStrategy {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -14835,6 +16972,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalStrategy$DecorationStrategy {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -14855,6 +16993,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalStrategy$FinalizationStrategy {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -14875,6 +17014,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalStrategy$OptimizationStrategy {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -14895,6 +17035,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalStrategy$VendorOptimizationStrategy {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -14915,6 +17056,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalStrategy$VerificationStrategy {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -14951,6 +17093,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Traverser {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -15016,6 +17159,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module Traverser$Admin {
                 interface Static {
                     HALT: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -15030,6 +17174,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraverserGenerator {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -15088,6 +17233,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module AndP {
                 interface Static {
+                    class: Java.Class;
                     new (...arg0: Java.P[]): org.apache.tinkerpop.gremlin.process.traversal.util.AndP;
                     between(arg0: object_t, arg1: object_t): Java.P;
                     betweenP(arg0: object_t, arg1: object_t): Promise<Java.P>;
@@ -15179,6 +17325,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ConjunctionP {
                 interface Static {
+                    class: Java.Class;
                     new (...arg0: Java.P[]): org.apache.tinkerpop.gremlin.process.traversal.util.ConjunctionP;
                     between(arg0: object_t, arg1: object_t): Java.P;
                     betweenP(arg0: object_t, arg1: object_t): Promise<Java.P>;
@@ -15324,6 +17471,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module DefaultTraversal {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Graph): org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversal;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversal;
                 }
@@ -15387,6 +17535,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module DefaultTraversalSideEffects {
                 interface Static {
                     SIDE_EFFECTS: string;
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversalSideEffects;
                 }
             }
@@ -15437,6 +17586,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module DefaultTraversalStrategies {
                 interface Static {
                     STRATEGY_CATEGORIES: Java.List;
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.util.DefaultTraversalStrategies;
                 }
             }
@@ -15510,6 +17660,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module DependantMutableMetrics {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: string_t, arg1: string_t, arg2: Java.DependantMutableMetrics): org.apache.tinkerpop.gremlin.process.traversal.util.DependantMutableMetrics;
                 }
             }
@@ -15621,6 +17772,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module EmptyTraversal {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.EmptyTraversal;
                     instanceP(): Promise<Java.EmptyTraversal>;
                 }
@@ -15682,6 +17834,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module EmptyTraversalSideEffects {
                 interface Static {
                     SIDE_EFFECTS: string;
+                    class: Java.Class;
                     instance(): Java.EmptyTraversalSideEffects;
                     instanceP(): Promise<Java.EmptyTraversalSideEffects>;
                 }
@@ -15731,6 +17884,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module EmptyTraversalStrategies {
                 interface Static {
                     STRATEGY_CATEGORIES: Java.List;
+                    class: Java.Class;
                     instance(): Java.EmptyTraversalStrategies;
                     instanceP(): Promise<Java.EmptyTraversalStrategies>;
                 }
@@ -15783,6 +17937,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module FastNoSuchElementException {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.NoSuchElementException;
                     instanceP(): Promise<Java.NoSuchElementException>;
                 }
@@ -15831,6 +17986,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ImmutableMetrics {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -15857,6 +18013,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Metrics {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -15927,6 +18084,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MutableMetrics {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: string_t, arg1: string_t): org.apache.tinkerpop.gremlin.process.traversal.util.MutableMetrics;
                 }
             }
@@ -15986,6 +18144,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module OrP {
                 interface Static {
+                    class: Java.Class;
                     new (...arg0: Java.P[]): org.apache.tinkerpop.gremlin.process.traversal.util.OrP;
                     between(arg0: object_t, arg1: object_t): Java.P;
                     betweenP(arg0: object_t, arg1: object_t): Promise<Java.P>;
@@ -16047,6 +18206,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module SideEffectHelper {
                 interface Static {
+                    class: Java.Class;
                     validateSideEffect(arg0: string_t, arg1: object_t): void;
                     validateSideEffectP(arg0: string_t, arg1: object_t): Promise<void>;
                 }
@@ -16095,6 +18255,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     ELEMENT_COUNT_ID: string;
                     TRAVERSER_COUNT_ID: string;
                     PERCENT_DURATION_KEY: string;
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.util.StandardTraversalMetrics;
                     merge(arg0: Java.Iterator): Java.StandardTraversalMetrics;
                     mergeP(arg0: Java.Iterator): Promise<Java.StandardTraversalMetrics>;
@@ -16130,6 +18291,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module StepPosition {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.process.traversal.util.StepPosition;
                 }
             }
@@ -16165,6 +18327,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalClassFunction {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Class): org.apache.tinkerpop.gremlin.process.traversal.util.TraversalClassFunction;
                 }
             }
@@ -16192,6 +18355,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalHelper {
                 interface Static {
+                    class: Java.Class;
                     addToCollection(arg0: Java.Collection, arg1: object_t, arg2: long_t): void;
                     addToCollectionP(arg0: Java.Collection, arg1: object_t, arg2: long_t): Promise<void>;
                     addToCollectionUnrollIterator(arg0: Java.Collection, arg1: object_t, arg2: long_t): void;
@@ -16268,6 +18432,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalMatrix {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Traversal$Admin): org.apache.tinkerpop.gremlin.process.traversal.util.TraversalMatrix;
                 }
             }
@@ -16289,6 +18454,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     ELEMENT_COUNT_ID: string;
                     TRAVERSER_COUNT_ID: string;
                     PERCENT_DURATION_KEY: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -16323,6 +18489,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalObjectFunction {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Traversal$Admin): org.apache.tinkerpop.gremlin.process.traversal.util.TraversalObjectFunction;
                 }
             }
@@ -16366,6 +18533,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalRing {
                 interface Static {
+                    class: Java.Class;
                     new (...arg0: Java.Traversal$Admin[]): org.apache.tinkerpop.gremlin.process.traversal.util.TraversalRing;
                 }
             }
@@ -16401,6 +18569,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalScriptFunction {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.TraversalSource$Builder, arg1: string_t, arg2: string_t, ...arg3: object_t[]): org.apache.tinkerpop.gremlin.process.traversal.util.TraversalScriptFunction;
                 }
             }
@@ -16428,6 +18597,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalScriptHelper {
                 interface Static {
+                    class: Java.Class;
                     compute(arg0: Java.Graph, arg1: Java.TraversalSource$Builder, arg2: string_t, arg3: string_t, ...arg4: object_t[]): Java.Traversal$Admin;
                     compute(arg0: Java.Graph, arg1: Java.TraversalSource$Builder, arg2: string_t, arg3: string_t, arg4: object_array_t): Java.Traversal$Admin;
                     computeP(arg0: Java.Graph, arg1: Java.TraversalSource$Builder, arg2: string_t, arg3: string_t, ...arg4: object_t[]): Promise<Java.Traversal$Admin>;
@@ -16462,6 +18632,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversalUtil {
                 interface Static {
+                    class: Java.Class;
                     apply(arg0: Java.Traverser$Admin, arg1: Java.Traversal$Admin): object_t;
                     applyP(arg0: Java.Traverser$Admin, arg1: Java.Traversal$Admin): Promise<object_t>;
                     apply(arg0: object_t, arg1: Java.Traversal$Admin): object_t;
@@ -16522,6 +18693,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     IN: Java.Direction;
                     BOTH: Java.Direction;
                     proper: Java.Direction[];
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.Direction;
@@ -16569,6 +18741,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module Edge {
                 interface Static {
                     DEFAULT_LABEL: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -16595,6 +18768,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Edge$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     edgeRemovalNotSupported(): object_t;
                     edgeRemovalNotSupportedP(): Promise<object_t>;
                     elementAlreadyRemoved(arg0: Java.Class, arg1: object_t): object_t;
@@ -16647,6 +18821,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Element {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -16673,6 +18848,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Element$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     elementAlreadyRemoved(arg0: Java.Class, arg1: object_t): object_t;
                     elementAlreadyRemovedP(arg0: Java.Class, arg1: object_t): Promise<object_t>;
                     labelCanNotBeAHiddenKey(arg0: string_t): object_t;
@@ -16730,6 +18906,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module Graph {
                 interface Static {
                     GRAPH: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -16756,6 +18933,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Graph$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.structure.Graph$Exceptions;
                     argumentCanNotBeNull(arg0: string_t): object_t;
                     argumentCanNotBeNullP(arg0: string_t): Promise<object_t>;
@@ -16795,6 +18973,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Graph$Features {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -16857,6 +19036,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     FEATURE_STRING_ARRAY_VALUES: string;
                     FEATURE_STRING_VALUES: string;
                     FEATURE_UNIFORM_LIST_VALUES: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -16899,6 +19079,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     FEATURE_ANY_IDS: string;
                     FEATURE_ADD_PROPERTY: string;
                     FEATURE_REMOVE_PROPERTY: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -16964,6 +19145,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     FEATURE_STRING_ARRAY_VALUES: string;
                     FEATURE_STRING_VALUES: string;
                     FEATURE_UNIFORM_LIST_VALUES: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -16998,6 +19180,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     FEATURE_ANY_IDS: string;
                     FEATURE_ADD_PROPERTY: string;
                     FEATURE_REMOVE_PROPERTY: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -17006,6 +19189,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Graph$Features$FeatureSet {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -17028,6 +19212,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     FEATURE_TRANSACTIONS: string;
                     FEATURE_PERSISTENCE: string;
                     FEATURE_THREADED_TRANSACTIONS: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -17093,6 +19278,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     FEATURE_STRING_ARRAY_VALUES: string;
                     FEATURE_STRING_VALUES: string;
                     FEATURE_UNIFORM_LIST_VALUES: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -17158,6 +19344,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     FEATURE_STRING_ARRAY_VALUES: string;
                     FEATURE_STRING_VALUES: string;
                     FEATURE_UNIFORM_LIST_VALUES: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -17208,6 +19395,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     FEATURE_ANY_IDS: string;
                     FEATURE_ADD_PROPERTY: string;
                     FEATURE_REMOVE_PROPERTY: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -17299,6 +19487,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     FEATURE_STRING_ARRAY_VALUES: string;
                     FEATURE_STRING_VALUES: string;
                     FEATURE_UNIFORM_LIST_VALUES: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -17325,6 +19514,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Graph$Hidden {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.structure.Graph$Hidden;
                     hide(arg0: string_t): string;
                     hideP(arg0: string_t): Promise<string>;
@@ -17361,6 +19551,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     SUITE_GROOVY_ENVIRONMENT: string;
                     SUITE_GROOVY_ENVIRONMENT_INTEGRATE: string;
                     SUITE_GROOVY_ENVIRONMENT_PERFORMANCE: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -17379,6 +19570,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Graph$OptIns {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -17403,6 +19595,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Graph$OptOut {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -17421,6 +19614,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Graph$OptOuts {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -17439,6 +19633,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Graph$Variables {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -17465,6 +19660,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Graph$Variables$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     dataTypeOfVariableValueNotSupported(arg0: object_t): object_t;
                     dataTypeOfVariableValueNotSupportedP(arg0: object_t): Promise<object_t>;
                     variableKeyCanNotBeEmpty(): object_t;
@@ -17503,6 +19699,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module AbstractIoRegistry {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.structure.io.AbstractIoRegistry;
                 }
             }
@@ -17530,6 +19727,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphMigrator {
                 interface Static {
+                    class: Java.Class;
                     migrateGraph(arg0: Java.Graph, arg1: Java.Graph, arg2: Java.GraphReader, arg3: Java.GraphWriter): void;
                     migrateGraphP(arg0: Java.Graph, arg1: Java.Graph, arg2: Java.GraphReader, arg3: Java.GraphWriter): Promise<void>;
                     migrateGraph(arg0: Java.Graph, arg1: Java.Graph): void;
@@ -17576,6 +19774,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphMLIo {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.Io$Builder;
                     buildP(): Promise<Java.Io$Builder>;
                 }
@@ -17612,6 +19811,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphMLIo$Builder {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLIo$Builder;
                 }
             }
@@ -17641,6 +19841,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphMLMapper {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.GraphMLMapper$Builder;
                     buildP(): Promise<Java.GraphMLMapper$Builder>;
                 }
@@ -17675,6 +19876,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphMLMapper$Builder {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLMapper$Builder;
                 }
             }
@@ -17718,6 +19920,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphMLReader {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.GraphMLReader$Builder;
                     buildP(): Promise<Java.GraphMLReader$Builder>;
                 }
@@ -17756,6 +19959,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphMLReader$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -17800,6 +20004,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphMLWriter {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.GraphMLWriter$Builder;
                     buildP(): Promise<Java.GraphMLWriter$Builder>;
                 }
@@ -17844,6 +20049,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphMLWriter$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -17940,6 +20146,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphMLWriterHelper$IndentingXMLStreamWriter {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: object_t): org.apache.tinkerpop.gremlin.structure.io.graphml.GraphMLWriterHelper$IndentingXMLStreamWriter;
                 }
             }
@@ -17965,6 +20172,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphReader {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -17975,6 +20183,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphReader$ReaderBuilder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -18017,6 +20226,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphSONIo {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.Io$Builder;
                     buildP(): Promise<Java.Io$Builder>;
                 }
@@ -18053,6 +20263,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphSONIo$Builder {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONIo$Builder;
                 }
             }
@@ -18086,6 +20297,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphSONMapper {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.GraphSONMapper$Builder;
                     buildP(): Promise<Java.GraphSONMapper$Builder>;
                 }
@@ -18132,6 +20344,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphSONMapper$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -18174,6 +20387,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphSONReader {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.GraphSONReader$Builder;
                     buildP(): Promise<Java.GraphSONReader$Builder>;
                 }
@@ -18210,6 +20424,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphSONReader$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -18258,6 +20473,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     NAME: string;
                     COUNTS: string;
                     ANNOTATIONS: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -18284,6 +20500,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphSONUtil {
                 interface Static {
+                    class: Java.Class;
                     writeWithType(arg0: string_t, arg1: object_t, arg2: object_t, arg3: object_t, arg4: object_t): void;
                     writeWithTypeP(arg0: string_t, arg1: object_t, arg2: object_t, arg3: object_t, arg4: object_t): Promise<void>;
                 }
@@ -18327,6 +20544,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module GraphSONVersion {
                 interface Static {
                     V1_0: Java.GraphSONVersion;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.GraphSONVersion;
@@ -18377,6 +20595,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphSONWriter {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.GraphSONWriter$Builder;
                     buildP(): Promise<Java.GraphSONWriter$Builder>;
                 }
@@ -18411,6 +20630,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphSONWriter$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -18453,6 +20673,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module LegacyGraphSONReader {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.LegacyGraphSONReader$Builder;
                     buildP(): Promise<Java.LegacyGraphSONReader$Builder>;
                 }
@@ -18489,6 +20710,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module LegacyGraphSONReader$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -18536,6 +20758,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     VERTICES: string;
                     EDGES: string;
                     MODE: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -18562,6 +20785,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphWriter {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -18572,6 +20796,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphWriter$WriterBuilder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -18614,6 +20839,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GryoIo {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.Io$Builder;
                     buildP(): Promise<Java.Io$Builder>;
                 }
@@ -18650,6 +20876,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GryoIo$Builder {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.structure.io.gryo.GryoIo$Builder;
                 }
             }
@@ -18685,6 +20912,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     GIO: object_t[];
                     HEADER: object_t[];
+                    class: Java.Class;
                     build(): Java.GryoMapper$Builder;
                     buildP(): Promise<Java.GryoMapper$Builder>;
                 }
@@ -18727,6 +20955,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GryoMapper$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -18767,6 +20996,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     CONFIG_IO_REGISTRY: string;
                     CONFIG_IO_GRYO_POOL_SIZE: string;
+                    class: Java.Class;
                     new (arg0: integer_t, arg1: Java.GryoPool$Type, arg2: Java.Optional): org.apache.tinkerpop.gremlin.structure.io.gryo.GryoPool;
                     new (arg0: object_t): org.apache.tinkerpop.gremlin.structure.io.gryo.GryoPool;
                     new (arg0: integer_t): org.apache.tinkerpop.gremlin.structure.io.gryo.GryoPool;
@@ -18809,6 +21039,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     READER: Java.GryoPool$Type;
                     WRITER: Java.GryoPool$Type;
                     READER_WRITER: Java.GryoPool$Type;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.GryoPool$Type;
@@ -18857,6 +21088,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GryoReader {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.GryoReader$Builder;
                     buildP(): Promise<Java.GryoReader$Builder>;
                 }
@@ -18893,6 +21125,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GryoReader$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -18937,6 +21170,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GryoWriter {
                 interface Static {
+                    class: Java.Class;
                     build(): Java.GryoWriter$Builder;
                     buildP(): Promise<Java.GryoWriter$Builder>;
                 }
@@ -18971,6 +21205,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GryoWriter$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -19017,6 +21252,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module VertexByteArrayInputStream {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.InputStream): org.apache.tinkerpop.gremlin.structure.io.gryo.VertexByteArrayInputStream;
                 }
             }
@@ -19046,6 +21282,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module VertexTerminator {
                 interface Static {
                     INSTANCE: Java.VertexTerminator;
+                    class: Java.Class;
                     instance(): Java.VertexTerminator;
                     instanceP(): Promise<Java.VertexTerminator>;
                 }
@@ -19066,6 +21303,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Io {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -19080,6 +21318,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Io$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -19106,6 +21345,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Io$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.structure.io.Io$Exceptions;
                     readerFormatIsForFullGraphSerializationOnly(arg0: Java.Class): object_t;
                     readerFormatIsForFullGraphSerializationOnlyP(arg0: Java.Class): Promise<object_t>;
@@ -19137,6 +21377,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module IoCore {
                 interface Static {
+                    class: Java.Class;
                     graphml(): Java.Io$Builder;
                     graphmlP(): Promise<Java.Io$Builder>;
                     graphson(): Java.Io$Builder;
@@ -19155,6 +21396,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module IoRegistry {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -19165,6 +21407,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Mapper {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -19175,6 +21418,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Mapper$Builder {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -19201,6 +21445,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Property {
                 interface Static {
+                    class: Java.Class;
                     empty(): Java.Property;
                     emptyP(): Promise<Java.Property>;
                 }
@@ -19229,6 +21474,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Property$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     dataTypeOfPropertyValueNotSupported(arg0: object_t): object_t;
                     dataTypeOfPropertyValueNotSupportedP(arg0: object_t): Promise<object_t>;
                     propertyDoesNotExist(arg0: Java.Element, arg1: string_t): object_t;
@@ -19287,6 +21533,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     PROPERTY: Java.PropertyType;
                     VALUE: Java.PropertyType;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.PropertyType;
@@ -19343,6 +21590,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     id: Java.T;
                     key: Java.T;
                     value: Java.T;
+                    class: Java.Class;
                     fromString(arg0: string_t): Java.T;
                     fromStringP(arg0: string_t): Promise<Java.T>;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
@@ -19385,6 +21633,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Transaction {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -19428,6 +21677,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     COMMIT: Java.Transaction$CLOSE_BEHAVIOR;
                     ROLLBACK: Java.Transaction$CLOSE_BEHAVIOR;
                     MANUAL: Java.Transaction$CLOSE_BEHAVIOR;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.Transaction$CLOSE_BEHAVIOR;
@@ -19460,6 +21710,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Transaction$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     onCloseBehaviorCannotBeNull(): object_t;
                     onCloseBehaviorCannotBeNullP(): Promise<object_t>;
                     onReadWriteBehaviorCannotBeNull(): object_t;
@@ -19514,6 +21765,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     AUTO: Java.Transaction$READ_WRITE_BEHAVIOR;
                     MANUAL: Java.Transaction$READ_WRITE_BEHAVIOR;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.Transaction$READ_WRITE_BEHAVIOR;
@@ -19558,6 +21810,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     COMMIT: Java.Transaction$Status;
                     ROLLBACK: Java.Transaction$Status;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.Transaction$Status;
@@ -19614,6 +21867,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     DEFAULT_DELAY_MS: longValue_t;
                     DEFAULT_TRIES: number;
+                    class: Java.Class;
                     new (arg0: Java.Graph, arg1: Java.Function): org.apache.tinkerpop.gremlin.structure.Transaction$Workload;
                 }
             }
@@ -19667,6 +21921,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module AbstractTransaction {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Graph): org.apache.tinkerpop.gremlin.structure.util.AbstractTransaction;
                 }
             }
@@ -19718,6 +21973,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module AbstractTransaction$TransactionException {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: string_t, arg1: object_t): org.apache.tinkerpop.gremlin.structure.util.AbstractTransaction$TransactionException;
                     new (arg0: object_t): org.apache.tinkerpop.gremlin.structure.util.AbstractTransaction$TransactionException;
                     new (arg0: string_t): org.apache.tinkerpop.gremlin.structure.util.AbstractTransaction$TransactionException;
@@ -19733,6 +21989,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Attachable {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -19759,6 +22016,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Attachable$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     canNotGetAttachableFromHostGraph(arg0: Java.Attachable, arg1: Java.Graph): object_t;
                     canNotGetAttachableFromHostGraphP(arg0: Java.Attachable, arg1: Java.Graph): Promise<object_t>;
                     canNotGetAttachableFromHostVertex(arg0: Java.Attachable, arg1: Java.Vertex): object_t;
@@ -19791,6 +22049,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Attachable$Method {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.structure.util.Attachable$Method;
                     create(arg0: Java.Host): Java.Function;
                     createP(arg0: Java.Host): Promise<Java.Function>;
@@ -19860,6 +22119,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     VERTEX_COMPARATOR: Java.Comparator;
                     EDGE_COMPARATOR: Java.Comparator;
                     PROPERTY_COMPARATOR: Java.Comparator;
+                    class: Java.Class;
                 }
             }
         }
@@ -19923,6 +22183,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module DetachedEdge {
                 interface Static {
                     DEFAULT_LABEL: string;
+                    class: Java.Class;
                     new (arg0: object_t, arg1: string_t, arg2: Java.Map, arg3: object_t, arg4: object_t): org.apache.tinkerpop.gremlin.structure.util.detached.DetachedEdge;
                 }
             }
@@ -19978,6 +22239,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module DetachedElement {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -20004,6 +22266,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module DetachedFactory {
                 interface Static {
+                    class: Java.Class;
                     detach(arg0: Java.VertexProperty, arg1: boolean_t): Java.DetachedVertexProperty;
                     detachP(arg0: Java.VertexProperty, arg1: boolean_t): Promise<Java.DetachedVertexProperty>;
                     detach(arg0: Java.Path, arg1: boolean_t): Java.DetachedPath;
@@ -20088,6 +22351,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module DetachedPath {
                 interface Static {
+                    class: Java.Class;
                     make(): Java.Path;
                     makeP(): Promise<Java.Path>;
                 }
@@ -20140,6 +22404,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module DetachedProperty {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: string_t, arg1: object_t, arg2: Java.Element): org.apache.tinkerpop.gremlin.structure.util.detached.DetachedProperty;
                     new (arg0: string_t, arg1: object_t): org.apache.tinkerpop.gremlin.structure.util.detached.DetachedProperty;
                 }
@@ -20222,6 +22487,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     DEFAULT_LABEL: string;
                     EMPTY_ARGS: object_t[];
+                    class: Java.Class;
                     new (arg0: object_t, arg1: string_t, arg2: Java.Map): org.apache.tinkerpop.gremlin.structure.util.detached.DetachedVertex;
                 }
             }
@@ -20296,6 +22562,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module DetachedVertexProperty {
                 interface Static {
                     DEFAULT_LABEL: string;
+                    class: Java.Class;
                     new (arg0: object_t, arg1: string_t, arg2: object_t, arg3: Java.Map, arg4: Java.Vertex): org.apache.tinkerpop.gremlin.structure.util.detached.DetachedVertexProperty;
                     new (arg0: object_t, arg1: string_t, arg2: object_t, arg3: Java.Map): org.apache.tinkerpop.gremlin.structure.util.detached.DetachedVertexProperty;
                 }
@@ -20324,6 +22591,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ElementHelper {
                 interface Static {
+                    class: Java.Class;
                     areEqual(arg0: Java.VertexProperty, arg1: Java.VertexProperty): boolean;
                     areEqualP(arg0: Java.VertexProperty, arg1: Java.VertexProperty): Promise<boolean>;
                     areEqual(arg0: Java.Vertex, arg1: Java.Vertex): boolean;
@@ -20448,6 +22716,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module FeatureDescriptor {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -20474,6 +22743,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphFactory {
                 interface Static {
+                    class: Java.Class;
                     open(arg0: object_t): Java.Graph;
                     openP(arg0: object_t): Promise<Java.Graph>;
                     open(arg0: string_t): Java.Graph;
@@ -20506,6 +22776,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module GraphVariableHelper {
                 interface Static {
+                    class: Java.Class;
                     validateVariable(arg0: string_t, arg1: object_t): void;
                     validateVariableP(arg0: string_t, arg1: object_t): Promise<void>;
                 }
@@ -20516,6 +22787,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Host {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -20542,6 +22814,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module StringFactory {
                 interface Static {
+                    class: Java.Class;
                     computeResultString(arg0: Java.ComputerResult): string;
                     computeResultStringP(arg0: Java.ComputerResult): Promise<string>;
                     edgeString(arg0: Java.Edge): string;
@@ -20642,6 +22915,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     DEFAULT_LABEL: string;
                     EMPTY_ARGS: object_t[];
+                    class: Java.Class;
                 }
             }
         }
@@ -20668,6 +22942,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Vertex$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     edgeAdditionsNotSupported(): object_t;
                     edgeAdditionsNotSupportedP(): Promise<object_t>;
                     multiplePropertiesExistForProvidedKey(arg0: string_t): object_t;
@@ -20729,6 +23004,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module VertexProperty {
                 interface Static {
                     DEFAULT_LABEL: string;
+                    class: Java.Class;
                     empty(): Java.VertexProperty;
                     emptyP(): Promise<Java.VertexProperty>;
                     empty(): Java.Property;
@@ -20772,6 +23048,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     single: Java.VertexProperty$Cardinality;
                     list: Java.VertexProperty$Cardinality;
                     set: Java.VertexProperty$Cardinality;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.VertexProperty$Cardinality;
@@ -20804,6 +23081,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module VertexProperty$Exceptions {
                 interface Static {
+                    class: Java.Class;
                     metaPropertiesNotSupported(): object_t;
                     metaPropertiesNotSupportedP(): Promise<object_t>;
                     multiPropertiesNotSupported(): object_t;
@@ -20850,6 +23128,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerGraphComputer {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.TinkerGraph): org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerGraphComputer;
                 }
             }
@@ -20887,6 +23166,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerGraphComputerView {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.TinkerGraph, arg1: Java.Set): org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerGraphComputerView;
                 }
             }
@@ -20920,6 +23200,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerMapEmitter {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: boolean_t): org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMapEmitter;
                 }
             }
@@ -20980,6 +23261,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerMemory {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.VertexProgram, arg1: Java.Set): org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMemory;
                 }
             }
@@ -21011,6 +23293,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerMessenger {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Vertex, arg1: object_t, arg2: Java.Optional): org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerMessenger;
                 }
             }
@@ -21042,6 +23325,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerReduceEmitter {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerReduceEmitter;
                 }
             }
@@ -21087,6 +23371,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerWorkerPool {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: integer_t): org.apache.tinkerpop.gremlin.tinkergraph.process.computer.TinkerWorkerPool;
                 }
             }
@@ -21147,6 +23432,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module TinkerEdge {
                 interface Static {
                     DEFAULT_LABEL: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -21197,6 +23483,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerElement {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -21223,6 +23510,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerFactory {
                 interface Static {
+                    class: Java.Class;
                     createClassic(): Java.TinkerGraph;
                     createClassicP(): Promise<Java.TinkerGraph>;
                     createModern(): Java.TinkerGraph;
@@ -21308,6 +23596,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     CONFIG_VERTEX_PROPERTY_ID: string;
                     CONFIG_DEFAULT_VERTEX_PROPERTY_CARDINALITY: string;
                     GRAPH: string;
+                    class: Java.Class;
                     open(arg0: object_t): Java.TinkerGraph;
                     openP(arg0: object_t): Promise<Java.TinkerGraph>;
                     open(): Java.TinkerGraph;
@@ -21358,6 +23647,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     INTEGER: Java.TinkerGraph$DefaultIdManager;
                     UUID: Java.TinkerGraph$DefaultIdManager;
                     ANY: Java.TinkerGraph$DefaultIdManager;
+                    class: Java.Class;
                     valueOf(arg0: Java.Class, arg1: string_t): Java.Enum;
                     valueOfP(arg0: Java.Class, arg1: string_t): Promise<Java.Enum>;
                     valueOf(arg0: string_t): Java.TinkerGraph$DefaultIdManager;
@@ -21378,6 +23668,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerGraph$IdManager {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -21438,6 +23729,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     FEATURE_ANY_IDS: string;
                     FEATURE_ADD_PROPERTY: string;
                     FEATURE_REMOVE_PROPERTY: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -21472,6 +23764,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerGraph$TinkerGraphFeatures {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -21512,6 +23805,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     FEATURE_TRANSACTIONS: string;
                     FEATURE_PERSISTENCE: string;
                     FEATURE_THREADED_TRANSACTIONS: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -21580,6 +23874,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     FEATURE_ANY_IDS: string;
                     FEATURE_ADD_PROPERTY: string;
                     FEATURE_REMOVE_PROPERTY: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -21689,6 +23984,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     FEATURE_STRING_ARRAY_VALUES: string;
                     FEATURE_STRING_VALUES: string;
                     FEATURE_UNIFORM_LIST_VALUES: string;
+                    class: Java.Class;
                 }
             }
         }
@@ -21725,6 +24021,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerGraphVariables {
                 interface Static {
+                    class: Java.Class;
                     new (): org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraphVariables;
                 }
             }
@@ -21752,6 +24049,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerHelper {
                 interface Static {
+                    class: Java.Class;
                     autoUpdateIndex(arg0: Java.TinkerVertex, arg1: string_t, arg2: object_t, arg3: object_t): void;
                     autoUpdateIndexP(arg0: Java.TinkerVertex, arg1: string_t, arg2: object_t, arg3: object_t): Promise<void>;
                     autoUpdateIndex(arg0: Java.TinkerEdge, arg1: string_t, arg2: object_t, arg3: object_t): void;
@@ -21830,6 +24128,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TinkerProperty {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.Element, arg1: string_t, arg2: object_t): org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerProperty;
                 }
             }
@@ -21907,6 +24206,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 interface Static {
                     DEFAULT_LABEL: string;
                     EMPTY_ARGS: object_t[];
+                    class: Java.Class;
                 }
             }
         }
@@ -21976,6 +24276,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module TinkerVertexProperty {
                 interface Static {
                     DEFAULT_LABEL: string;
+                    class: Java.Class;
                     new (arg0: object_t, arg1: Java.TinkerVertex, arg2: string_t, arg3: object_t, ...arg4: object_t[]): org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerVertexProperty;
                     new (arg0: Java.TinkerVertex, arg1: string_t, arg2: object_t, ...arg3: object_t[]): org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerVertexProperty;
                 }
@@ -22008,6 +24309,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ArrayListSupplier {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.ArrayListSupplier;
                     instanceP(): Promise<Java.ArrayListSupplier>;
                 }
@@ -22040,6 +24342,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module BulkSetSupplier {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.BulkSetSupplier;
                     instanceP(): Promise<Java.BulkSetSupplier>;
                 }
@@ -22084,6 +24387,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ChainedComparator {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: Java.List): org.apache.tinkerpop.gremlin.util.function_.ChainedComparator;
                 }
             }
@@ -22113,6 +24417,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ConstantSupplier {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: object_t): org.apache.tinkerpop.gremlin.util.function_.ConstantSupplier;
                 }
             }
@@ -22140,6 +24445,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module FunctionUtils {
                 interface Static {
+                    class: Java.Class;
                     wrapBiConsumer(arg0: Java.ThrowingBiConsumer): Java.BiConsumer;
                     wrapBiConsumerP(arg0: Java.ThrowingBiConsumer): Promise<Java.BiConsumer>;
                     wrapConsumer(arg0: Java.ThrowingConsumer): Java.Consumer;
@@ -22178,6 +24484,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module HashMapSupplier {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.HashMapSupplier;
                     instanceP(): Promise<Java.HashMapSupplier>;
                 }
@@ -22210,6 +24517,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module HashSetSupplier {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.HashSetSupplier;
                     instanceP(): Promise<Java.HashSetSupplier>;
                 }
@@ -22242,6 +24550,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module MeanNumberSupplier {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.MeanNumberSupplier;
                     instanceP(): Promise<Java.MeanNumberSupplier>;
                 }
@@ -22298,6 +24607,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ScriptEngineLambda {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: string_t, arg1: string_t): org.apache.tinkerpop.gremlin.util.function_.ScriptEngineLambda;
                 }
             }
@@ -22309,6 +24619,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ThrowingBiConsumer {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -22319,6 +24630,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ThrowingConsumer {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -22329,6 +24641,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ThrowingFunction {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -22339,6 +24652,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ThrowingSupplier {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -22351,6 +24665,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TraversableLambda {
                 interface Static {
+                    class: Java.Class;
                     tryAndClone(arg0: object_t): object_t;
                     tryAndCloneP(arg0: object_t): Promise<object_t>;
                 }
@@ -22383,6 +24698,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TreeSupplier {
                 interface Static {
+                    class: Java.Class;
                     instance(): Java.TreeSupplier;
                     instanceP(): Promise<Java.TreeSupplier>;
                 }
@@ -22397,6 +24713,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TriConsumer {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -22409,6 +24726,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TriFunction {
                 interface Static {
+                    class: Java.Class;
                 }
             }
         }
@@ -22435,6 +24753,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Gremlin {
                 interface Static {
+                    class: Java.Class;
                     main(arg0: array_t<string_t>): void;
                     mainP(arg0: array_t<string_t>): Promise<void>;
                     version(): string;
@@ -22466,6 +24785,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             module ScriptEngineCache {
                 interface Static {
                     DEFAULT_SCRIPT_ENGINE: string;
+                    class: Java.Class;
                     get(arg0: string_t): Java.ScriptEngine;
                     getP(arg0: string_t): Promise<Java.ScriptEngine>;
                 }
@@ -22494,6 +24814,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module Serializer {
                 interface Static {
+                    class: Java.Class;
                     deserializeObject(arg0: object_array_t): object_t;
                     deserializeObjectP(arg0: object_array_t): Promise<object_t>;
                     serializeObject(arg0: object_t): object_t[];
@@ -22524,6 +24845,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module TimeUtil {
                 interface Static {
+                    class: Java.Class;
                     clock(arg0: integer_t, arg1: object_t): number;
                     clockP(arg0: integer_t, arg1: object_t): Promise<number>;
                     clock(arg0: object_t): number;
@@ -23060,6 +25382,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     MULTIANEWARRAY: number;
                     IFNULL: number;
                     IFNONNULL: number;
+                    class: Java.Class;
                     new (arg0: string_t, arg1: integer_t, arg2: Java.ClassNode, arg3: array_t<Java.ClassNode>, arg4: object_array_t): org.codehaus.groovy.ast.ClassNode;
                     new (arg0: string_t, arg1: integer_t, arg2: Java.ClassNode): org.codehaus.groovy.ast.ClassNode;
                     new (arg0: Java.Class): org.codehaus.groovy.ast.ClassNode;
@@ -23186,6 +25509,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     PRE_JDK5: string;
                     currentJVMVersion: string;
                     DEFAULT: Java.CompilerConfiguration;
+                    class: Java.Class;
                     new (arg0: Java.CompilerConfiguration): org.codehaus.groovy.control.CompilerConfiguration;
                     new (arg0: object_t): org.codehaus.groovy.control.CompilerConfiguration;
                     new (): org.codehaus.groovy.control.CompilerConfiguration;
@@ -23225,6 +25549,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module CompilationCustomizer {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: object_t): org.codehaus.groovy.control.customizers.CompilationCustomizer;
                 }
             }
@@ -23278,6 +25603,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module NullObject {
                 interface Static {
+                    class: Java.Class;
                     getNullObject(): Java.NullObject;
                     getNullObjectP(): Promise<Java.NullObject>;
                 }
@@ -23406,6 +25732,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                     COLORS_PREFERENCE_KEY: string;
                     METACLASS_COMPLETION_PREFIX_LENGTH_PREFERENCE_KEY: string;
                     __$stMC: boolean;
+                    class: Java.Class;
                     new (arg0: Java.ClassLoader, arg1: Java.Binding, arg2: object_t, arg3: Java.Closure): org.codehaus.groovy.tools.shell.Groovysh;
                     new (arg0: Java.ClassLoader, arg1: Java.Binding, arg2: object_t): org.codehaus.groovy.tools.shell.Groovysh;
                     new (arg0: Java.Binding, arg1: object_t): org.codehaus.groovy.tools.shell.Groovysh;
@@ -23445,6 +25772,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ManagedReference {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: object_t, arg1: object_t, arg2: object_t): org.codehaus.groovy.util.ManagedReference;
                     new (arg0: Java.ReferenceBundle, arg1: object_t): org.codehaus.groovy.util.ManagedReference;
                 }
@@ -23477,6 +25805,7 @@ declare module '__ts-tinkerpop/tsJavaModule' {
             }
             module ReferenceBundle {
                 interface Static {
+                    class: Java.Class;
                     new (arg0: object_t, arg1: object_t): org.codehaus.groovy.util.ReferenceBundle;
                     getHardBundle(): Java.ReferenceBundle;
                     getHardBundleP(): Promise<Java.ReferenceBundle>;
@@ -23489,5 +25818,12 @@ declare module '__ts-tinkerpop/tsJavaModule' {
                 }
             }
         }
+        function L(n: number): Java.longValue_t;
+        function isLongValue(obj: any): boolean;
+        function isJavaObject(e: any): boolean;
+        interface ConsumeObject {
+            (item: Java.object_t): any | BluePromise<any>;
+        }
+        function forEach(javaIterator: Java.Iterator, consumer: ConsumeObject): BluePromise<void>;
     }
 }
