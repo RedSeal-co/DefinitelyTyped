@@ -1,11 +1,11 @@
-// Type definitions for Libxmljs
+// Type definitions for Libxmljs v0.14.2
 // Project: https://github.com/polotek/libxmljs
 // Definitions by: François de Campredon <https://github.com/fdecampredon>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
 declare module "libxmljs" {
-    export function parseXmlString(source:string):XMLDocument;
-    export function parseHtmlString(source:string):HTMLDocument;
+    export function parseXml(source:string):XMLDocument;
+    export function parseHtml(source:string):HTMLDocument;
  
  
     export class XMLDocument {
