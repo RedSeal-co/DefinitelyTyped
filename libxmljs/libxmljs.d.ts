@@ -6,6 +6,8 @@
 declare module "libxmljs" {
     export function parseXml(source:string):XMLDocument;
     export function parseHtml(source:string):HTMLDocument;
+    export function parseXmlString(source:string):XMLDocument;
+    export function parseHtmlString(source:string):HTMLDocument;
  
  
     export class XMLDocument {
@@ -20,6 +22,8 @@ declare module "libxmljs" {
         node(name:string, content:string):Element;
         root():Element;
         toString():string;
+        validate(xsdDoc:XMLDocument): boolean;
+        validationErrors: XmlError[];
         version():Number;
     }
  
@@ -107,5 +111,15 @@ declare module "libxmljs" {
         setMaxListeners(n: number): void;
         listeners(event: string): { Function; }[];
         emit(event: string, arg1?: any, arg2?: any): void;
+    }
+
+    export interface XmlError {
+        domain: number;
+        code: number;
+        message: string;
+        level: number;
+        file?: string;
+        column: number;
+        line: number;
     }
 }
