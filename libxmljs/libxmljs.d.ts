@@ -3,7 +3,12 @@
 // Definitions by: François de Campredon <https://github.com/fdecampredon>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
+/// <reference path="../node/node.d.ts"/>
+
 declare module "libxmljs" {
+
+    import events = require('events');
+
     export function parseXml(source:string):XMLDocument;
     export function parseHtml(source:string):HTMLDocument;
     export function parseXmlString(source:string):XMLDocument;
@@ -38,25 +43,25 @@ declare module "libxmljs" {
         name(newName:string):void;
         text():string;
         attr(name:string):string;
-        attr(attr:Attribute);
+        attr(attr:Attribute):void;
         attr(attrObject:{[key:string]:string;}):void;
         attrs():Attribute[];
         parent():Element;
         doc():XMLDocument;
         child(idx:number):Element;
         childNodes():Element[];
-        addChild(child:Element);
+        addChild(child:Element):Element;
         nextSibling():Element;
         nextElement():Element;
         addNextSibling(siblingNode:Element):Element;
         prevSibling():Element;
         prevElement():Element;
-        addPrevSibling(siblingNode:Element);
+        addPrevSibling(siblingNode:Element):Element;
         find(xpath:string):Element[];
         find(xpath:string, ns_uri:string):Element[];
         get(xpath:string, ns_uri:string):Element;
         find(xpath:string, namespaces:{[key:string]:string;}):Element[];
-        get(xpath, ns_uri:{[key:string]:string;}):Element;
+        get(xpath:string, ns_uri:{[key:string]:string;}):Element;
         defineNamespace(href:string):Namespace;
         defineNamespace(prefix:string, href:string):Namespace;
         namespace():Namespace;
@@ -88,29 +93,13 @@ declare module "libxmljs" {
         prefix():string;
     }
  
-    export class SaxParser {
+    export class SaxParser extends events.EventEmitter {
         parseString(source:string):boolean;
-        addListener(event: string, listener: Function);
-        on(event: string, listener: Function): any;
-        once(event: string, listener: Function): void;
-        removeListener(event: string, listener: Function): void;
-        removeAllListener(event: string): void;
-        setMaxListeners(n: number): void;
-        listeners(event: string): { Function; }[];
-        emit(event: string, arg1?: any, arg2?: any): void;
     }
  
  
-    export class SaxPushParser {
+    export class SaxPushParser extends events.EventEmitter {
         push(source:string):boolean;
-        addListener(event: string, listener: Function);
-        on(event: string, listener: Function): any;
-        once(event: string, listener: Function): void;
-        removeListener(event: string, listener: Function): void;
-        removeAllListener(event: string): void;
-        setMaxListeners(n: number): void;
-        listeners(event: string): { Function; }[];
-        emit(event: string, arg1?: any, arg2?: any): void;
     }
 
     export interface XmlError {
