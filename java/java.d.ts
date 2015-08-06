@@ -30,6 +30,10 @@ declare module NodeJavaCore {
     promisify?: Promisify;
   }
 
+  interface ProxyFunctions {
+    [index: string]: Function;
+  }
+
   // *NodeAPI* declares methods & members exported by the node java module.
   interface NodeAPI {
     classpath: string[];
@@ -54,5 +58,7 @@ declare module NodeJavaCore {
     newInstanceP(className: string, ...args: any[]): Promise<any>;
     newArray<T>(className: string, arg: any[]): any;
     getClassLoader(): any;
+
+    newProxy(interfaceName: string, functions: ProxyFunctions): any;
   }
 }
