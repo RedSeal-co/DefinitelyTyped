@@ -1,4 +1,4 @@
-// Type definitions for ts-tinkerpop 1.5.1
+// Type definitions for ts-tinkerpop 1.5.2
 // Project: https://github.com/RedSeal-co/ts-tinkerpop
 // Definitions by: Jim Lloyd <https://github.com/jimlloyd>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -18,11 +18,13 @@ declare module 'ts-tinkerpop' {
         var __: Java.__.Static;
         var Cardinality: Java.VertexProperty$Cardinality.Static;
         var Compare: Java.Compare.Static;
+        var Contains: Java.Contains.Static;
         var Direction: Java.Direction.Static;
         var GraphSONReader: Java.GraphSONReader.Static;
         var GraphSONWriter: Java.GraphSONWriter.Static;
         var GraphSONMapper: Java.GraphSONMapper.Static;
         var GremlinGroovyScriptEngine: Java.GremlinGroovyScriptEngine.Static;
+        var Order: Java.Order.Static;
         var P: Java.P.Static;
         var Pop: Java.Pop.Static;
         var Scope: Java.Scope.Static;
@@ -50,11 +52,11 @@ declare module 'ts-tinkerpop' {
         export import L = Java.L;
         export import isLongValue = Java.isLongValue;
         export import isJavaObject = Java.isJavaObject;
-        function asJavaObject(obj: Java.object_t): Java.Object;
+        function asJavaObject(obj: any): Java.Object;
         function isVertex(v: any): boolean;
-        function asVertex(v: Java.object_t): Java.Vertex;
+        function asVertex(v: any): Java.Vertex;
         function isEdge(e: any): boolean;
-        function asEdge(e: Java.object_t): Java.Edge;
+        function asEdge(e: any): Java.Edge;
         function isTraversal(e: any): boolean;
         function asTraversal(e: Java.object_t): Java.Traversal;
         export import ConsumeObject = Java.ConsumeObject;
