@@ -13,8 +13,8 @@ declare module "libxmljs" {
     export function parseHtml(source:string):HTMLDocument;
     export function parseXmlString(source:string):XMLDocument;
     export function parseHtmlString(source:string):HTMLDocument;
- 
- 
+
+
     export class XMLDocument {
         constructor(version:number, encoding:string);
         child(idx:number):Element;
@@ -31,18 +31,18 @@ declare module "libxmljs" {
         validationErrors: XmlError[];
         version():Number;
     }
- 
+
     export class HTMLDocument extends XMLDocument {
- 
+
     }
- 
- 
+
+
     export class Element {
         constructor(doc:XMLDocument, name:string, content?:string);
         name():string;
         name(newName:string):void;
         text():string;
-        attr(name:string):string;
+        attr(name:string):Attribute;
         attr(attr:Attribute):void;
         attr(attrObject:{[key:string]:string;}):void;
         attrs():Attribute[];
@@ -59,8 +59,9 @@ declare module "libxmljs" {
         addPrevSibling(siblingNode:Element):Element;
         find(xpath:string):Element[];
         find(xpath:string, ns_uri:string):Element[];
-        get(xpath:string, ns_uri:string):Element;
         find(xpath:string, namespaces:{[key:string]:string;}):Element[];
+        get(xpath:string):Element;
+        get(xpath:string, ns_uri:string):Element;
         get(xpath:string, ns_uri:{[key:string]:string;}):Element;
         defineNamespace(href:string):Namespace;
         defineNamespace(prefix:string, href:string):Namespace;
@@ -72,8 +73,8 @@ declare module "libxmljs" {
         path():string;
         type():string;
     }
- 
- 
+
+
     export class Attribute {
         constructor(node:Element, name:string, value:string);
         constructor(node:Element, name:string, value:string, ns:Namespace);
@@ -86,18 +87,18 @@ declare module "libxmljs" {
         remove():void;
         value():string;
     }
- 
+
     export class Namespace {
         constructor(node:Element, prefix:string, href:string);
         href():string;
         prefix():string;
     }
- 
+
     export class SaxParser extends events.EventEmitter {
         parseString(source:string):boolean;
     }
- 
- 
+
+
     export class SaxPushParser extends events.EventEmitter {
         push(source:string):boolean;
     }
