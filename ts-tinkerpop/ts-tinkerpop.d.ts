@@ -8,6 +8,7 @@
 // Dependencies for this module:
 //   ../typings/bluebird/bluebird.d.ts
 //   ../typings/java/java.d.ts
+
 declare module 'ts-tinkerpop' {
     import _java = require('__ts-tinkerpop/tsJavaModule');
     import BluePromise = require('bluebird');
@@ -93,6 +94,7 @@ declare module 'ts-tinkerpop' {
     }
     export = Tinkerpop;
 }
+
 declare module '__ts-tinkerpop/tsJavaModule' {
     import _java = require('java');
     import BluePromise = require('bluebird');
